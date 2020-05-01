@@ -12,7 +12,6 @@ namespace SDV701_Project
 {
     public sealed partial class frmCategory : Form
     {
-        // ##### TEMPORARY CODE #####
         private clsItemList _ItemList;
         private clsCategory _Category;
 
@@ -55,6 +54,17 @@ namespace SDV701_Project
             }
         }
 
+        private void DeleteItem(int prIndex)
+        {
+            if (prIndex >= 0 && prIndex < _ItemList.Count)
+            {
+                if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    _ItemList.DeleteWork(prIndex);
+                }
+            }
+        }
+
         // ##### BUTTONS #####
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -74,7 +84,8 @@ namespace SDV701_Project
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            DeleteItem(lstCategories.SelectedIndex);
+            UpdateDisplay();
         }
 
         private void BtnClose_Click(object sender, EventArgs e)

@@ -24,16 +24,16 @@ namespace SDV701_Project
                 lcFormatter.Serialize(lcFileStream, this);
                 lcFileStream.Close();
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
 
+        // FACTORY METHOD: Returns either a saved clsCategory List or a new clsCategory List.
         public static clsCategoryList Retrieve()
         {
             clsCategoryList lcCategoryList = new clsCategoryList();
-
             try
             {
                 System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Open);
@@ -43,11 +43,11 @@ namespace SDV701_Project
                 lcCategoryList = (clsCategoryList)lcFormatter.Deserialize(lcFileStream);
                 lcFileStream.Close();
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 lcCategoryList = new clsCategoryList();
 
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
 
                 // ##### DODGY STUFF #####
                 lcCategoryList.Add("Mountain E-Bikes", new clsCategory("Mountain E-bikes", "This is the description for a Mountain E-Bikes."));

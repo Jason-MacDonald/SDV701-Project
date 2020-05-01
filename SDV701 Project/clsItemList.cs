@@ -23,5 +23,10 @@ namespace SDV701_Project
             clsItem lcItem = this[prIndex];
             lcItem.EditDetails();
         }
+
+        internal void DeleteWork(int prIndex)
+        {
+            RemoveAt(prIndex);
+        }
     }
 }
