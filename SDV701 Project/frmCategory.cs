@@ -32,6 +32,7 @@ namespace SDV701_Project
             _Category = prCategory;
             UpdateForm();
             UpdateDisplay();
+            ShowDialog();
         }
 
 
@@ -59,7 +60,7 @@ namespace SDV701_Project
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            Instance.Hide();
+            this.Hide();
         }
 
         // ##### UPDATES #####

@@ -24,7 +24,6 @@ namespace SDV701_Project
         {
             Name = prName;
             Description = prDescription;
-            EditDetails();
         }
 
         public void EditDetails()
