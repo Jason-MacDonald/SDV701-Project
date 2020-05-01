@@ -54,7 +54,29 @@ namespace SDV701_Project
         // ##### CONTROL INTERACTION #####
         private void LstCategories_DoubleClick(object sender, EventArgs e)
         {
-           
+            string lcKey;
+
+            lcKey = Convert.ToString(lstCategories.SelectedItem);
+            if(lcKey != null)
+            {
+                EditCategory(lcKey);
+                updateDisplay();
+            }
+        }
+
+        private void EditCategory(string prKey)
+        {
+            clsCategory lcCategory;
+            lcCategory = _CategoryList[prKey];
+
+            if(lcCategory != null)
+            {
+                _CategoryList.EditCategory(lcCategory);
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         // ##### BUTTONS #####
@@ -66,7 +88,7 @@ namespace SDV701_Project
 
         private void BtnOpenSelectedCategory_Click(object sender, EventArgs e)
         {
-            frmItemList.Instance.Run();
+            frmCategory.Instance.Run();
             updateDisplay();
         }
 

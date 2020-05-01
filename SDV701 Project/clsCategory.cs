@@ -14,6 +14,8 @@ namespace SDV701_Project
 
         private clsItemList _ItemList;
 
+        private readonly static frmCategory _CategoryDialog = frmCategory.Instance;
+
         public string Name { get => _Name; set => _Name = value; }
         public string Description { get => _Description; set => _Description = value; }
         public clsItemList ItemList { get => _ItemList; set => _ItemList = value; }
@@ -22,6 +24,12 @@ namespace SDV701_Project
         {
             Name = prName;
             Description = prDescription;
+            EditDetails();
+        }
+
+        public void EditDetails()
+        {
+            _CategoryDialog.SetDetails(this);
         }
     }
 }
