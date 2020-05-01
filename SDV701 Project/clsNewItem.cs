@@ -12,7 +12,7 @@ namespace SDV701_Project
         private int _WarrantyPeriod;
 
         [NonSerialized()]
-        private static frmNewItem _NewItemDialog;
+        private static frmNewItem _NewItemDialog; // TODO: Need to get rid of this.
 
         public int WarrantyPeriod { get => _WarrantyPeriod; set => _WarrantyPeriod = value; }
 

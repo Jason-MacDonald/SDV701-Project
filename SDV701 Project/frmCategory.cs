@@ -12,9 +12,9 @@ namespace SDV701_Project
 {
     public sealed partial class frmCategory : Form
     {
-        private clsItemList _ItemList;
         private clsCategory _Category;
-
+        private clsItemList _ItemList;
+        
         // ### SINGLETON #####
         private frmCategory()
         {
@@ -42,6 +42,16 @@ namespace SDV701_Project
             }
         }
 
+        private void DeleteItem(int prIndex)
+        {
+            if (prIndex >= 0 && prIndex < _ItemList.Count)
+            {
+                if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    _ItemList.DeleteWork(prIndex);
+                }
+            }
+        }
 
         // ##### CONTROLLER INTERACTION #####
         private void LstCategories_DoubleClick(object sender, EventArgs e)
@@ -51,17 +61,6 @@ namespace SDV701_Project
             {
                 EditItem(lcIndex);
                 UpdateDisplay();
-            }
-        }
-
-        private void DeleteItem(int prIndex)
-        {
-            if (prIndex >= 0 && prIndex < _ItemList.Count)
-            {
-                if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    _ItemList.DeleteWork(prIndex);
-                }
             }
         }
 
@@ -90,7 +89,7 @@ namespace SDV701_Project
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            Hide();
+            Close();
         }
 
         // ##### UPDATES #####

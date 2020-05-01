@@ -9,7 +9,6 @@ namespace SDV701_Project
     [Serializable()]
     public abstract class clsItem
     {
-        // ##### VARIABLES #####
         private string _Name;
         private string _Description;
         private float _Price;
@@ -26,7 +25,6 @@ namespace SDV701_Project
         public string Motor { get => _Motor; set => _Motor = value; }
         public string Battery { get => _Battery; set => _Battery = value; }
 
-        // ##### CONSTRUCTOR #####
         public clsItem()
         {
             EditDetails();
@@ -34,6 +32,7 @@ namespace SDV701_Project
 
         public abstract void EditDetails();
 
+        // FACTORY METHOD
         public static clsItem NewItem(string prType)
         {
             switch (prType)
@@ -46,7 +45,7 @@ namespace SDV701_Project
 
         public override string ToString()
         {
-            return Name + "\t" + Price + "\t" + Quantity;
+            return Name + "\t" + Price + "\t" + Quantity; // Will need to improve for use with GridView control.
         }
     }
 }

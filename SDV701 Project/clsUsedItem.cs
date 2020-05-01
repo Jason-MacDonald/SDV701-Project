@@ -12,7 +12,7 @@ namespace SDV701_Project
         private string _Condition;
 
         [NonSerialized()]
-        private frmUsedItem _UsedItemDialog;
+        private frmUsedItem _UsedItemDialog; // TODO: Need to get rid of this.
 
        
         public string Condition { get => _Condition; set => _Condition = value; }

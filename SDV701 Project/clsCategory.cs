@@ -14,13 +14,13 @@ namespace SDV701_Project
 
         private clsItemList _ItemList;
 
-        private readonly static frmCategory _CategoryDialog = frmCategory.Instance;
+        private readonly static frmCategory _CategoryDialog = frmCategory.Instance; // TODO: Need to get rid of this.
 
         public string Name { get => _Name; set => _Name = value; }
         public string Description { get => _Description; set => _Description = value; }
         public clsItemList ItemList { get => _ItemList; set => _ItemList = value; }
 
-        public clsCategory(string prName, string prDescription)
+        public clsCategory(string prName, string prDescription) // TODO: Could preserve whole object.
         {
             Name = prName;
             Description = prDescription;
@@ -31,7 +31,7 @@ namespace SDV701_Project
 
         public void EditDetails()
         {
-            _CategoryDialog.SetDetails(this);
+            _CategoryDialog.SetDetails(this); // TODO: Need to get rid of this.
         }
     }
 }
