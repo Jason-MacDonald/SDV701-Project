@@ -18,7 +18,6 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\bin\Debug\SD
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\bin\Debug\SDV701 Project.pdb
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701 Project.csprojAssemblyReference.cache
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701_Project.frmOrderList.resources
-C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701_Project.frmUsedItemDetails.resources
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701_Project.frmMain.resources
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701_Project.frmItem.resources
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701_Project.frmNewItem.resources
@@ -28,3 +27,4 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SD
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701 Project.exe
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701 Project.pdb
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701_Project.frmCategory.resources
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SDV701 Project\obj\Debug\SDV701_Project.frmUsedItem.resources

@@ -24,6 +24,9 @@ namespace SDV701_Project
         {
             Name = prName;
             Description = prDescription;
+
+            ItemList = new clsItemList();
+            EditDetails();
         }
 
         public void EditDetails()

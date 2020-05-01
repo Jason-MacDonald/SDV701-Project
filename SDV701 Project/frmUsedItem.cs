@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace SDV701_Project
 {
-    public partial class frmUsedItemDetails : SDV701_Project.frmItem
+    public partial class frmUsedItem : SDV701_Project.frmItem
     {
-        public frmUsedItemDetails()
+        public frmUsedItem()
         {
             InitializeComponent();
         }

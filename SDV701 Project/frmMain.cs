@@ -102,7 +102,7 @@ namespace SDV701_Project
             {
                 MessageBox.Show(ex.Message, "File Save Error");
             }
-            Close();
+            //Close();
         }
     }
 }

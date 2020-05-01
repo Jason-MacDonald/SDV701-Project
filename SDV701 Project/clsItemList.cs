@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace SDV701_Project
 {
-    public class clsItemList
+    [Serializable()]
+    public class clsItemList : List<clsItem>
     {
+        public void AddItem(string prChoice)
+        {
+            clsItem lcItem = clsItem.NewItem(prChoice);
+            if(lcItem != null)
+            {
+                Add(lcItem);
+            }
+        }
     }
 }

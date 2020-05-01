@@ -13,7 +13,7 @@ namespace SDV701_Project
     public sealed partial class frmCategory : Form
     {
         // ##### TEMPORARY CODE #####
-        public frmItem pbItemForm = new frmItem();
+        private clsItemList _ItemList;
         private clsCategory _Category;
 
         // ### SINGLETON #####
@@ -45,12 +45,13 @@ namespace SDV701_Project
         // ##### BUTTONS #####
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            pbItemForm.Run();
+            _ItemList.AddItem(cbChoice.Text);
+            UpdateDisplay();
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            pbItemForm.Run();
+
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -68,6 +69,8 @@ namespace SDV701_Project
         {
             Text = _Category.Name;
             txtDescription.Text = _Category.Description;
+            _ItemList = _Category.ItemList;
+            UpdateDisplay();
         }
 
         private void UpdateDisplay()

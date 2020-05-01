@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace SDV701_Project
 {
-    class clsUsedItem
+    [Serializable()]
+    public class clsUsedItem : clsItem
     {
+        [NonSerialized()]
+        private frmUsedItem _frmUsedItem;
+
+        private string _Condition;
+
+        public string Condition { get => _Condition; set => _Condition = value; }
     }
 }

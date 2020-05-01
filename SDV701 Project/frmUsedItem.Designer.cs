@@ -1,6 +1,6 @@
 ﻿namespace SDV701_Project
 {
-    partial class frmUsedItemDetails
+    partial class frmUsedItem
     {
         /// <summary>
         /// Required designer variable.
