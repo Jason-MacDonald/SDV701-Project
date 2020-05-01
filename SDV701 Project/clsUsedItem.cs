@@ -8,6 +8,5 @@ namespace SDV701_Project
 {
     class clsUsedItem
     {
-        //test
     }
 }

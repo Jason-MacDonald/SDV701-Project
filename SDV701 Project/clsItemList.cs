@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SDV701_Project
 {
-    class clsItemList
+    public class clsItemList
     {
     }
 }

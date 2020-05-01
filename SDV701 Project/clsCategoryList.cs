@@ -8,6 +8,6 @@ namespace SDV701_Project
 {
     class clsCategoryList
     {
-        // Test
+        
     }
 }
