@@ -40,7 +40,7 @@
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(16, 326);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(212, 28);
             this.btnDelete.TabIndex = 3;
@@ -51,7 +51,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(236, 326);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(208, 28);
             this.btnAdd.TabIndex = 4;
@@ -62,7 +62,7 @@
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(669, 324);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(208, 28);
             this.btnEdit.TabIndex = 5;
@@ -73,17 +73,19 @@
             // cbChoice
             // 
             this.cbChoice.FormattingEnabled = true;
+            this.cbChoice.Items.AddRange(new object[] {
+            "New",
+            "Used"});
             this.cbChoice.Location = new System.Drawing.Point(452, 326);
-            this.cbChoice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbChoice.Margin = new System.Windows.Forms.Padding(4);
             this.cbChoice.Name = "cbChoice";
             this.cbChoice.Size = new System.Drawing.Size(207, 24);
             this.cbChoice.TabIndex = 6;
-            this.cbChoice.Text = "New";
             // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(664, 372);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(212, 28);
             this.btnClose.TabIndex = 7;
@@ -123,7 +125,7 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCategory";
             this.Text = "Mountain E-Bikes";
             this.ResumeLayout(false);

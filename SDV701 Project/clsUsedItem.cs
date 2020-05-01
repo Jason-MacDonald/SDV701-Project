@@ -9,11 +9,20 @@ namespace SDV701_Project
     [Serializable()]
     public class clsUsedItem : clsItem
     {
-        [NonSerialized()]
-        private frmUsedItem _frmUsedItem;
-
         private string _Condition;
 
+        [NonSerialized()]
+        private frmUsedItem _UsedItemDialog;
+
+       
         public string Condition { get => _Condition; set => _Condition = value; }
-    }
+        public override void EditDetails()
+        {
+            if (_UsedItemDialog == null)
+            {
+                _UsedItemDialog = new frmUsedItem();
+            }
+            _UsedItemDialog.SetDetails(this);
+        }
+    }  
 }

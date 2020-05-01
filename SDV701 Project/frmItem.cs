@@ -12,14 +12,18 @@ namespace SDV701_Project
 {
     public partial class frmItem : Form
     {
+        protected clsItem _Item;
+
         public frmItem()
         {
             InitializeComponent();
         }
 
-        public void Run()
+        public void SetDetails(clsItem prItem)
         {
-            Show();
+            _Item = prItem;
+            UpdateForm();
+            ShowDialog();
         }
 
         private void BtnUploadImage_Click(object sender, EventArgs e)
@@ -35,6 +39,12 @@ namespace SDV701_Project
         private void BtnCloseWithoutSaving_Click(object sender, EventArgs e)
         {
             Hide();
+        }
+
+        protected virtual void UpdateForm()
+        {
+            txtName.Text = _Item.Name;
+            txtDescription.Text = _Item.Description;
         }
     }
 }

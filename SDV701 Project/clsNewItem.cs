@@ -11,6 +11,18 @@ namespace SDV701_Project
     {
         private int _WarrantyPeriod;
 
+        [NonSerialized()]
+        private static frmNewItem _NewItemDialog;
+
         public int WarrantyPeriod { get => _WarrantyPeriod; set => _WarrantyPeriod = value; }
+
+        public override void EditDetails()
+        {
+            if(_NewItemDialog == null)
+            {
+                _NewItemDialog = new frmNewItem();
+            }
+            _NewItemDialog.SetDetails(this);
+        }
     }
 }

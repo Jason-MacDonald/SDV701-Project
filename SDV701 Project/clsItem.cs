@@ -9,6 +9,7 @@ namespace SDV701_Project
     [Serializable()]
     public abstract class clsItem
     {
+        // ##### VARIABLES #####
         private string _Name;
         private string _Description;
         private float _Price;
@@ -22,6 +23,14 @@ namespace SDV701_Project
         public string ModifiedDate { get => _ModifiedDate; set => _ModifiedDate = value; }
         public int Quantity { get => _Quantity; set => _Quantity = value; }
         public string Motor { get => _Motor; set => _Motor = value; }
+
+        // ##### CONSTRUCTOR #####
+        public clsItem()
+        {
+            EditDetails();
+        }
+
+        public abstract void EditDetails();
 
         public static clsItem NewItem(string prType)
         {
