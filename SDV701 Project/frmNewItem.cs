@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SDV701_Project
 {
-    public partial class frmNewItem : SDV701_Project.frmItem
+    public partial class frmNewItem : frmItem
     {
         public frmNewItem()
         {

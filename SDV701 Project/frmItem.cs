@@ -26,6 +26,8 @@ namespace SDV701_Project
             ShowDialog();
         }
 
+        // ##### BUTTONS #####
+
         private void BtnUploadImage_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Not Implemented");
@@ -33,18 +35,36 @@ namespace SDV701_Project
 
         private void BtnSaveAndClose_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            PushData();
+            Close();
         }
 
         private void BtnCloseWithoutSaving_Click(object sender, EventArgs e)
         {
-            Hide();
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        // ##### UPDATES #####
+
+        protected virtual void PushData()
+        {
+            _Item.Name = txtName.Text;
+            _Item.Description = txtDescription.Text;
+            _Item.Motor = txtMotor.Text;
+            _Item.Battery = txtBattery.Text;
+            _Item.Quantity = Convert.ToInt32(txtQuantity.Text);
+            _Item.Price = float.Parse(txtPrice.Text);
         }
 
         protected virtual void UpdateForm()
         {
             txtName.Text = _Item.Name;
             txtDescription.Text = _Item.Description;
+            txtMotor.Text = _Item.Motor;
+            txtBattery.Text = _Item.Battery;
+            txtQuantity.Text = _Item.Quantity.ToString();
+            txtPrice.Text = _Item.Price.ToString();
         }
     }
 }

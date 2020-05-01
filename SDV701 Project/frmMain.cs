@@ -51,17 +51,20 @@ namespace SDV701_Project
             lstCategories.DataSource = lcDisplayList;
         }
 
-        // ##### CONTROL INTERACTION #####
-        private void LstCategories_DoubleClick(object sender, EventArgs e)
+        private void OpenSelectedItemDetailForm()
         {
-            string lcKey;
-
-            lcKey = Convert.ToString(lstCategories.SelectedItem);
-            if(lcKey != null)
+            string lcKey = Convert.ToString(lstCategories.SelectedItem);
+            if (lcKey != null)
             {
                 EditCategory(lcKey);
                 updateDisplay();
             }
+        }
+
+        // ##### CONTROL INTERACTION #####
+        private void LstCategories_DoubleClick(object sender, EventArgs e)
+        {
+            OpenSelectedItemDetailForm();
         }
 
         private void EditCategory(string prKey)
@@ -88,8 +91,7 @@ namespace SDV701_Project
 
         private void BtnOpenSelectedCategory_Click(object sender, EventArgs e)
         {
-            frmCategory.Instance.Run();
-            updateDisplay();
+            OpenSelectedItemDetailForm();
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -102,7 +104,7 @@ namespace SDV701_Project
             {
                 MessageBox.Show(ex.Message, "File Save Error");
             }
-            //Close();
+            Close();
         }
     }
 }

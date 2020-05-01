@@ -34,12 +34,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtMotor = new System.Windows.Forms.TextBox();
+            this.txtBattery = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCloseWithoutSaving = new System.Windows.Forms.Button();
@@ -64,7 +64,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(16, 34);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(343, 22);
             this.txtName.TabIndex = 2;
@@ -86,7 +86,7 @@
             this.txtDescription.AcceptsReturn = true;
             this.txtDescription.AcceptsTab = true;
             this.txtDescription.Location = new System.Drawing.Point(16, 92);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(343, 139);
@@ -104,14 +104,14 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Price";
             // 
-            // textBox3
+            // txtPrice
             // 
-            this.textBox3.Location = new System.Drawing.Point(79, 362);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(116, 22);
-            this.textBox3.TabIndex = 6;
-            this.textBox3.Text = "$1000";
+            this.txtPrice.Location = new System.Drawing.Point(79, 362);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(116, 22);
+            this.txtPrice.TabIndex = 6;
+            this.txtPrice.Text = "$1000";
             // 
             // label4
             // 
@@ -124,14 +124,14 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Qty";
             // 
-            // textBox4
+            // txtQuantity
             // 
-            this.textBox4.Location = new System.Drawing.Point(264, 362);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(91, 22);
-            this.textBox4.TabIndex = 8;
-            this.textBox4.Text = "5";
+            this.txtQuantity.Location = new System.Drawing.Point(264, 362);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(4);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(91, 22);
+            this.txtQuantity.TabIndex = 8;
+            this.txtQuantity.Text = "5";
             // 
             // label5
             // 
@@ -144,23 +144,23 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Motor";
             // 
-            // textBox5
+            // txtMotor
             // 
-            this.textBox5.Location = new System.Drawing.Point(16, 266);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(339, 22);
-            this.textBox5.TabIndex = 10;
-            this.textBox5.Text = "CMT23 mid-drive motor (32km/h)";
+            this.txtMotor.Location = new System.Drawing.Point(16, 266);
+            this.txtMotor.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMotor.Name = "txtMotor";
+            this.txtMotor.Size = new System.Drawing.Size(339, 22);
+            this.txtMotor.TabIndex = 10;
+            this.txtMotor.Text = "CMT23 mid-drive motor (32km/h)";
             // 
-            // textBox6
+            // txtBattery
             // 
-            this.textBox6.Location = new System.Drawing.Point(16, 324);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(339, 22);
-            this.textBox6.TabIndex = 11;
-            this.textBox6.Text = "LG battery cells, 36v 13Ah (17aH + $300 RRP)";
+            this.txtBattery.Location = new System.Drawing.Point(16, 324);
+            this.txtBattery.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBattery.Name = "txtBattery";
+            this.txtBattery.Size = new System.Drawing.Size(339, 22);
+            this.txtBattery.TabIndex = 11;
+            this.txtBattery.Text = "LG battery cells, 36v 13Ah (17aH + $300 RRP)";
             // 
             // label6
             // 
@@ -187,7 +187,7 @@
             // btnCloseWithoutSaving
             // 
             this.btnCloseWithoutSaving.Location = new System.Drawing.Point(16, 400);
-            this.btnCloseWithoutSaving.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCloseWithoutSaving.Margin = new System.Windows.Forms.Padding(4);
             this.btnCloseWithoutSaving.Name = "btnCloseWithoutSaving";
             this.btnCloseWithoutSaving.Size = new System.Drawing.Size(340, 28);
             this.btnCloseWithoutSaving.TabIndex = 14;
@@ -198,7 +198,7 @@
             // btnSaveAndClose
             // 
             this.btnSaveAndClose.Location = new System.Drawing.Point(395, 400);
-            this.btnSaveAndClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveAndClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(340, 28);
             this.btnSaveAndClose.TabIndex = 15;
@@ -220,7 +220,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(395, 34);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(340, 198);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -230,7 +230,7 @@
             // btnUploadImage
             // 
             this.btnUploadImage.Location = new System.Drawing.Point(395, 263);
-            this.btnUploadImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUploadImage.Margin = new System.Windows.Forms.Padding(4);
             this.btnUploadImage.Name = "btnUploadImage";
             this.btnUploadImage.Size = new System.Drawing.Size(340, 28);
             this.btnUploadImage.TabIndex = 18;
@@ -250,18 +250,18 @@
             this.Controls.Add(this.btnCloseWithoutSaving);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtBattery);
+            this.Controls.Add(this.txtMotor);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmItem";
             this.Text = "Item Details";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -277,12 +277,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtMotor;
+        private System.Windows.Forms.TextBox txtBattery;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCloseWithoutSaving;

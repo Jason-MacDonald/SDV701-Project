@@ -17,5 +17,11 @@ namespace SDV701_Project
                 Add(lcItem);
             }
         }
+
+        public void EditItem(int prIndex)
+        {
+            clsItem lcItem = this[prIndex];
+            lcItem.EditDetails();
+        }
     }
 }

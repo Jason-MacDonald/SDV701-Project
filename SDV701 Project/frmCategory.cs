@@ -23,10 +23,6 @@ namespace SDV701_Project
         }
         public static readonly frmCategory Instance = new frmCategory();
 
-        public void Run()
-        {
-            Show();
-        }
         public void SetDetails(clsCategory prCategory)
         {
             _Category = prCategory;
@@ -35,11 +31,28 @@ namespace SDV701_Project
             ShowDialog();
         }
 
+        private void EditItem(int prIndex)
+        {
+            if(prIndex>= 0 && prIndex < _ItemList.Count)
+            {
+                _ItemList.EditItem(prIndex);
+            }
+            else
+            {
+                MessageBox.Show("No Item Selected.");
+            }
+        }
+
 
         // ##### CONTROLLER INTERACTION #####
         private void LstCategories_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            int lcIndex = lstCategories.SelectedIndex;
+            if (lcIndex >= 0)
+            {
+                EditItem(lcIndex);
+                UpdateDisplay();
+            }
         }
 
         // ##### BUTTONS #####
@@ -51,7 +64,12 @@ namespace SDV701_Project
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-
+            int lcIndex = lstCategories.SelectedIndex;
+            if(lcIndex >= 0)
+            {
+                EditItem(lcIndex);
+                UpdateDisplay();
+            }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -61,7 +79,7 @@ namespace SDV701_Project
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
         }
 
         // ##### UPDATES #####
@@ -75,7 +93,8 @@ namespace SDV701_Project
 
         private void UpdateDisplay()
         {
-            
+            lstCategories.DataSource = null;
+            lstCategories.DataSource = _ItemList;
         }
     }
 }

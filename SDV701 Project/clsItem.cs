@@ -16,6 +16,7 @@ namespace SDV701_Project
         private string _ModifiedDate;
         private int _Quantity;
         private string _Motor;
+        private string _Battery;
 
         public string Name { get => _Name; set => _Name = value; }
         public string Description { get => _Description; set => _Description = value; }
@@ -23,6 +24,7 @@ namespace SDV701_Project
         public string ModifiedDate { get => _ModifiedDate; set => _ModifiedDate = value; }
         public int Quantity { get => _Quantity; set => _Quantity = value; }
         public string Motor { get => _Motor; set => _Motor = value; }
+        public string Battery { get => _Battery; set => _Battery = value; }
 
         // ##### CONSTRUCTOR #####
         public clsItem()
@@ -40,6 +42,11 @@ namespace SDV701_Project
                 case "Used": return new clsUsedItem();
                 default: return null;
             }
+        }
+
+        public override string ToString()
+        {
+            return Name + "\t" + Price + "\t" + Quantity;
         }
     }
 }
