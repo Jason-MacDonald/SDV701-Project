@@ -1,0 +1,15 @@
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\bin\Debug\SDV701 Project.exe.config
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\bin\Debug\SDV701 Project.exe
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\bin\Debug\SDV701 Project.pdb
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701 Project.csprojAssemblyReference.cache
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701_Project.frmMain.resources
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701_Project.Properties.Resources.resources
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701 Project.csproj.GenerateResource.cache
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701 Project.csproj.CoreCompileInputs.cache
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701 Project.exe
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701 Project.pdb
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701_Project.frmOrderList.resources
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701_Project.frmUsedItemDetails.resources
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701_Project.frmNewItem.resources
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701_Project.frmItemList.resources
+C:\Users\64221\source\repos\SDV701 Project\SDV701 Project\obj\Debug\SDV701_Project.frmItem.resources
