@@ -8,13 +8,16 @@ using System.Windows.Forms;
 
 namespace SDV701_Project
 {
-    public partial class frmUsedItem : frmItem
+    public sealed partial class frmUsedItem : frmItem
     {
-        private string _Condition;
-        public frmUsedItem()
+        // ##### Singleton #####
+        private frmUsedItem()
         {
             InitializeComponent();
         }
+        public static readonly frmUsedItem Instance = new frmUsedItem();
+
+        private string _Condition;
 
         public string Condition { get => _Condition; set => _Condition = value; }
 

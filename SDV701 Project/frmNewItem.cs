@@ -8,14 +8,16 @@ using System.Windows.Forms;
 
 namespace SDV701_Project
 {
-    public partial class frmNewItem : frmItem
+    public sealed partial class frmNewItem : frmItem
     {
-        private int _WarrantyPeriod;
-
-        public frmNewItem()
+        // ##### SINGLETON #####
+        private frmNewItem()
         {
             InitializeComponent();
         }
+        public static readonly frmNewItem Instance = new frmNewItem();
+
+        private int _WarrantyPeriod;
 
         public int WarrantyPeriod { get => _WarrantyPeriod; set => _WarrantyPeriod = value; }
 
