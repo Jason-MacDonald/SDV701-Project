@@ -12,8 +12,6 @@ namespace SDV701_Project
 {
     public sealed partial class frmCategory : Form
     {
-        //private static Dictionary<clsCategory, frmCategory> _CategoryFormList = new Dictionary<clsCategory, frmCategory>();
-        private static frmCategory _CategoryForm = new frmCategory();
         private clsCategory _Category;
         private clsItemList _ItemList;
         
@@ -24,14 +22,13 @@ namespace SDV701_Project
         }
         public static readonly frmCategory Instance = new frmCategory();
 
-        public static frmCategory CategoryForm { get => _CategoryForm; set => _CategoryForm = value; }
         public clsCategory Category { get => _Category; set => _Category = value; }
         public clsItemList ItemList { get => _ItemList; set => _ItemList = value; }
 
         public static void Run(clsCategory prCategory)
         {
-            CategoryForm.SetDetails(prCategory);
-            CategoryForm.Show();
+            Instance.SetDetails(prCategory);
+            Instance.Show();
         }
 
         public void SetDetails(clsCategory prCategory)
