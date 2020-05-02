@@ -20,7 +20,7 @@ namespace SDV701_Project
         {
             if(_NewItemDialog == null)
             {
-                _NewItemDialog = new frmNewItem();
+                _NewItemDialog = frmNewItem.Instance;
             }
             _NewItemDialog.SetDetails(this);
         }
