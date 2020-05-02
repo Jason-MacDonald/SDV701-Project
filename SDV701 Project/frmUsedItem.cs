@@ -17,9 +17,10 @@ namespace SDV701_Project
         }
         public static readonly frmUsedItem Instance = new frmUsedItem();
 
-        private string _Condition;
-
-        public string Condition { get => _Condition; set => _Condition = value; }
+        public static void Run(clsUsedItem prUsedItem)
+        {
+            Instance.SetDetails(prUsedItem);
+        }
 
         protected override void PushData()
         {

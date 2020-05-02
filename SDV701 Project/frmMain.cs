@@ -7,6 +7,18 @@ namespace SDV701_Project
     {
         clsCategoryList _CategoryList;
 
+        // ##### SINGLETON ##### 
+        private frmMain()
+        {
+            InitializeComponent();
+        }
+        private static readonly frmMain _Instance = new frmMain();
+
+        public static frmMain Instance
+        {
+            get { return _Instance;  } // Part of the additional singleton setup for the applications first form (see program.cs line 19).           
+        }
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
             try
@@ -20,42 +32,16 @@ namespace SDV701_Project
             UpdateDisplay();
         }
 
-        // ##### SINGLETON ##### 
-        private frmMain()
-        {
-            InitializeComponent();
-        }
-        private static readonly frmMain _Instance = new frmMain();
-
-        public static frmMain Instance
-        {
-            get { return _Instance;  } // Part of the additional singleton setup for the applications first form (see program.cs line 19).           
-        }
-
         private void OpenSelectedItemForm()
         {
             string lcKey = Convert.ToString(lstCategories.SelectedItem);
             if (lcKey != null)
             {
-                EditCategory(lcKey);
-                UpdateDisplay();
+                frmCategory.Run(_CategoryList[lcKey]);
             }
         }
 
-        private void EditCategory(string prKey)
-        {
-            clsCategory lcCategory; // TODO: Need to get rid of this.
-            lcCategory = _CategoryList[prKey];
 
-            if (lcCategory != null)
-            {
-                _CategoryList.EditCategory(lcCategory);
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
-        }
 
         // ##### CONTROL INTERACTION #####
         private void LstCategories_DoubleClick(object sender, EventArgs e)

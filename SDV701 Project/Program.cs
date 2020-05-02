@@ -16,6 +16,10 @@ namespace SDV701_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            clsNewItem.LoadNewItemForm = new clsNewItem.LoadNewItemFormDelegate(frmNewItem.Run);
+            clsUsedItem.LoadUsedItemForm = new clsUsedItem.LoadUsedItemFormDelegate(frmUsedItem.Run);
+
             Application.Run(frmMain.Instance);
         }
     }

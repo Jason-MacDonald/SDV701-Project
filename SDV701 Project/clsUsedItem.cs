@@ -9,20 +9,16 @@ namespace SDV701_Project
     [Serializable()]
     public class clsUsedItem : clsItem
     {
+        // ##### Delegate #####
+        public delegate void LoadUsedItemFormDelegate(clsUsedItem prUsedItem);
+        public static LoadUsedItemFormDelegate LoadUsedItemForm;
+
         private string _Condition;
 
-        [NonSerialized()]
-        private frmUsedItem _UsedItemDialog; // TODO: Need to get rid of this.
-
-       
         public string Condition { get => _Condition; set => _Condition = value; }
         public override void EditDetails()
         {
-            if (_UsedItemDialog == null)
-            {
-                _UsedItemDialog = frmUsedItem.Instance;
-            }
-            _UsedItemDialog.SetDetails(this);
+            LoadUsedItemForm(this);
         }
     }  
 }

@@ -9,12 +9,16 @@ namespace SDV701_Project
     [Serializable()]
     public class clsCategory
     {
+        // ##### Delegate #####
+        public delegate void LoadCategoryFormDelegate(clsCategory prCategory);
+        public static LoadCategoryFormDelegate LoadCategoryForm;
+
         private string _Name;
         private string _Description;
 
         private clsItemList _ItemList;
 
-        private readonly static frmCategory _CategoryDialog = frmCategory.Instance; // TODO: Need to get rid of this.
+        //private readonly static frmCategory _CategoryDialog = frmCategory.Instance; // TODO: Need to get rid of this.
 
         public string Name { get => _Name; set => _Name = value; }
         public string Description { get => _Description; set => _Description = value; }
@@ -26,12 +30,6 @@ namespace SDV701_Project
             Description = prDescription;
 
             ItemList = new clsItemList();
-            EditDetails();
-        }
-
-        public void EditDetails()
-        {
-            _CategoryDialog.SetDetails(this); // TODO: Need to get rid of this.
         }
     }
 }

@@ -12,6 +12,8 @@ namespace SDV701_Project
 {
     public sealed partial class frmCategory : Form
     {
+        //private static Dictionary<clsCategory, frmCategory> _CategoryFormList = new Dictionary<clsCategory, frmCategory>();
+        private static frmCategory _CategoryForm = new frmCategory();
         private clsCategory _Category;
         private clsItemList _ItemList;
         
@@ -22,19 +24,29 @@ namespace SDV701_Project
         }
         public static readonly frmCategory Instance = new frmCategory();
 
+        public static frmCategory CategoryForm { get => _CategoryForm; set => _CategoryForm = value; }
+        public clsCategory Category { get => _Category; set => _Category = value; }
+        public clsItemList ItemList { get => _ItemList; set => _ItemList = value; }
+
+        public static void Run(clsCategory prCategory)
+        {
+            CategoryForm.SetDetails(prCategory);
+            CategoryForm.Show();
+        }
+
         public void SetDetails(clsCategory prCategory)
         {
-            _Category = prCategory;
+            Category = prCategory;
             UpdateForm();
             UpdateDisplay();
-            ShowDialog();
+            Show();
         }
 
         private void EditItem(int prIndex)
         {
-            if(prIndex>= 0 && prIndex < _ItemList.Count)
+            if(prIndex>= 0 && prIndex < ItemList.Count)
             {
-                _ItemList.EditItem(prIndex);
+                ItemList.EditItem(prIndex);
             }
             else
             {
@@ -44,11 +56,11 @@ namespace SDV701_Project
 
         private void DeleteItem(int prIndex)
         {
-            if (prIndex >= 0 && prIndex < _ItemList.Count)
+            if (prIndex >= 0 && prIndex < ItemList.Count)
             {
                 if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    _ItemList.DeleteWork(prIndex);
+                    ItemList.DeleteWork(prIndex);
                 }
             }
         }
@@ -67,7 +79,7 @@ namespace SDV701_Project
         // ##### BUTTONS #####
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            _ItemList.AddItem(cbChoice.Text);
+            ItemList.AddItem(cbChoice.Text);
             UpdateDisplay();
         }
 
@@ -89,22 +101,22 @@ namespace SDV701_Project
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            Close();
+            Hide();
         }
 
         // ##### UPDATES #####
         private void UpdateForm()
         {
-            Text = _Category.Name;
-            txtDescription.Text = _Category.Description;
-            _ItemList = _Category.ItemList;
+            Text = Category.Name;
+            txtDescription.Text = Category.Description;
+            ItemList = Category.ItemList;
             UpdateDisplay();
         }
 
         private void UpdateDisplay()
         {
             lstItems.DataSource = null;
-            lstItems.DataSource = _ItemList;
+            lstItems.DataSource = ItemList;
         }
     }
 }

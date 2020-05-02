@@ -17,9 +17,10 @@ namespace SDV701_Project
         }
         public static readonly frmNewItem Instance = new frmNewItem();
 
-        private int _WarrantyPeriod;
-
-        public int WarrantyPeriod { get => _WarrantyPeriod; set => _WarrantyPeriod = value; }
+        public static void Run(clsNewItem prNewItem)
+        {
+            Instance.SetDetails(prNewItem);
+        }
 
         protected override void PushData()
         {

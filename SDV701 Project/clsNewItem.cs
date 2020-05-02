@@ -9,20 +9,17 @@ namespace SDV701_Project
     [Serializable()]
     public class clsNewItem : clsItem
     {
-        private int _WarrantyPeriod;
+        // ##### Delegate #####
+        public delegate void LoadNewItemFormDelegate(clsNewItem prNewItem);
+        public static LoadNewItemFormDelegate LoadNewItemForm;
 
-        [NonSerialized()]
-        private static frmNewItem _NewItemDialog; // TODO: Need to get rid of this.
+        private int _WarrantyPeriod;
 
         public int WarrantyPeriod { get => _WarrantyPeriod; set => _WarrantyPeriod = value; }
 
         public override void EditDetails()
         {
-            if(_NewItemDialog == null)
-            {
-                _NewItemDialog = frmNewItem.Instance;
-            }
-            _NewItemDialog.SetDetails(this);
+            LoadNewItemForm(this);
         }
     }
 }

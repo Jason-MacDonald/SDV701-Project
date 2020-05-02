@@ -8,11 +8,6 @@ namespace SDV701_Project
     {
         private const string _FileName = "inventory.xml";
 
-        public void EditCategory(clsCategory prCategory)
-        {
-            prCategory.EditDetails();
-        }
-
         public void Save()
         {
             try
