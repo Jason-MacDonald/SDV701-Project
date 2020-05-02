@@ -56,7 +56,7 @@ namespace SDV701_Project
         // ##### CONTROLLER INTERACTION #####
         private void LstCategories_DoubleClick(object sender, EventArgs e)
         {
-            int lcIndex = lstCategories.SelectedIndex;
+            int lcIndex = lstItems.SelectedIndex;
             if (lcIndex >= 0)
             {
                 EditItem(lcIndex);
@@ -73,7 +73,7 @@ namespace SDV701_Project
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            int lcIndex = lstCategories.SelectedIndex;
+            int lcIndex = lstItems.SelectedIndex;
             if(lcIndex >= 0)
             {
                 EditItem(lcIndex);
@@ -83,7 +83,7 @@ namespace SDV701_Project
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            DeleteItem(lstCategories.SelectedIndex);
+            DeleteItem(lstItems.SelectedIndex);
             UpdateDisplay();
         }
 
@@ -103,8 +103,8 @@ namespace SDV701_Project
 
         private void UpdateDisplay()
         {
-            lstCategories.DataSource = null;
-            lstCategories.DataSource = _ItemList;
+            lstItems.DataSource = null;
+            lstItems.DataSource = _ItemList;
         }
     }
 }

@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtCondition = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox7
+            // txtCondition
             // 
-            this.textBox7.Location = new System.Drawing.Point(372, 263);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(179, 20);
-            this.textBox7.TabIndex = 17;
-            this.textBox7.Text = "Fair";
+            this.txtCondition.Location = new System.Drawing.Point(372, 263);
+            this.txtCondition.Name = "txtCondition";
+            this.txtCondition.Size = new System.Drawing.Size(179, 20);
+            this.txtCondition.TabIndex = 17;
+            this.txtCondition.Text = "Fair";
             // 
             // label9
             // 
@@ -50,15 +50,15 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Condition";
             // 
-            // frmUsedItemDetails
+            // frmUsedItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(563, 382);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox7);
-            this.Name = "frmUsedItemDetails";
+            this.Controls.Add(this.txtCondition);
+            this.Name = "frmUsedItem";
             this.Text = "Used Item Details";
-            this.Controls.SetChildIndex(this.textBox7, 0);
+            this.Controls.SetChildIndex(this.txtCondition, 0);
             this.Controls.SetChildIndex(this.label9, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -67,7 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtCondition;
         private System.Windows.Forms.Label label9;
     }
 }

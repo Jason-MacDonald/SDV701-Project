@@ -33,7 +33,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.cbChoice = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lstCategories = new System.Windows.Forms.ListBox();
+            this.lstItems = new System.Windows.Forms.ListBox();
             this.txtDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -95,14 +95,14 @@
             // 
             // lstCategories
             // 
-            this.lstCategories.FormattingEnabled = true;
-            this.lstCategories.ItemHeight = 16;
-            this.lstCategories.Location = new System.Drawing.Point(16, 156);
-            this.lstCategories.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lstCategories.Name = "lstCategories";
-            this.lstCategories.Size = new System.Drawing.Size(859, 148);
-            this.lstCategories.TabIndex = 8;
-            this.lstCategories.DoubleClick += new System.EventHandler(this.LstCategories_DoubleClick);
+            this.lstItems.FormattingEnabled = true;
+            this.lstItems.ItemHeight = 16;
+            this.lstItems.Location = new System.Drawing.Point(16, 44);
+            this.lstItems.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lstItems.Name = "lstCategories";
+            this.lstItems.Size = new System.Drawing.Size(859, 260);
+            this.lstItems.TabIndex = 8;
+            this.lstItems.DoubleClick += new System.EventHandler(this.LstCategories_DoubleClick);
             // 
             // txtDescription
             // 
@@ -119,7 +119,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 415);
             this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.lstCategories);
+            this.Controls.Add(this.lstItems);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.cbChoice);
             this.Controls.Add(this.btnEdit);
@@ -139,7 +139,7 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox cbChoice;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.ListBox lstCategories;
+        private System.Windows.Forms.ListBox lstItems;
         private System.Windows.Forms.Label txtDescription;
     }
 }

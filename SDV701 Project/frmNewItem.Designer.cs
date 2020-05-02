@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtWarrantyPeriod = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label9
@@ -42,24 +42,24 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Waranty";
             // 
-            // textBox7
+            // txtWarrantyPeriod
             // 
-            this.textBox7.Location = new System.Drawing.Point(372, 263);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(179, 20);
-            this.textBox7.TabIndex = 18;
-            this.textBox7.Text = "6 Months";
+            this.txtWarrantyPeriod.Location = new System.Drawing.Point(372, 263);
+            this.txtWarrantyPeriod.Name = "txtWarrantyPeriod";
+            this.txtWarrantyPeriod.Size = new System.Drawing.Size(179, 20);
+            this.txtWarrantyPeriod.TabIndex = 18;
+            this.txtWarrantyPeriod.Text = "6 Months";
             // 
             // frmNewItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(563, 382);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtWarrantyPeriod);
             this.Controls.Add(this.label9);
             this.Name = "frmNewItem";
             this.Text = "New Item Details";
             this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.textBox7, 0);
+            this.Controls.SetChildIndex(this.txtWarrantyPeriod, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -68,6 +68,6 @@
         #endregion
 
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtWarrantyPeriod;
     }
 }
