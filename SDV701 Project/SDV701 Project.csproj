@@ -51,6 +51,7 @@
     <Compile Include="clsItem.cs" />
     <Compile Include="clsItemList.cs" />
     <Compile Include="clsNewItem.cs" />
+    <Compile Include="clsOrder.cs" />
     <Compile Include="clsOrderList.cs" />
     <Compile Include="clsUsedItem.cs" />
     <Compile Include="frmOrderList.cs">

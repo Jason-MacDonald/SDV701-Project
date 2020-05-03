@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "12345",
             "01/01/2020",
             "Black Trail",
@@ -42,8 +42,8 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnDeleteOrder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -59,7 +59,7 @@
             this.columnHeader7});
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem3});
             this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(655, 224);
@@ -97,23 +97,25 @@
             this.columnHeader7.Text = "Total Price";
             this.columnHeader7.Width = 74;
             // 
-            // button1
+            // btnClose
             // 
-            this.button1.Location = new System.Drawing.Point(455, 273);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(212, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Close Current Orders";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnClose.Location = new System.Drawing.Point(455, 273);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(212, 23);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "Close Current Orders";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // button2
+            // btnDeleteOrder
             // 
-            this.button2.Location = new System.Drawing.Point(12, 273);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(212, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Complete / Delete Order";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDeleteOrder.Location = new System.Drawing.Point(12, 273);
+            this.btnDeleteOrder.Name = "btnDeleteOrder";
+            this.btnDeleteOrder.Size = new System.Drawing.Size(212, 23);
+            this.btnDeleteOrder.TabIndex = 2;
+            this.btnDeleteOrder.Text = "Complete / Delete Order";
+            this.btnDeleteOrder.UseVisualStyleBackColor = true;
+            this.btnDeleteOrder.Click += new System.EventHandler(this.BtnDeleteOrder_Click);
             // 
             // label1
             // 
@@ -141,8 +143,8 @@
             this.ClientSize = new System.Drawing.Size(677, 308);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDeleteOrder);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.listView1);
             this.Name = "frmOrderList";
             this.Text = "Current Orders";
@@ -154,8 +156,8 @@
         #endregion
 
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnDeleteOrder;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

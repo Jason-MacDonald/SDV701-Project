@@ -52,7 +52,7 @@ namespace SDV701_Project
         // ##### BUTTONS #####
         private void BtnOpenCurrentOrdersForm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            frmOrderList.Instance.Show();
             UpdateDisplay();
         }
 

@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace SDV701_Project
 {
-    public partial class frmOrderList : Form
+    public sealed partial class frmOrderList : Form
     {
-        public frmOrderList()
+        private frmOrderList()
         {
             InitializeComponent();
+        }
+        public static readonly frmOrderList Instance = new frmOrderList();
+
+        private void BtnDeleteOrder_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not Implemented.");
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 }

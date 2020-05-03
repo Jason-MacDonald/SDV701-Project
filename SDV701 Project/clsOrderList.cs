@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace SDV701_Project
 {
-    class clsOrderList
+    public class clsOrderList : List<clsOrder>
     {
+        public void AddOrder(clsOrder prOrder)
+        {
+            Add(prOrder);
+        }
+
+        public void DeleteOrder()
+        {
+            System.Windows.Forms.MessageBox.Show("Not Implemented.");
+        }
     }
 }
