@@ -12,3 +12,4 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.c
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.exe
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.pdb
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmCategory.resources
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmItem.resources

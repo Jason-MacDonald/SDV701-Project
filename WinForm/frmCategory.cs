@@ -13,7 +13,7 @@ namespace WinForm
     public sealed partial class frmCategory : Form
     {
         private clsCategory _Category;
-        //private clsItemList _ItemList;
+        private List<clsItem> _ItemList;
         
         // ### SINGLETON #####
         private frmCategory()
@@ -23,7 +23,7 @@ namespace WinForm
         public static readonly frmCategory Instance = new frmCategory();
 
         public clsCategory Category { get => _Category; set => _Category = value; }
-        //public clsItemList ItemList { get => _ItemList; set => _ItemList = value; }
+        public List<clsItem> ItemList { get => _ItemList; set => _ItemList = value; }
 
         public static void Run(string prCategoryName)
         {
@@ -76,16 +76,26 @@ namespace WinForm
             //    }
             //}
         }
+        private void OpenSelectedItemForm()
+        {
+            string lcKey = Convert.ToString(lstItems.SelectedItem);
+            if (lcKey != null)
+            {
+                //frmCategory.Run(_CategoryList[lcKey]);
+            }
+        }
+
 
         // ##### CONTROLLER INTERACTION #####
         private void LstCategories_DoubleClick(object sender, EventArgs e)
         {
-            //int lcIndex = lstItems.SelectedIndex;
-            //if (lcIndex >= 0)
-            //{
-            //    EditItem(lcIndex);
-            //    UpdateDisplay();
-            //}
+            OpenSelectedItemForm();
+            int lcIndex = lstItems.SelectedIndex;
+            if (lcIndex >= 0)
+            {
+                EditItem(lcIndex);
+                UpdateDisplay();
+            }
         }
 
         // ##### BUTTONS #####
@@ -121,14 +131,15 @@ namespace WinForm
         {
             Text = Category.Name;
             txtDescription.Text = Category.Description;
-            //ItemList = Category.ItemList;
             UpdateDisplay();
         }
 
-        private void UpdateDisplay()
+        private async void UpdateDisplay()
         {
-            //lstItems.DataSource = null;
-            //lstItems.DataSource = ItemList;
+            ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+
+            lstItems.DataSource = null;
+            lstItems.DataSource = await ServiceClient.GetCategoryItemNamesAsync(Category.Name);
         }
     }
 }
