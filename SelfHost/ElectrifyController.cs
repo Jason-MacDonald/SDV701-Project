@@ -18,6 +18,20 @@ namespace SelfHost
                 lcNames.Add((string)dr[0]);
             return lcNames;
         }
-
-    }
+        public clsCategory GetCategory(string Name)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("Name", Name);
+            DataTable lcResult =
+                clsDbConnection.GetDataTable("SELECT * FROM category WHERE Name = @Name", par);
+            if (lcResult.Rows.Count > 0)
+                return new clsCategory()
+                {
+                    Name = (string)lcResult.Rows[0]["Name"],
+                    Description = (string)lcResult.Rows[0]["Description"]
+                };
+            else
+                return null;
+        }
+    }    
 }
