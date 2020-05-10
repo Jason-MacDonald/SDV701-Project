@@ -13,3 +13,5 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.e
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.pdb
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmCategory.resources
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmItem.resources
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmNewItem.resources
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmUsedItem.resources

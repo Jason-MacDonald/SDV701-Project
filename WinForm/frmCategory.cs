@@ -1,35 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinForm
 {
     public sealed partial class frmCategory : Form
     {
+        #region ##### VARIABLES #####
         private clsCategory _Category;
         private List<clsItem> _ItemList;
-        
-        // ### SINGLETON #####
+
+        public clsCategory Category { get => _Category; set => _Category = value; }
+        public List<clsItem> ItemList { get => _ItemList; set => _ItemList = value; }
+        #endregion
+
+        #region ##### SINGLETON #####
         private frmCategory()
         {
             InitializeComponent();
         }
         public static readonly frmCategory Instance = new frmCategory();
+        #endregion
 
-        public clsCategory Category { get => _Category; set => _Category = value; }
-        public List<clsItem> ItemList { get => _ItemList; set => _ItemList = value; }
-
+        #region ##### METHODS #####
         public static void Run(string prCategoryName)
         {
-            //Instance.SetDetails(prCategory);
-            //Instance.Show();
-
             if (string.IsNullOrEmpty(prCategoryName))
             {
                 Instance.SetDetails(new clsCategory());
@@ -46,24 +41,12 @@ namespace WinForm
             SetDetails(await ServiceClient.GetCategoryAsync(prCategoryName));
         }
 
-        public void SetDetails(clsCategory prCategory)
+        public async void SetDetails(clsCategory prCategory)
         {
             Category = prCategory;
+            ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
             UpdateForm();
-            UpdateDisplay();
             Show();
-        }
-
-        private void EditItem(int prIndex)
-        {
-            //if(prIndex>= 0 && prIndex < ItemList.Count)
-            //{
-            //    ItemList.EditItem(prIndex);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No Item Selected.");
-            //}
         }
 
         private void DeleteItem(int prIndex)
@@ -76,48 +59,64 @@ namespace WinForm
             //    }
             //}
         }
-        private void OpenSelectedItemForm()
+        private void OpenSelectedItemForm(clsItem prItem)
         {
-            string lcKey = Convert.ToString(lstItems.SelectedItem);
-            if (lcKey != null)
+            if (prItem != null)
             {
-                //frmCategory.Run(_CategoryList[lcKey]);
+                switch(prItem.Type)
+                {
+                    case "new":
+                        frmNewItem.Run(prItem);
+                        break;
+                    case "used":
+                        frmUsedItem.Run(prItem);
+                        break;
+                }             
             }
         }
+        #endregion
 
-
-        // ##### CONTROLLER INTERACTION #####
-        private void LstCategories_DoubleClick(object sender, EventArgs e)
+        #region ##### CONTROLLER INTERACTION #####
+        private async void LstCategories_DoubleClick(object sender, EventArgs e)
         {
-            OpenSelectedItemForm();
-            int lcIndex = lstItems.SelectedIndex;
-            if (lcIndex >= 0)
-            {
-                EditItem(lcIndex);
-                UpdateDisplay();
-            }
+            string lcStringID = ItemList[lstItems.SelectedIndex].Id.ToString();
+            clsItem lcItem = await ServiceClient.GetItemAsync(lcStringID);
+            OpenSelectedItemForm(lcItem);
         }
+        #endregion
 
-        // ##### BUTTONS #####
+        #region ##### BUTTONS #####
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            //ItemList.AddItem(cbChoice.Text);
+            clsItem lcItem = new clsItem();
+            switch (cbChoice.Text)
+            {
+                case "New":
+                    lcItem.Type = "new";
+                    lcItem.Category = Category.Name;
+                    frmNewItem.Run(lcItem);
+                    break;
+                case "Used":
+                    lcItem.Type = "used";
+                    lcItem.Category = Category.Name;
+                    frmUsedItem.Run(lcItem);
+                    break;
+                default:
+                    MessageBox.Show("No item type selected!");
+                    break;
+            }
             UpdateDisplay();
         }
 
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private async void BtnEdit_Click(object sender, EventArgs e)
         {
-            //int lcIndex = lstItems.SelectedIndex;
-            //if(lcIndex >= 0)
-            //{
-            //    EditItem(lcIndex);
-            //    UpdateDisplay();
-            //}
+            clsItem lcItem = await ServiceClient.GetItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString());
+            OpenSelectedItemForm(lcItem);
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            //DeleteItem(lstItems.SelectedIndex);
+            //TODO: Delete Item;
             UpdateDisplay();
         }
 
@@ -125,9 +124,10 @@ namespace WinForm
         {
             Hide();
         }
+        #endregion
 
-        // ##### UPDATES #####
-        private void UpdateForm()
+        #region ##### UPDATES #####
+        public void UpdateForm()
         {
             Text = Category.Name;
             txtDescription.Text = Category.Description;
@@ -136,10 +136,15 @@ namespace WinForm
 
         private async void UpdateDisplay()
         {
-            ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
-
             lstItems.DataSource = null;
-            lstItems.DataSource = await ServiceClient.GetCategoryItemNamesAsync(Category.Name);
+            ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+            List<string> lcItemNames = new List<string>(); 
+            foreach (clsItem item in ItemList)
+            {
+                lcItemNames.Add(item.Id.ToString() + " " + item.Name);
+            }
+            lstItems.DataSource = lcItemNames;
         }
+        #endregion
     }
 }

@@ -5,9 +5,7 @@ namespace WinForm
 {
     public sealed partial class frmMain : Form
     {
-        //clsCategoryList _CategoryList;
-
-        // ##### SINGLETON ##### 
+        #region ##### SINGLETON ##### 
         private frmMain()
         {
             InitializeComponent();
@@ -18,42 +16,36 @@ namespace WinForm
         {
             get { return _Instance;  } // Part of the additional singleton setup for the applications first form (see program.cs line 19).           
         }
+        #endregion
 
+        #region ##### METHODS #####
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            try
-            {
-               //_CategoryList = clsCategoryList.Retrieve();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "File Retrieve Error");
-            }
             UpdateDisplay();
         }
 
         private void OpenSelectedItemForm()
         {
-            string lcKey = Convert.ToString(lstCategories.SelectedItem);
-            if (lcKey != null)
+            if (lstCategories.SelectedItem != null)
             {
-                //frmCategory.Run(_CategoryList[lcKey]);
                 frmCategory.Run(lstCategories.SelectedItem as string);
             }
         }
+        #endregion
 
-
-
-        // ##### CONTROL INTERACTION #####
+        #region ##### CONTROL INTERACTION #####
         private void LstCategories_DoubleClick(object sender, EventArgs e)
         {
             OpenSelectedItemForm();
         }
+        #endregion
 
-        // ##### BUTTONS #####
+        #region ##### BUTTONS #####
         private void BtnOpenCurrentOrdersForm_Click(object sender, EventArgs e)
         {
+            // TODO: Open Current Orders Form.
             //frmOrderList.Instance.Show();
+            MessageBox.Show("Not Implemented!");          
             UpdateDisplay();
         }
 
@@ -64,22 +56,16 @@ namespace WinForm
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //_CategoryList.Save();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "File Save Error");
-            }
             Close();
         }
+        #endregion
 
-        // ##### UPDATES #####
-        private async void UpdateDisplay()
+        #region ##### UPDATES #####
+        public async void UpdateDisplay()
         {
             lstCategories.DataSource = null;
             lstCategories.DataSource = await ServiceClient.GetCategoryNamesAsync();
         }
+        #endregion
     }
 }

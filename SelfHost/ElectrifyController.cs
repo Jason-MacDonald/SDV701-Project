@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SelfHost
 {
     //note controller must end with controller!
     public class ElectrifyController : System.Web.Http.ApiController
     {
-        // ##### CATEGORY #####
+        #region ##### CATEGORY QUERIES #####
         public List<string> GetCategoryNames()
         {
             DataTable lcResult = clsDbConnection.GetDataTable("SELECT name FROM category", null);
@@ -34,8 +31,9 @@ namespace SelfHost
             else
                 return null;
         }
+        #endregion
 
-        // ##### ITEM #####
+        #region ##### ITEM QUERIES #####
         // GET
         public List<string> GetCategoryItemNames(string Category)
         {
@@ -62,8 +60,9 @@ namespace SelfHost
                 foreach (DataRow dr in lcResult.Rows)
                 {
                     clsItem lcItem = new clsItem();
+                    lcItem.Id = Convert.ToInt32(dr["Id"]);
                     lcItem.Name = (string)dr["Name"];
-                    lcItem.Description = (string)dr["Description"];
+                    //lcItem.Description = (string)dr["Description"];
                     lcItemList.Add(lcItem);
                 }
                 return lcItemList;
@@ -72,15 +71,16 @@ namespace SelfHost
                 return null;
         }
 
-        public clsItem GetItem(string Name)
+        public clsItem GetItem(string Id)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
-            par.Add("Name", Name);
+            par.Add("Id", Id);
             DataTable lcResult =
-                clsDbConnection.GetDataTable("SELECT * FROM item WHERE Name = @Name", par);
+                clsDbConnection.GetDataTable("SELECT * FROM item WHERE Id = @Id", par);
             if (lcResult.Rows.Count > 0)
                 return new clsItem()
                 {
+                    Id = Convert.ToInt32(lcResult.Rows[0]["Id"]),
                     Name = (string)lcResult.Rows[0]["Name"],
                     Category = (string)lcResult.Rows[0]["CategoryName"],
                     Description = (string)lcResult.Rows[0]["Description"],
@@ -88,8 +88,8 @@ namespace SelfHost
                     ModifiedDate = (lcResult.Rows[0]["ModifiedDate"]).ToString(),
                     Quantity = Convert.ToInt32(lcResult.Rows[0]["Quantity"]),
                     Motor = (string)lcResult.Rows[0]["Motor"],
-                    //WarrantyPeriod = Convert.ToInt32(lcResult.Rows[0]["WarrantyPeriod"]),
-                    //Condition = (string)lcResult.Rows[0]["Condition"],
+                    WarrantyPeriod = lcResult.Rows[0]["WarrantyPeriod"] is DBNull ? 0 : Convert.ToInt32(lcResult.Rows[0]["WarrantyPeriod"]),
+                    Condition = lcResult.Rows[0]["Condition"] is DBNull ? "" : (string)lcResult.Rows[0]["Condition"],
                     Type = (string)lcResult.Rows[0]["Type"]
                 };
             else
@@ -102,19 +102,14 @@ namespace SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute(
-                    "UPDATE item SET Name = @Name, Category = @Category, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition, Type = @Type", PrepareItemParameters(prItem));
+                    "UPDATE item SET Name = @Name, CategoryName = @Category, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition, Type = @Type WHERE Id = @Id", PrepareItemParameters(prItem));
                 if(lcRecCount == 1)
-                {
                     return "One Item Updated.";
-                }
                 else
-                {
                     return "Unexpected Item Update Count.";
-                }
             }
             catch (Exception ex)
             {
-
                 return ex.GetBaseException().Message;
             }
         }
@@ -125,28 +120,22 @@ namespace SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute(
-                    "INSERT INTO item VALUES Name = @Name, Category = @Category, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition, Type = @Type", PrepareItemParameters(prItem));
-                //if (lcRecCount == 1)
-                //{
-                //    return "One Item Inserted.";
-                //}
-                //else
-                //{
-                //    return "Unexpected Item Update Count.";
-                //}
+                    "INSERT INTO item(name, categoryName, description, price, modifiedDate, quantity, motor, warrantyPeriod, condition, type) VALUES (@Name, @Category, @Description, @Price, @ModifiedDate, @Quantity, @Motor, @WarrantyPeriod, @Condition, @Type)", PrepareItemParameters(prItem)
+                );
                 return "One Item Inserted.";
             }
             catch (Exception ex)
             {
-
                 return ex.GetBaseException().Message;
             }
         }
+        #endregion
 
-        // ##### PREPARATION METHODS #####
+        #region ##### PREPARATION METHODS #####
         private Dictionary<string, object> PrepareItemParameters(clsItem prItem)
         {
-            Dictionary<string, object> par = new Dictionary<string, object>(10);
+            Dictionary<string, object> par = new Dictionary<string, object>(11);
+            par.Add("Id", prItem.Id);
             par.Add("Name", prItem.Name);
             par.Add("Category", prItem.Category);
             par.Add("Description", prItem.Description);
@@ -159,5 +148,6 @@ namespace SelfHost
             par.Add("Type", prItem.Type);
             return par;
         }
-    }    
+        #endregion
+    }
 }

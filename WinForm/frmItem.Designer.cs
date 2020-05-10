@@ -68,7 +68,6 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(343, 22);
             this.txtName.TabIndex = 2;
-            this.txtName.Text = "Black Trail";
             // 
             // label3
             // 
@@ -91,7 +90,6 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(343, 139);
             this.txtDescription.TabIndex = 4;
-            this.txtDescription.Text = resources.GetString("txtDescription.Text");
             // 
             // label2
             // 
@@ -111,7 +109,6 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(116, 22);
             this.txtPrice.TabIndex = 6;
-            this.txtPrice.Text = "$1000";
             // 
             // label4
             // 
@@ -131,7 +128,6 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(91, 22);
             this.txtQuantity.TabIndex = 8;
-            this.txtQuantity.Text = "5";
             // 
             // label5
             // 
@@ -151,7 +147,6 @@
             this.txtMotor.Name = "txtMotor";
             this.txtMotor.Size = new System.Drawing.Size(339, 22);
             this.txtMotor.TabIndex = 10;
-            this.txtMotor.Text = "CMT23 mid-drive motor (32km/h)";
             // 
             // txtBattery
             // 
@@ -160,7 +155,6 @@
             this.txtBattery.Name = "txtBattery";
             this.txtBattery.Size = new System.Drawing.Size(339, 22);
             this.txtBattery.TabIndex = 11;
-            this.txtBattery.Text = "LG battery cells, 36v 13Ah (17aH + $300 RRP)";
             // 
             // label6
             // 
