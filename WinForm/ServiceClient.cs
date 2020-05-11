@@ -69,7 +69,16 @@ namespace WinForm
         #endregion
 
         #region ### ITEM DELETE ###
-        //TODO: Delete
+        internal async static Task<string> DeleteItemAsync(string prId)
+        {
+            using (HttpClient lcHttpClient = new HttpClient())
+            {
+                HttpResponseMessage lcRespMessage = await lcHttpClient.DeleteAsync
+                    ($"http://localhost:60064/api/electrify/DeleteItem?Id={prId}");
+                return await lcRespMessage.Content.ReadAsStringAsync();
+            }
+
+        }
         #endregion
 
         #endregion

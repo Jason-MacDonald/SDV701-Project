@@ -114,9 +114,9 @@ namespace WinForm
             OpenSelectedItemForm(lcItem);
         }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private async void BtnDelete_Click(object sender, EventArgs e)
         {
-            //TODO: Delete Item;
+            MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString()));
             UpdateDisplay();
         }
 

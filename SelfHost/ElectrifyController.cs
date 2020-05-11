@@ -157,6 +157,25 @@ namespace SelfHost
             else
                 return null;
         }
+        // DELETE
+        public string DeleteItem(string Id)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("Id", Id);
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute(
+                    "DELETE FROM item WHERE Id = @Id", par);
+                if (lcRecCount == 1)
+                    return "One Item Deleted.";
+                else
+                    return "Unexpected Item Delete Count.";
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
         #endregion
 
         #region ##### PREPARATION METHODS #####
