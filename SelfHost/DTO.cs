@@ -23,5 +23,14 @@
 
     }
 
+    public class clsOrder
+    {
+        public int InvoiceNumber { get; set; }
+        public string ItemName { get; set; }
+        public int Quantity { get; set; }
+        public float Price { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+    }
 }
 

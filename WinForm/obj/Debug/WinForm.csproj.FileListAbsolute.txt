@@ -15,3 +15,4 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.f
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmItem.resources
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmNewItem.resources
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmUsedItem.resources
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\WinForm\obj\Debug\WinForm.frmOrderList.resources

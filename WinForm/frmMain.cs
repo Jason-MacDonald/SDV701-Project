@@ -43,9 +43,8 @@ namespace WinForm
         #region ##### BUTTONS #####
         private void BtnOpenCurrentOrdersForm_Click(object sender, EventArgs e)
         {
-            // TODO: Open Current Orders Form.
-            //frmOrderList.Instance.Show();
-            MessageBox.Show("Not Implemented!");          
+            frmOrderList.Instance.Show();
+            //MessageBox.Show("Not Implemented!");          
             UpdateDisplay();
         }
 

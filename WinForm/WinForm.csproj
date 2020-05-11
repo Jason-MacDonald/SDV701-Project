@@ -74,6 +74,12 @@
     <Compile Include="frmNewItem.Designer.cs">
       <DependentUpon>frmNewItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrderList.Designer.cs">
+      <DependentUpon>frmOrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsedItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewItem.resx">
       <DependentUpon>frmNewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrderList.resx">
+      <DependentUpon>frmOrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsedItem.resx">
       <DependentUpon>frmUsedItem.cs</DependentUpon>

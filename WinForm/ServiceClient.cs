@@ -8,7 +8,7 @@ namespace WinForm
 {
     public static class ServiceClient
     {
-        #region ##### CATEGORY REQUESTS#####
+        #region ##### CATEGORY REQUESTS #####
 
         #region ### CATEGORY RETRIEVE ###
         internal async static Task<List<string>> GetCategoryNamesAsync()
@@ -28,7 +28,7 @@ namespace WinForm
 
         #endregion
 
-        #region ##### ITEM REQUESTS#####
+        #region ##### ITEM REQUESTS #####
 
         #region ### ITEM CREATE ###
         internal async static Task<string> InsertItemAsync(clsItem prItem)
@@ -74,6 +74,15 @@ namespace WinForm
 
         #endregion
 
+        #region ##### ORDER REQUESTS ####
+        internal async static Task<List<clsOrder>> GetOrdersAsync()
+        {
+            using (HttpClient lcHttpClient = new HttpClient())
+                return JsonConvert.DeserializeObject<List<clsOrder>>
+                    (await lcHttpClient.GetStringAsync("http://localhost:60064/api/electrify/GetOrders"));
+        }
+        #endregion
+
         #region ##### GENERIC METHODS #####
         private async static Task<string> InsertOrUpdateAsync<TItem>(TItem prItem, string prUrl, string prRequest)
         {
@@ -86,6 +95,6 @@ namespace WinForm
                 return await lcRespMessage.Content.ReadAsStringAsync();
             }
         }
-        #endregion
+        #endregion      
     }
 }

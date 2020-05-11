@@ -19,8 +19,17 @@
         public string Battery { get; set; }
         public int WarrantyPeriod { get; set; }
         public string Condition { get; set; }
-        public string Type { get; set; }
-        
+        public string Type { get; set; }       
+    }
+
+    public class clsOrder
+    {
+        public int InvoiceNumber { get; set; }
+        public string ItemName { get; set; }
+        public int Quantity { get; set; }
+        public float Price { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
     }
 }
 

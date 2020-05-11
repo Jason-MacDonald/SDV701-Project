@@ -131,6 +131,34 @@ namespace SelfHost
         }
         #endregion
 
+        #region ##### ORDER QUERIES #####
+        public List<clsOrder> GetOrders()
+        {
+            DataTable lcResult =
+                clsDbConnection.GetDataTable("SELECT * FROM itemOrder", null);
+
+            List<clsOrder> lcOrderList = new List<clsOrder>();
+
+            if (lcResult.Rows.Count > 0)
+            {
+                foreach (DataRow dr in lcResult.Rows)
+                {
+                    clsOrder lcOrder = new clsOrder();
+                    lcOrder.InvoiceNumber = Convert.ToInt32(dr["InvoiceNumber"]);
+                    lcOrder.ItemName = (string)dr["ItemName"];
+                    lcOrder.Quantity = Convert.ToInt32(dr["Quantity"]);
+                    lcOrder.Price = Convert.ToSingle(dr["Price"]);
+                    lcOrder.Name = (string)dr["Name"];
+                    lcOrder.Email = (string)dr["Email"];
+                    lcOrderList.Add(lcOrder);
+                }
+                return lcOrderList;
+            }
+            else
+                return null;
+        }
+        #endregion
+
         #region ##### PREPARATION METHODS #####
         private Dictionary<string, object> PrepareItemParameters(clsItem prItem)
         {
