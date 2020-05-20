@@ -1,38 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace UWPApp
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class pgItems : Page
     {
+        #region ##### VARIABLES #####
         private clsCategory _Category;
         private List<clsItem> _ItemList = new List<clsItem>();
 
         public clsCategory Category { get => _Category; set => _Category = value; }
         public List<clsItem> ItemList { get => _ItemList; set => _ItemList = value; }
+        #endregion
 
+        #region ##### CONSTRUCTOR #####
         public pgItems()
         {
             this.InitializeComponent();
-        }  
-        
+        }
+        #endregion
+
+        #region ##### METHODS #####
         public void OpenSelectedItem()
         {
             int lcItemID = ItemList[lstItems.SelectedIndex].Id;
@@ -42,8 +34,9 @@ namespace UWPApp
                 Frame.Navigate(typeof(pgItem), lcItemID);
             }
         }
+        #endregion
 
-        // ##### NAVIGATION #####
+        #region ##### NAVIGATION #####
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -59,11 +52,19 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                txtMessage.Text = ex.GetBaseException().ToString();
+                lblMessage.Text = ex.GetBaseException().ToString();
             }          
         }
+        #endregion
 
-        // ##### BUTTONS #####
+        #region ##### CONTROL INTERACTIONS #####
+        private void LstItems_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            OpenSelectedItem();
+        }
+        #endregion
+
+        #region ##### BUTTONS #####
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -72,27 +73,21 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                txtMessage.Text = ex.GetBaseException().ToString();
+                lblMessage.Text = ex.GetBaseException().ToString();
             }
-
         }
 
         private void BtnOpenSelectedItem_Click(object sender, RoutedEventArgs e)
         {
             OpenSelectedItem();
         }
+        #endregion
 
-        private void LstItems_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-        {
-            OpenSelectedItem();
-        }
-
-        // ##### UPDATES #####
-
+        #region ##### UPDATES #####
         public async void UpdateForm()
         {
-            txtName.Text = Category.Name;
-            txtDescription.Text = Category.Description;
+            lblCategoryName.Text = Category.Name;
+            lblDescription.Text = Category.Description;
 
             lstItems.ItemsSource = null;
             ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
@@ -107,5 +102,6 @@ namespace UWPApp
                 lstItems.ItemsSource = lcItemNames;
             }           
         }
+        #endregion
     }
 }
