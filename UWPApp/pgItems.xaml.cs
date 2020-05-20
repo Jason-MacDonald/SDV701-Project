@@ -20,19 +20,50 @@ namespace UWPApp
         #region ##### CONSTRUCTOR #####
         public pgItems()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
         #endregion
 
         #region ##### METHODS #####
         public void OpenSelectedItem()
         {
-            int lcItemID = ItemList[lstItems.SelectedIndex].Id;
-
-            if(lstItems.SelectedItem != null)
+            try
             {
+                int lcItemID = ItemList[lstItems.SelectedIndex].Id;
                 Frame.Navigate(typeof(pgItem), lcItemID);
             }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.GetBaseException().ToString();
+            }           
+        }
+
+        private async void SetItemListSource()
+        {
+            lstItems.ItemsSource = null;
+
+            try
+            {
+                ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+
+                if (ItemList != null)
+                {
+                    List<string> lcItemNames = new List<string>();
+                    foreach (clsItem item in ItemList)
+                    {
+                        lcItemNames.Add(item.Id.ToString() + " " + item.Name);
+                    }
+                    lstItems.ItemsSource = lcItemNames;
+                }
+                else
+                {
+                    lblMessage.Text = "This category does not currently contain any items.";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.GetBaseException().ToString();
+            }          
         }
         #endregion
 
@@ -65,6 +96,18 @@ namespace UWPApp
         #endregion
 
         #region ##### BUTTONS #####
+        private void BtnOpenSelectedItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstItems.SelectedItem != null)
+            {
+                OpenSelectedItem();
+            }
+            else
+            {
+                lblMessage.Text = "Please select an item from the list.";
+            }
+        }
+
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -75,32 +118,17 @@ namespace UWPApp
             {
                 lblMessage.Text = ex.GetBaseException().ToString();
             }
-        }
-
-        private void BtnOpenSelectedItem_Click(object sender, RoutedEventArgs e)
-        {
-            OpenSelectedItem();
-        }
+        }       
         #endregion
 
         #region ##### UPDATES #####
-        public async void UpdateForm()
+        public void UpdateForm()
         {
             lblCategoryName.Text = Category.Name;
             lblDescription.Text = Category.Description;
+            lblMessage.Text = "";
 
-            lstItems.ItemsSource = null;
-            ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
-            
-            if(ItemList != null)
-            {
-                List<string> lcItemNames = new List<string>();
-                foreach (clsItem item in ItemList)
-                {
-                    lcItemNames.Add(item.Id.ToString() + " " + item.Name);
-                }
-                lstItems.ItemsSource = lcItemNames;
-            }           
+            SetItemListSource();
         }
         #endregion
     }

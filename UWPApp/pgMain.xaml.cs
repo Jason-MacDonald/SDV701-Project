@@ -10,7 +10,7 @@ namespace UWPApp
         #region ##### CONSTRUCTOR #####
         public pgMain()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
         #endregion
 
@@ -23,7 +23,6 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                // TODO: Change to a client side error message.
                 lblMessage.Text = ex.GetBaseException().ToString();
             }
         }
@@ -31,11 +30,15 @@ namespace UWPApp
 
         #region ##### NAVIGATION #####
         public void OpenCategory()
-        {
-            if(lstCategories.SelectedItem != null)
+        {      
+            try
             {
                 Frame.Navigate(typeof(pgItems), lstCategories.SelectedItem);
             }
+            catch (Exception ex)
+            {
+                lblMessage.Text = ex.GetBaseException().ToString();
+            }                        
         }
         #endregion
 
@@ -49,7 +52,14 @@ namespace UWPApp
         #region ##### BUTTONS #####
         private void BtnOpenSelectedCategory_Click(object sender, RoutedEventArgs e)
         {
-            OpenCategory();
+            if (lstCategories.SelectedItem != null)
+            {
+                OpenCategory();
+            }
+            else
+            {
+                lblMessage.Text = "Please select an category from the list.";
+            }
         }
         #endregion
     }

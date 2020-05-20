@@ -14,7 +14,7 @@ namespace UWPApp
         #region ##### CONSTRUCTOR #####
         public pgItem()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
         #endregion
 
@@ -23,17 +23,23 @@ namespace UWPApp
         {
             base.OnNavigatedTo(e);
 
-            try
+            if (e.Parameter != null)
             {
-                if (e.Parameter != null)
+                try
                 {
+
                     Item = await ServiceClient.GetItemAsync(e.Parameter.ToString());
                     UpdateForm();
+
+                }
+                catch (Exception ex)
+                {
+                    lblMessage.Text = ex.GetBaseException().ToString();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                lblMessage.Text = ex.GetBaseException().ToString();
+                // TODO: Create a new item.
             }
             
         }
@@ -48,7 +54,6 @@ namespace UWPApp
             lblItemDescription.Text = Item.Description;
             lblItemQty.Text = Item.Quantity.ToString();
         }
-
         #endregion
     }
 }
