@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-05-20T00:40:52.792</Modified>
+      <Modified>2020-05-20T04:23:33.492</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\UWPApp.exe">
       <PackagePath>entrypoint\UWPApp.exe</PackagePath>
-      <Modified>2020-05-20T00:40:52.365</Modified>
+      <Modified>2020-05-20T04:23:33.176</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\64221\.nuget\packages\newtonsoft.json\9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
@@ -90,15 +90,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\UWPApp.xr.xml">
       <PackagePath>UWPApp.xr.xml</PackagePath>
-      <Modified>2020-05-20T00:36:06.773</Modified>
+      <Modified>2020-05-20T03:41:46.509</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-05-20T00:40:52.224</Modified>
+      <Modified>2020-05-20T04:23:33.055</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\pgItem.xbf">
+      <PackagePath>pgItem.xbf</PackagePath>
+      <Modified>2020-05-20T04:23:33.055</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\pgItems.xbf">
+      <PackagePath>pgItems.xbf</PackagePath>
+      <Modified>2020-05-20T04:23:33.055</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\pgMain.xbf">
       <PackagePath>pgMain.xbf</PackagePath>
-      <Modified>2020-05-20T00:40:52.225</Modified>
+      <Modified>2020-05-20T04:23:33.055</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -106,11 +114,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-05-20T00:40:08.540</Modified>
+      <Modified>2020-05-20T03:18:09.491</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\Core\UWPApp.exe">
       <PackagePath>UWPApp.exe</PackagePath>
-      <Modified>2020-05-20T00:40:52.787</Modified>
+      <Modified>2020-05-20T04:23:33.489</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -37,7 +37,29 @@ namespace UWPApp
             {
                 // TODO: Change to a client side error message.
                 txtMessage.Text = ex.GetBaseException().ToString();
-            }         
+            }
+        }
+
+        // ##### NAVIGATION #####
+        public void OpenCategory()
+        {
+            if(lstCategories.SelectedItem != null)
+            {
+                Frame.Navigate(typeof(pgItems), lstCategories.SelectedItem);
+            }
+        }
+
+
+        // ##### CONTROL INTERACTION #####
+        private void LstCategories_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            OpenCategory();
+        }
+
+        // ##### BUTTONS #####
+        private void BtnOpenSelectedCategory_Click(object sender, RoutedEventArgs e)
+        {
+            OpenCategory();
         }
     }
 }

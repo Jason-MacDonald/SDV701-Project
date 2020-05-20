@@ -1,4 +1,3 @@
-C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\UWPApp.csprojAssemblyReference.cache
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\App.g.i.cs
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\App.g.cs
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgMain.g.i.cs
@@ -44,3 +43,14 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\qualif
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636884878160000000.json
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItems.g.i.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItems.g.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItems.xaml
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItems.xbf
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\pgItems.xbf
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\pgItem.xbf
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItem.g.i.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItem.g.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItem.xaml
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\pgItem.xbf
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\UWPApp.csprojAssemblyReference.cache

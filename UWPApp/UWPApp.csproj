@@ -120,6 +120,13 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO.cs" />
+    <Compile Include="IItemControl.cs" />
+    <Compile Include="pgItem.xaml.cs">
+      <DependentUpon>pgItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pgItems.xaml.cs">
+      <DependentUpon>pgItems.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pgMain.xaml.cs">
       <DependentUpon>pgMain.xaml</DependentUpon>
     </Compile>
@@ -146,6 +153,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="pgItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pgItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pgMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
