@@ -23,7 +23,7 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.GetBaseException().ToString();
+                lblMessage.Text = ex.GetBaseException().Message;
             }
         }
         #endregion
@@ -37,7 +37,7 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.GetBaseException().ToString();
+                lblMessage.Text = ex.GetBaseException().Message;
             }                        
         }
         #endregion

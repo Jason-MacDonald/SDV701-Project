@@ -44,7 +44,7 @@ namespace WinForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetBaseException().ToString());
+                MessageBox.Show(ex.GetBaseException().Message);
             }          
         }
 
@@ -60,7 +60,7 @@ namespace WinForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetBaseException().ToString());              
+                MessageBox.Show(ex.GetBaseException().Message);
             }          
         }
 
@@ -95,8 +95,16 @@ namespace WinForm
         private async void LstCategories_DoubleClick(object sender, EventArgs e)
         {
             string lcStringID = ItemList[lstItems.SelectedIndex].Id.ToString();
-            clsItem lcItem = await ServiceClient.GetItemAsync(lcStringID);
-            OpenSelectedItemForm(lcItem);
+
+            try
+            {
+                clsItem lcItem = await ServiceClient.GetItemAsync(lcStringID);
+                OpenSelectedItemForm(lcItem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }           
         }
         #endregion
 
@@ -125,14 +133,28 @@ namespace WinForm
 
         private async void BtnEdit_Click(object sender, EventArgs e)
         {
-            clsItem lcItem = await ServiceClient.GetItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString());
-            OpenSelectedItemForm(lcItem);
+            try
+            {
+                clsItem lcItem = await ServiceClient.GetItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString());
+                OpenSelectedItemForm(lcItem);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }           
         }
 
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString()));
-            UpdateDisplay();
+            try
+            {
+                MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString()));
+                UpdateDisplay();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }          
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -169,7 +191,7 @@ namespace WinForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetBaseException().ToString());
+                MessageBox.Show(ex.GetBaseException().Message);
             }           
         }
 

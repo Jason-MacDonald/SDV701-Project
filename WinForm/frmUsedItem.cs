@@ -28,6 +28,7 @@ namespace WinForm
         #region ##### UPDATES #####
         protected override void PushData()
         {
+            // TODO: Implement additional NewItem var condition. 
             base.PushData();
             //clsUsedItem lcItem = (clsUsedItem)_Item; // Recast clsItem as clsNewItem
             //lcItem.Condition = txtCondition.Text;
@@ -37,7 +38,7 @@ namespace WinForm
         {
             base.UpdateForm();
             //clsUsedItem lcItem = (clsUsedItem)_Item; // Recast clsItem as clsUsedItem
-            txtCondition.Text = _Item.Condition;
+            txtCondition.Text = Item.Condition;
         }
         #endregion
     }

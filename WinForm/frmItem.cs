@@ -12,18 +12,25 @@ namespace WinForm
 {
     public partial class frmItem : Form
     {
-        protected clsItem _Item;
+        #region ##### VARIABLES #####
+        private clsItem item;
 
+        protected clsItem Item { get => item; set => item = value; }
+        #endregion
+
+        #region ##### CONSTRUCTOR #####
         public frmItem()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region ##### METHODS ######
         public void SetDetails(clsItem prItem)
         {
-            _Item = prItem;
+            Item = prItem;
 
-            if (_Item.Name != null)
+            if (Item.Name != null)
                 txtName.Enabled = false;
             else
                 txtName.Enabled = true;
@@ -32,25 +39,51 @@ namespace WinForm
             ShowDialog();
         }
 
+        private async Task UpdateItemInDatabase()
+        {
+            try
+            {
+                MessageBox.Show(await ServiceClient.UpdateItemAsync(Item));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
+        }
+
+        private async Task InsertIntoDatabase()
+        {
+            try
+            {
+                MessageBox.Show(await ServiceClient.InsertItemAsync(Item));
+                txtName.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
+        }
+        #endregion
+
         #region ##### BUTTONS #####
         private void BtnUploadImage_Click(object sender, EventArgs e)
         {
+            // TODO: Implement image functionality.
             MessageBox.Show("Not Implemented");
         }
 
         private async void BtnSaveAndClose_Click(object sender, EventArgs e)
         {
             // TODO: Should only save if changed as modified date is getting updated even when no changes are made.
-
             PushData();
             if (txtName.Enabled)
             {
-                MessageBox.Show(await ServiceClient.InsertItemAsync(_Item));
-                frmMain.Instance.UpdateDisplay();
-                txtName.Enabled = false;
+                await InsertIntoDatabase();
             }
             else
-                MessageBox.Show(await ServiceClient.UpdateItemAsync(_Item));
+            {
+                await UpdateItemInDatabase();
+            }
             frmCategory.Instance.UpdateForm();
             Hide();
         }
@@ -61,31 +94,29 @@ namespace WinForm
             {
                 Hide();
             }
-            //DialogResult = DialogResult.Cancel;
         }
         #endregion
 
         #region ##### UPDATES #####
         protected virtual void PushData()
         {
-            _Item.Name = txtName.Text;
-            _Item.Description = txtDescription.Text;
-            _Item.ModifiedDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            MessageBox.Show(_Item.ModifiedDate);
-            _Item.Motor = txtMotor.Text;
-            _Item.Battery = txtBattery.Text;
-            _Item.Quantity = Convert.ToInt32(txtQuantity.Text);
-            _Item.Price = float.Parse(txtPrice.Text);
+            Item.Name = txtName.Text;
+            Item.Description = txtDescription.Text;
+            Item.ModifiedDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); // Immediately formates date for database.
+            Item.Motor = txtMotor.Text;
+            Item.Battery = txtBattery.Text;
+            Item.Quantity = Convert.ToInt32(txtQuantity.Text);
+            Item.Price = float.Parse(txtPrice.Text);
         }
 
         protected virtual void UpdateForm()
         {
-            txtName.Text = _Item.Name;
-            txtDescription.Text = _Item.Description;
-            txtMotor.Text = _Item.Motor;
-            txtQuantity.Text = _Item.Quantity.ToString();
-            txtPrice.Text = _Item.Price.ToString();
-            lblModifiedDate.Text = _Item.ModifiedDate;
+            txtName.Text = Item.Name;
+            txtDescription.Text = Item.Description;
+            txtMotor.Text = Item.Motor;
+            txtQuantity.Text = Item.Quantity.ToString();
+            txtPrice.Text = Item.Price.ToString();
+            lblModifiedDate.Text = Item.ModifiedDate;
         }
         #endregion
     }

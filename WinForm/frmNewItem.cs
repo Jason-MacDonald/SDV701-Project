@@ -10,20 +10,25 @@ namespace WinForm
 {
     public sealed partial class frmNewItem : frmItem
     {
-        // ##### SINGLETON #####
+        #region ##### SINGLETON #####
         private frmNewItem()
         {
             InitializeComponent();
         }
         public static readonly frmNewItem Instance = new frmNewItem();
+        #endregion
 
+        #region ##### METHODS #####
         public static void Run(clsItem prNewItem)
         {
             Instance.SetDetails(prNewItem);
         }
+        #endregion
 
+        #region ##### UPDATES #####
         protected override void PushData()
         {
+            // TODO: Implement additional warranty field.
             base.PushData();
             //clsNewItem lcItem = (clsNewItem)_Item; // Recast clsItem as clsNewItem
             //lcItem.WarrantyPeriod = Convert.ToInt32(txtWarrantyPeriod.Text);
@@ -33,7 +38,8 @@ namespace WinForm
         {
             base.UpdateForm();
             //clsNewItem lcItem = (clsNewItem)_Item; // Recast clsItem as clsNewItem
-            txtWarrantyPeriod.Text = _Item.WarrantyPeriod.ToString() ;
+            txtWarrantyPeriod.Text = Item.WarrantyPeriod.ToString() ;
         }
+        #endregion
     }
 }

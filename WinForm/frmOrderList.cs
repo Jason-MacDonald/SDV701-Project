@@ -24,8 +24,6 @@ namespace WinForm
             InitializeComponent();
         }
         public static readonly frmOrderList Instance = new frmOrderList();
-
-        
         #endregion
 
         #region ##### METHODS #####
@@ -38,6 +36,7 @@ namespace WinForm
         #region ##### BUTTONS #####
         private void BtnDeleteOrder_Click(object sender, EventArgs e)
         {
+            // TODO: Implement order deletion.
             MessageBox.Show("Not Implemented.");
         }
 
@@ -51,15 +50,35 @@ namespace WinForm
         public async void UpdateForm()
         {
             lstOrderList.DataSource = null;
-            lstOrderList.DataSource = await ServiceClient.GetOrdersAsync();
+            //lstOrderList.DataSource = await ServiceClient.GetOrdersAsync();
 
-            OrderList = await ServiceClient.GetOrdersAsync();
-            List<string> lcOrderString = new List<string>();
+            try
+            {
+                OrderList = await ServiceClient.GetOrdersAsync();
+
+                if (OrderList != null)
+                {
+                    lstOrderList.DataSource = FormatOrderListRecord();
+                }
+                else
+                {
+                    MessageBox.Show("There are currently no active orders.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
+        }
+
+        private List<string> FormatOrderListRecord()
+        {
+            List<string> lcOrderStrings = new List<string>();
             foreach (clsOrder order in OrderList)
             {
-                lcOrderString.Add(order.InvoiceNumber.ToString() + " " + order.ItemName + " $" + order.Price + " " + order.Quantity.ToString() + "units");
+                lcOrderStrings.Add(order.InvoiceNumber.ToString() + " " + order.ItemName + " $" + order.Price + " " + order.Quantity.ToString() + "units");
             }
-            lstOrderList.DataSource = lcOrderString;
+            return lcOrderStrings;
         }
         #endregion
     }

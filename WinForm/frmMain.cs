@@ -69,7 +69,7 @@ namespace WinForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetBaseException().ToString());
+                MessageBox.Show(ex.GetBaseException().Message);
             }
             
         }
