@@ -62,7 +62,16 @@ namespace WinForm
         public async void UpdateDisplay()
         {
             lstCategories.DataSource = null;
-            lstCategories.DataSource = await ServiceClient.GetCategoryNamesAsync();
+
+            try
+            {
+                lstCategories.DataSource = await ServiceClient.GetCategoryNamesAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().ToString());
+            }
+            
         }
         #endregion
     }

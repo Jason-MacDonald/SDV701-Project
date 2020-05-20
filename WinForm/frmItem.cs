@@ -40,6 +40,8 @@ namespace WinForm
 
         private async void BtnSaveAndClose_Click(object sender, EventArgs e)
         {
+            // TODO: Should only save if changed as modified date is getting updated even when no changes are made.
+
             PushData();
             if (txtName.Enabled)
             {
@@ -68,7 +70,8 @@ namespace WinForm
         {
             _Item.Name = txtName.Text;
             _Item.Description = txtDescription.Text;
-            _Item.ModifiedDate = DateTime.Today.ToString();
+            _Item.ModifiedDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            MessageBox.Show(_Item.ModifiedDate);
             _Item.Motor = txtMotor.Text;
             _Item.Battery = txtBattery.Text;
             _Item.Quantity = Convert.ToInt32(txtQuantity.Text);
@@ -82,6 +85,7 @@ namespace WinForm
             txtMotor.Text = _Item.Motor;
             txtQuantity.Text = _Item.Quantity.ToString();
             txtPrice.Text = _Item.Price.ToString();
+            lblModifiedDate.Text = _Item.ModifiedDate;
         }
         #endregion
     }

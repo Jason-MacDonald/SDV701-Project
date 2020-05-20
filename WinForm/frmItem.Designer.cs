@@ -44,7 +44,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnCloseWithoutSaving = new System.Windows.Forms.Button();
             this.btnSaveAndClose = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblModifiedDate = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUploadImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -171,7 +171,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(524, 438);
+            this.label7.Location = new System.Drawing.Point(392, 441);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 13);
@@ -200,15 +200,15 @@
             this.btnSaveAndClose.UseVisualStyleBackColor = true;
             this.btnSaveAndClose.Click += new System.EventHandler(this.BtnSaveAndClose_Click);
             // 
-            // label8
+            // lblModifiedDate
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(648, 438);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 16);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "01/01/2020";
+            this.lblModifiedDate.Location = new System.Drawing.Point(487, 439);
+            this.lblModifiedDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblModifiedDate.Name = "lblModifiedDate";
+            this.lblModifiedDate.Size = new System.Drawing.Size(248, 15);
+            this.lblModifiedDate.TabIndex = 16;
+            this.lblModifiedDate.Text = "01/01/2020";
+            this.lblModifiedDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // pictureBox1
             // 
@@ -239,7 +239,7 @@
             this.ClientSize = new System.Drawing.Size(751, 470);
             this.Controls.Add(this.btnUploadImage);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblModifiedDate);
             this.Controls.Add(this.btnSaveAndClose);
             this.Controls.Add(this.btnCloseWithoutSaving);
             this.Controls.Add(this.label7);
@@ -281,7 +281,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCloseWithoutSaving;
         private System.Windows.Forms.Button btnSaveAndClose;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblModifiedDate;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnUploadImage;
     }

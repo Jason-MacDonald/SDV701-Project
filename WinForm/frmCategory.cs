@@ -31,22 +31,37 @@ namespace WinForm
             }
             else
             {
-                Instance.RefreshFormFromDB(prCategoryName);
+                Instance.GetCategoryFromDB(prCategoryName);
             }
             Instance.Show();
         }
 
-        private async void RefreshFormFromDB(string prCategoryName)
+        private async void GetCategoryFromDB(string prCategoryName)
         {
-            SetDetails(await ServiceClient.GetCategoryAsync(prCategoryName));
+            try
+            {
+                SetDetails(await ServiceClient.GetCategoryAsync(prCategoryName));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().ToString());
+            }          
         }
 
         public async void SetDetails(clsCategory prCategory)
         {
             Category = prCategory;
-            ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
-            UpdateForm();
-            Show();
+
+            try
+            {
+                ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+                UpdateForm();
+                Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().ToString());              
+            }          
         }
 
         private void DeleteItem(int prIndex)
@@ -137,13 +152,37 @@ namespace WinForm
         private async void UpdateDisplay()
         {
             lstItems.DataSource = null;
-            ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
-            List<string> lcItemNames = new List<string>(); 
+
+            try
+            {
+                ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+
+                if(ItemList != null)
+                {
+                    lstItems.DataSource = FormatItemListRecord();
+                }
+                else
+                {
+                    MessageBox.Show("There are currently no items in this category.");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().ToString());
+            }           
+        }
+
+        private List<string> FormatItemListRecord()
+        {
+            List<string> lcItemNames = new List<string>();
+
             foreach (clsItem item in ItemList)
             {
                 lcItemNames.Add(item.Id.ToString() + " " + item.Name);
             }
-            lstItems.DataSource = lcItemNames;
+
+            return lcItemNames;
         }
         #endregion
     }
