@@ -258,6 +258,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmItem";
             this.Text = "Item Details";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmItem_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

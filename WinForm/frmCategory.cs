@@ -157,6 +157,15 @@ namespace WinForm
             }          
         }
 
+        private void FrmCategory_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
+
         private void BtnClose_Click(object sender, EventArgs e)
         {
             Hide();
@@ -207,5 +216,7 @@ namespace WinForm
             return lcItemNames;
         }
         #endregion
+
+
     }
 }

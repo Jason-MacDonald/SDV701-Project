@@ -93,13 +93,13 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // lstCategories
+            // lstItems
             // 
             this.lstItems.FormattingEnabled = true;
             this.lstItems.ItemHeight = 16;
             this.lstItems.Location = new System.Drawing.Point(16, 44);
             this.lstItems.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lstItems.Name = "lstCategories";
+            this.lstItems.Name = "lstItems";
             this.lstItems.Size = new System.Drawing.Size(859, 260);
             this.lstItems.TabIndex = 8;
             this.lstItems.DoubleClick += new System.EventHandler(this.LstCategories_DoubleClick);
@@ -128,6 +128,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCategory";
             this.Text = "Mountain E-Bikes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCategory_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

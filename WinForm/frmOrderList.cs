@@ -27,11 +27,6 @@ namespace WinForm
         #endregion
 
         #region ##### METHODS #####
-        private void FrmOrderList_Load(object sender, EventArgs e)
-        {
-            UpdateForm();
-        }
-
         private void FrmOrderList_Shown(object sender, EventArgs e)
         {
             UpdateForm();
@@ -41,10 +36,10 @@ namespace WinForm
         #region ##### BUTTONS #####
         private async void BtnDeleteOrder_Click(object sender, EventArgs e)
         {
-            if(lstOrderList.SelectedItem != null)
+            if(lvOrderList.FocusedItem != null)
             {
-                string lcSelectedID = OrderList[lstOrderList.SelectedIndex].InvoiceNumber.ToString();
-
+                //string lcSelectedID = OrderList[lstOrderList.SelectedIndex].InvoiceNumber.ToString();
+                string lcSelectedID = OrderList[lvOrderList.FocusedItem.Index].InvoiceNumber.ToString();
 
                 if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -74,37 +69,68 @@ namespace WinForm
         #region ##### UPDATES #####
         public async void UpdateForm()
         {
-            lstOrderList.DataSource = null;
-            //lstOrderList.DataSource = await ServiceClient.GetOrdersAsync();
-
             try
             {
                 OrderList = await ServiceClient.GetOrdersAsync();
 
                 if (OrderList != null)
                 {
-                    lstOrderList.DataSource = FormatOrderListRecord();
+                    // ListView https://stackoverflow.com/questions/11482501/populating-a-listview-multi-column
+                    lvOrderList.Clear();
+                    lvOrderList.Columns.Add("Invoice Number");
+                    lvOrderList.Columns.Add("Item");
+                    lvOrderList.Columns.Add("Unit Price");
+                    lvOrderList.Columns.Add("Quantity");
+                    lvOrderList.Columns.Add("Total Price");
+
+                    // Resize columns https://stackoverflow.com/questions/4802744/adjust-listview-columns-to-fit-with-winforms
+                    int x = lvOrderList.Width / 5;
+
+                    foreach (ColumnHeader column in lvOrderList.Columns)
+                    {
+                        column.Width = x;
+                    }
+
+                    foreach (clsOrder order in OrderList)
+                    {
+                        lvOrderList.Items.Add(new ListViewItem(new string[]
+                        {
+                            order.InvoiceNumber.ToString(),
+                            order.ItemName,
+                            order.Price.ToString(),
+                            order.Quantity.ToString(),
+                            (order.Quantity * order.Price).ToString()
+                        }));
+                    }
+
+                    float lcTotal = 0;
+
+                    foreach (clsOrder order in OrderList)
+                    {
+                        lcTotal += order.Price * order.Quantity;
+                    }
+                    lblTotal.Text = "$" + lcTotal.ToString();
                 }
                 else
                 {
+                    lvOrderList.Clear();
                     MessageBox.Show("There are currently no active orders.");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.GetBaseException().Message);
-            }
-        }
-
-        private List<string> FormatOrderListRecord()
-        {
-            List<string> lcOrderStrings = new List<string>();
-            foreach (clsOrder order in OrderList)
-            {
-                lcOrderStrings.Add(order.InvoiceNumber.ToString() + " " + order.ItemName + " $" + order.Price + " " + order.Quantity.ToString() + " units");
-            }
-            return lcOrderStrings;
+            }          
         }
         #endregion
+
+        private void FrmOrderList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }
