@@ -33,8 +33,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.cbChoice = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lstItems = new System.Windows.Forms.ListBox();
             this.txtDescription = new System.Windows.Forms.Label();
+            this.lvItemList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // btnDelete
@@ -93,33 +93,32 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // lstItems
-            // 
-            this.lstItems.FormattingEnabled = true;
-            this.lstItems.ItemHeight = 16;
-            this.lstItems.Location = new System.Drawing.Point(16, 44);
-            this.lstItems.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lstItems.Name = "lstItems";
-            this.lstItems.Size = new System.Drawing.Size(859, 260);
-            this.lstItems.TabIndex = 8;
-            this.lstItems.DoubleClick += new System.EventHandler(this.LstCategories_DoubleClick);
-            // 
             // txtDescription
             // 
-            this.txtDescription.AutoSize = true;
-            this.txtDescription.Location = new System.Drawing.Point(13, 9);
+            this.txtDescription.Location = new System.Drawing.Point(16, 9);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(45, 16);
+            this.txtDescription.Size = new System.Drawing.Size(860, 59);
             this.txtDescription.TabIndex = 9;
             this.txtDescription.Text = "label1";
+            // 
+            // lvItemList
+            // 
+            this.lvItemList.FullRowSelect = true;
+            this.lvItemList.HideSelection = false;
+            this.lvItemList.Location = new System.Drawing.Point(16, 101);
+            this.lvItemList.MultiSelect = false;
+            this.lvItemList.Name = "lvItemList";
+            this.lvItemList.Size = new System.Drawing.Size(859, 216);
+            this.lvItemList.TabIndex = 10;
+            this.lvItemList.UseCompatibleStateImageBehavior = false;
             // 
             // frmCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 415);
+            this.Controls.Add(this.lvItemList);
             this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.lstItems);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.cbChoice);
             this.Controls.Add(this.btnEdit);
@@ -130,7 +129,6 @@
             this.Text = "Mountain E-Bikes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCategory_FormClosing);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -140,7 +138,7 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox cbChoice;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.ListBox lstItems;
         private System.Windows.Forms.Label txtDescription;
+        private System.Windows.Forms.ListView lvItemList;
     }
 }

@@ -67,11 +67,20 @@ namespace SelfHost
             {
                 foreach (DataRow dr in lcResult.Rows)
                 {
-                    clsItem lcItem = new clsItem();
-                    lcItem.Id = Convert.ToInt32(dr["Id"]);
-                    lcItem.Name = (string)dr["Name"];
-                    //lcItem.Description = (string)dr["Description"];
-                    lcItemList.Add(lcItem);
+                    lcItemList.Add(new clsItem
+                    {
+                        Id = Convert.ToInt32(dr["Id"]),
+                        Name = (string)dr["Name"],
+                        Category = (string)dr["CategoryName"],
+                        Description = (string)dr["Description"],
+                        Price = Convert.ToSingle(dr["Price"]),
+                        ModifiedDate = (dr["ModifiedDate"]).ToString(),
+                        Quantity = Convert.ToInt32(dr["Quantity"]),
+                        Motor = (string)dr["Motor"],
+                        WarrantyPeriod = dr["WarrantyPeriod"] is DBNull ? 0 : Convert.ToInt32(dr["WarrantyPeriod"]),
+                        Condition = dr["Condition"] is DBNull ? "" : (string)dr["Condition"],
+                        Type = (string)dr["Type"]
+                    });
                 }
                 return lcItemList;
             }

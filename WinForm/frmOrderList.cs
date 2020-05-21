@@ -76,6 +76,7 @@ namespace WinForm
                 if (OrderList != null)
                 {
                     // ListView https://stackoverflow.com/questions/11482501/populating-a-listview-multi-column
+                    lvOrderList.View = View.Details;
                     lvOrderList.Clear();
                     lvOrderList.Columns.Add("Invoice Number");
                     lvOrderList.Columns.Add("Item");

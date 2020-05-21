@@ -30,6 +30,10 @@ namespace WinForm
             {
                 frmCategory.Run(lstCategories.SelectedItem as string);
             }
+            else
+            {
+                MessageBox.Show("No item has been selected.");
+            }
         }
         #endregion
 
@@ -43,6 +47,7 @@ namespace WinForm
         #region ##### BUTTONS #####
         private void BtnOpenCurrentOrdersForm_Click(object sender, EventArgs e)
         {
+            // TODO: Let frmOrder 'run' itself.
             frmOrderList.Instance.Show();        
             UpdateDisplay();
         }
@@ -70,8 +75,7 @@ namespace WinForm
             catch (Exception ex)
             {
                 MessageBox.Show(ex.GetBaseException().Message);
-            }
-            
+            }          
         }
         #endregion
     }

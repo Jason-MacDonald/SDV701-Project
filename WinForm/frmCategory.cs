@@ -94,7 +94,7 @@ namespace WinForm
         #region ##### CONTROLLER INTERACTION #####
         private async void LstCategories_DoubleClick(object sender, EventArgs e)
         {
-            string lcStringID = ItemList[lstItems.SelectedIndex].Id.ToString();
+            string lcStringID = ItemList[lvItemList.FocusedItem.Index].Id.ToString();
 
             try
             {
@@ -128,33 +128,51 @@ namespace WinForm
                     MessageBox.Show("No item type selected!");
                     break;
             }
-            UpdateDisplay();
+            //UpdateDisplay();
         }
 
         private async void BtnEdit_Click(object sender, EventArgs e)
         {
-            try
+            if (lvItemList.FocusedItem != null)
             {
-                clsItem lcItem = await ServiceClient.GetItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString());
-                OpenSelectedItemForm(lcItem);
+                try
+                {
+                    clsItem lcItem = await ServiceClient.GetItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString());
+                    OpenSelectedItemForm(lcItem);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetBaseException().Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.GetBaseException().Message);
-            }           
+                MessageBox.Show("No item has been selected.");
+            }
+                      
         }
 
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
-            try
+            if (lvItemList.FocusedItem != null)
             {
-                MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lstItems.SelectedIndex].Id.ToString()));
-                UpdateDisplay();
+                if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString()));
+                        UpdateDisplay();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetBaseException().Message);
+                    }
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.GetBaseException().Message);
-            }          
+                MessageBox.Show("No item has been selected.");
+            }
         }
 
         private void FrmCategory_FormClosing(object sender, FormClosingEventArgs e)
@@ -182,41 +200,48 @@ namespace WinForm
 
         private async void UpdateDisplay()
         {
-            lstItems.DataSource = null;
-
             try
             {
                 ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
 
-                if(ItemList != null)
+                if (ItemList != null)
                 {
-                    lstItems.DataSource = FormatItemListRecord();
+                    // ListView https://stackoverflow.com/questions/11482501/populating-a-listview-multi-column
+                    lvItemList.View = View.Details;
+                    lvItemList.Clear();
+                    lvItemList.Columns.Add("Name");
+                    lvItemList.Columns.Add("Unit Price");
+                    lvItemList.Columns.Add("In Stock");
+
+                    // Resize columns https://stackoverflow.com/questions/4802744/adjust-listview-columns-to-fit-with-winforms
+                    int x = lvItemList.Width / 3;
+
+                    foreach (ColumnHeader column in lvItemList.Columns)
+                    {
+                        column.Width = x;
+                    }
+
+                    foreach (clsItem item in ItemList)
+                    {
+                        lvItemList.Items.Add(new ListViewItem(new string[]
+                        {
+                            item.Name,
+                            "$" + item.Price.ToString(),
+                            item.Quantity.ToString(),
+                        }));
+                    }
                 }
                 else
                 {
+                    lvItemList.Clear();
                     MessageBox.Show("There are currently no items in this category.");
                 }
-                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.GetBaseException().Message);
-            }           
-        }
-
-        private List<string> FormatItemListRecord()
-        {
-            List<string> lcItemNames = new List<string>();
-
-            foreach (clsItem item in ItemList)
-            {
-                lcItemNames.Add(item.Id.ToString() + " " + item.Name);
-            }
-
-            return lcItemNames;
+            }        
         }
         #endregion
-
-
     }
 }

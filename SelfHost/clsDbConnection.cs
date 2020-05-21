@@ -14,7 +14,7 @@ namespace SelfHost
         private static ConnectionStringSettings ConnectionStringSettings =
             ConfigurationManager.ConnectionStrings["ElectrifyDatabase"];
         private static DbProviderFactory ProviderFactory =
-DbProviderFactories.GetFactory(ConnectionStringSettings.ProviderName);
+            DbProviderFactories.GetFactory(ConnectionStringSettings.ProviderName);
         private static string ConnectionStr = ConnectionStringSettings.ConnectionString;
 
         public static DataTable GetDataTable(string prSQL, Dictionary<string, Object> prPars)
