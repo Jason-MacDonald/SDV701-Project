@@ -8,24 +8,25 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"                        Height="800">
 
     <Grid>
-        
+
         <!-- ##### BUSINESS NAME #####-->
-        <TextBlock HorizontalAlignment="Center" Margin="0,101,0,0" Text="ElectrifyNZ" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        
+        <TextBlock HorizontalAlignment="Center" Margin="0,61,0,0" Text="ElectrifyNZ" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+
         <!-- ##### CATEGORY TITLE #####-->
-        <TextBlock HorizontalAlignment="Center" Margin="0,125,0,0" Text="Categories" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-        
+        <TextBlock HorizontalAlignment="Center" Margin="0,85,0,0" Text="Categories" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI"/>
+
         <!-- ##### CATEGORY LIST #####-->
-        <ListBox x:ConnectionId='2' x:Name="lstCategories" HorizontalAlignment="Center" Margin="0,171,0,0" VerticalAlignment="Top" Width="340" Height="279"                                          />
-        
+        <ListBox x:ConnectionId='2' x:Name="lstCategories" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="407"                                           FontFamily="Segoe UI" Margin="0,131,0,0"/>
+
         <!-- ##### ERROR MESSAGE #####-->
-        <TextBlock x:ConnectionId='3' x:Name="lblMessage" HorizontalAlignment="Center" Margin="0,471,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="148" Width="340" FontFamily="Segoe UI"/>
-        
+        <TextBlock x:ConnectionId='3' x:Name="lblMessage" HorizontalAlignment="Center" Margin="0,562,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="92" Width="340" FontFamily="Segoe UI"/>
+
         <!-- ##### OPEN SELECTED CATEGORY #####-->
-        <Button x:ConnectionId='4' x:Name="btnOpenSelectedCategory" Content="Open Selected Category" Margin="0,649,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47"                                      />
-       
+        <Button x:ConnectionId='4' x:Name="btnOpenSelectedCategory" Content="Open Selected Category" Margin="0,671,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47" FontFamily="Segoe UI"                                      />
+
         <!-- ##### CLOSE #####-->
-        <Button x:ConnectionId='5' x:Name="btnClose" Content="Close" Margin="0,711,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47"/>
+        <!--Documentation suggests not closing a UWP app progromatically. -->
+        <!--<Button x:Name="btnClose" Content="Close" Margin="0,711,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47"/>-->
 
     </Grid>
 </Page>

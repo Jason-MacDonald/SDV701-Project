@@ -5,30 +5,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="820.8">
 
     <Grid>
-        
+
         <!-- ##### BUSINESS NAME ##### -->
-        <TextBlock x:Name="lblBusinessName" HorizontalAlignment="Center" Margin="0,101,0,0" Text="ElectrifyNZ" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        
+        <TextBlock x:Name="lblBusinessName" HorizontalAlignment="Center" Margin="0,61,0,0" Text="ElectrifyNZ" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
         <!-- ##### CATEGORY NAME ##### -->
-        <TextBlock x:Name="lblCategoryName" HorizontalAlignment="Center" Margin="0,125,0,0" Text="Category Name" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <TextBlock x:Name="lblCategoryName" HorizontalAlignment="Center" Margin="0,85,0,0" Text="Category Name" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
 
         <!-- ##### DESCRIPTION ##### -->
-        <TextBlock x:Name="lblDescription" HorizontalAlignment="Center" Margin="0,171,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="108" Width="340" FontFamily="Segoe UI"/>
-        
+        <TextBlock x:Name="lblDescription" HorizontalAlignment="Center" Margin="0,131,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="109" Width="340" FontFamily="Segoe UI"/>
+
         <!-- ##### ITEMS ##### -->
-        <ListBox x:Name="lstItems" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="205" Margin="0,293,0,0" DoubleTapped="LstItems_DoubleTapped"/>
-        
+        <ListBox x:Name="lstItems" HorizontalAlignment="Center" VerticalAlignment="Center" Width="340" Height="315" DoubleTapped="LstItems_DoubleTapped"/>
+
         <!-- ##### OPEN SELECTED ITEM ##### -->
-        <Button x:Name="btnOpenSelectedItem" Content="Open Selected Category" Margin="0,649,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47" Click="BtnOpenSelectedItem_Click"/>
-        
+        <Button x:Name="btnOpenSelectedItem" Content="Open Selected Item" Margin="0,671,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47" Click="BtnOpenSelectedItem_Click"/>
+
         <!-- ##### BACK ##### -->
-        <Button x:Name="btnClose" Content="Back" Margin="0,711,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47" Click="BtnClose_Click"/>
-        
+        <!--<Button x:Name="btnClose" Content="Back" Margin="0,711,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="340" Height="47"/>-->
+
         <!-- ##### ERROR MESSAGE ##### -->
-        <TextBlock x:Name="lblMessage" HorizontalAlignment="Center" Margin="0,517,0,0" Text="Messages" TextWrapping="Wrap" VerticalAlignment="Top" Height="108" Width="340" FontFamily="Segoe UI"/>
-                
+        <TextBlock x:Name="lblMessage" HorizontalAlignment="Center" Margin="0,574,0,0" Text="Messages" TextWrapping="Wrap" VerticalAlignment="Top" Height="81" Width="340" FontFamily="Segoe UI"/>
+
     </Grid>
 </Page>

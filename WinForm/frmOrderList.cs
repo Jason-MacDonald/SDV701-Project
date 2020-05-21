@@ -31,13 +31,38 @@ namespace WinForm
         {
             UpdateForm();
         }
+
+        private void FrmOrderList_Shown(object sender, EventArgs e)
+        {
+            UpdateForm();
+        }
         #endregion
 
         #region ##### BUTTONS #####
-        private void BtnDeleteOrder_Click(object sender, EventArgs e)
+        private async void BtnDeleteOrder_Click(object sender, EventArgs e)
         {
-            // TODO: Implement order deletion.
-            MessageBox.Show("Not Implemented.");
+            if(lstOrderList.SelectedItem != null)
+            {
+                string lcSelectedID = OrderList[lstOrderList.SelectedIndex].InvoiceNumber.ToString();
+
+
+                if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        MessageBox.Show(await ServiceClient.DeleteOrderAsync(lcSelectedID));
+                        UpdateForm();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetBaseException().Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No order has been selected.");
+            }          
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -76,7 +101,7 @@ namespace WinForm
             List<string> lcOrderStrings = new List<string>();
             foreach (clsOrder order in OrderList)
             {
-                lcOrderStrings.Add(order.InvoiceNumber.ToString() + " " + order.ItemName + " $" + order.Price + " " + order.Quantity.ToString() + "units");
+                lcOrderStrings.Add(order.InvoiceNumber.ToString() + " " + order.ItemName + " $" + order.Price + " " + order.Quantity.ToString() + " units");
             }
             return lcOrderStrings;
         }

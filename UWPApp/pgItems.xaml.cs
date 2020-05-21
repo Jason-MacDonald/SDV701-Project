@@ -107,18 +107,6 @@ namespace UWPApp
                 lblMessage.Text = "Please select an item from the list.";
             }
         }
-
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Frame.Navigate(typeof(pgMain));
-            }
-            catch (Exception ex)
-            {
-                lblMessage.Text = ex.GetBaseException().Message;
-            }
-        }       
         #endregion
 
         #region ##### UPDATES #####

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -89,6 +90,16 @@ namespace WinForm
             using (HttpClient lcHttpClient = new HttpClient())
                 return JsonConvert.DeserializeObject<List<clsOrder>>
                     (await lcHttpClient.GetStringAsync("http://localhost:60064/api/electrify/GetOrders"));
+        }
+
+        internal async static Task<string> DeleteOrderAsync(string prInvoiceNumber)
+        {
+            using (HttpClient lcHttpClient = new HttpClient())
+            {
+                HttpResponseMessage lcRespMessage = await lcHttpClient.DeleteAsync
+                    ($"http://localhost:60064/api/electrify/DeleteOrder?Id={prInvoiceNumber}");
+                return await lcRespMessage.Content.ReadAsStringAsync();
+            }
         }
         #endregion
 

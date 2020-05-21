@@ -5,54 +5,54 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1176.2">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="966" Width="483.2">
 
     <Grid>
-        
+
         <!-- ##### NAME ##### -->
-        <TextBlock x:ConnectionId='2' x:Name="lblName" HorizontalAlignment="Left" Margin="30,272,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBlock x:ConnectionId='3' x:Name="lblItemName" HorizontalAlignment="Left" Margin="107,272,0,0" Text="-name-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        
+        <TextBlock x:ConnectionId='2' x:Name="lblName" HorizontalAlignment="Left" Margin="71,276,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:ConnectionId='3' x:Name="lblItemName" HorizontalAlignment="Left" Margin="162,276,0,0" Text="-name-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+
         <!-- ##### PRICE ##### -->
-        <TextBlock x:ConnectionId='4' x:Name="lblPrice" HorizontalAlignment="Left" Margin="30,306,0,0" Text="Price:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBlock x:ConnectionId='5' x:Name="lblItemPrice" HorizontalAlignment="Left" Margin="107,306,0,0" Text="-price-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        
+        <TextBlock x:ConnectionId='4' x:Name="lblPrice" HorizontalAlignment="Left" Margin="71,306,0,0" Text="Price:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:ConnectionId='5' x:Name="lblItemPrice" HorizontalAlignment="Left" Margin="162,306,0,0" Text="-price-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+
         <!-- ##### MOTOR ##### -->
-        <TextBlock x:ConnectionId='6' x:Name="lblMotor" HorizontalAlignment="Left" Margin="30,340,0,0" Text="Motor:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBlock x:ConnectionId='7' x:Name="lblItemMotor" HorizontalAlignment="Left" Margin="107,340,0,0" Text="-motor-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:ConnectionId='6' x:Name="lblMotor" HorizontalAlignment="Left" Margin="71,340,0,0" Text="Motor:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:ConnectionId='7' x:Name="lblItemMotor" HorizontalAlignment="Left" Margin="162,340,0,0" Text="-motor-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
 
         <!-- ##### QUANTITY ##### -->
-        <TextBlock x:ConnectionId='8' x:Name="lblQty" HorizontalAlignment="Left" Margin="323,272,0,0" Text="QTY:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBlock x:ConnectionId='9' x:Name="lblItemQty" HorizontalAlignment="Left" Margin="368,272,0,0" Text="XXX:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        
+        <TextBlock x:ConnectionId='8' x:Name="lblQty" HorizontalAlignment="Left" Margin="348,276,0,0" Text="QTY:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:ConnectionId='9' x:Name="lblItemQty" HorizontalAlignment="Left" Margin="392,276,0,0" Text="XXX:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+
         <!-- ##### DESCRIPTION ##### -->
-        <TextBlock x:ConnectionId='10' x:Name="lblDescription" HorizontalAlignment="Left" Margin="30,441,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBlock x:ConnectionId='11' x:Name="lblItemDescription" HorizontalAlignment="Left" Margin="30,464,0,0" Text="-description-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Height="120" Width="366"/>
-        
+        <TextBlock x:ConnectionId='10' x:Name="lblDescription" HorizontalAlignment="Left" Margin="72,420,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:ConnectionId='11' x:Name="lblItemDescription" HorizontalAlignment="Left" Margin="69,444,0,0" Text="-description-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Height="120" Width="366"/>
+
         <!-- ##### ORDER FORM ##### -->
-        <TextBlock x:ConnectionId='12' x:Name="lblPlaceAnOrder" HorizontalAlignment="Left" Margin="30,612,0,0" Text="Place an Order" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        
+        <TextBlock x:ConnectionId='12' x:Name="lblPlaceAnOrder" HorizontalAlignment="Left" Margin="205,588,0,0" Text="Place an Order" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+
         <!-- ##### USER NAME ##### -->
-        <TextBlock x:ConnectionId='13' x:Name="lblUserName" HorizontalAlignment="Left" Margin="30,646,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBox x:ConnectionId='14' x:Name="txtUserName" HorizontalAlignment="Left" Margin="128,639,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
-        
+        <TextBlock x:ConnectionId='13' x:Name="lblUserName" HorizontalAlignment="Left" Margin="69,639,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBox x:ConnectionId='14' x:Name="txtUserName" HorizontalAlignment="Left" Margin="166,632,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+
         <!-- ##### USER EMAIL ##### -->
-        <TextBlock x:ConnectionId='15' x:Name="lblUserEmail" HorizontalAlignment="Left" Margin="30,690,0,0" Text="Email:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBox x:ConnectionId='16' x:Name="txtUserEmail" HorizontalAlignment="Left" Margin="128,683,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
-        
+        <TextBlock x:ConnectionId='15' x:Name="lblUserEmail" HorizontalAlignment="Left" Margin="69,687,0,0" Text="Email:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBox x:ConnectionId='16' x:Name="txtUserEmail" HorizontalAlignment="Left" Margin="166,680,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+
         <!-- ##### ORDER QUANTITY ##### -->
-        <TextBlock x:ConnectionId='17' x:Name="lblOrderQuantity" HorizontalAlignment="Left" Margin="30,734,0,0" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBox x:ConnectionId='18' x:Name="txtOrderQuantity" HorizontalAlignment="Left" Margin="128,727,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-        
+        <TextBlock x:ConnectionId='17' x:Name="lblOrderQuantity" HorizontalAlignment="Left" Margin="68,734,0,0" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBox x:ConnectionId='18' x:Name="txtOrderQuantity" HorizontalAlignment="Left" Margin="166,727,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
+
         <!-- ##### PLACE ORDER ##### -->
-        <Button x:ConnectionId='19' x:Name="btnPlaceOrder" Content="Place Order" Margin="42,810,0,0" VerticalAlignment="Top" Width="340" Height="47"/>
-        
+        <Button x:ConnectionId='19' x:Name="btnPlaceOrder" Content="Place Order" Margin="80,872,0,0" VerticalAlignment="Top" Width="340" Height="47"                            />
+
         <!-- ##### BACK ##### -->
-        <Button x:ConnectionId='20' x:Name="btnBack" Content="Back" Margin="42,872,0,0" VerticalAlignment="Top" Width="340" Height="47"/>
-        
+        <!--<Button x:Name="btnBack" Content="Back" Margin="42,872,0,0" VerticalAlignment="Top" Width="340" Height="47" Click="BtnBack_Click"/>-->
+
         <!-- ##### ERROR MESSAGE ##### -->
-        <TextBlock x:ConnectionId='21' x:Name="lblMessage" HorizontalAlignment="Left" Margin="42,941,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="174" Width="340"/>
-   
+        <TextBlock x:ConnectionId='20' x:Name="lblMessage" HorizontalAlignment="Left" Margin="69,772,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="85" Width="354" FontFamily="Segoe UI"/>
+
     </Grid>
 </Page>
 

@@ -10,7 +10,10 @@ namespace SelfHost
         #region ##### CATEGORY QUERIES #####
         public List<string> GetCategoryNames()
         {
-            DataTable lcResult = clsDbConnection.GetDataTable("SELECT name FROM category", null);
+            DataTable lcResult = clsDbConnection.GetDataTable(
+                "SELECT name " +
+                "FROM category", 
+                null);
             List<string> lcNames = new List<string>();
             foreach (DataRow dr in lcResult.Rows)
                 lcNames.Add((string)dr[0]);
@@ -21,7 +24,11 @@ namespace SelfHost
             Dictionary<string, object> par = new Dictionary<string, object>(1);
             par.Add("Name", Name);
             DataTable lcResult =
-                clsDbConnection.GetDataTable("SELECT * FROM category WHERE Name = @Name", par);
+                clsDbConnection.GetDataTable(
+                    "SELECT * " +
+                    "FROM category " +
+                    "WHERE Name = @Name", 
+                    par);
             if (lcResult.Rows.Count > 0)
                 return new clsCategory()
                 {
@@ -34,7 +41,8 @@ namespace SelfHost
         #endregion
 
         #region ##### ITEM QUERIES #####
-        // GET
+
+        #region ### GET ###
         public List<string> GetCategoryItemNames(string Category)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
@@ -95,8 +103,9 @@ namespace SelfHost
             else
                 return null;
         }
+        #endregion
 
-        // PUT
+        #region ### PUT ###
         public string PutItem(clsItem prItem)
         {
             try
@@ -113,8 +122,9 @@ namespace SelfHost
                 return ex.GetBaseException().Message;
             }
         }
+        #endregion
 
-        //POST
+        #region ### POST ###
         public string PostItem(clsItem prItem)
         {
             try
@@ -131,7 +141,51 @@ namespace SelfHost
         }
         #endregion
 
+        #region ### DELETE ###
+        public string DeleteItem(string Id)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("Id", Id);
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute(
+                    "DELETE FROM item WHERE Id = @Id", par);
+                if (lcRecCount == 1)
+                    return "One Item Deleted.";
+                else
+                    return "Unexpected Item Delete Count.";
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+        #endregion
+
+        #endregion
+
         #region ##### ORDER QUERIES #####
+
+        #region ### POST ###
+        public string PostOrder(clsOrder prOrder)
+        {
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute(
+                    "INSERT INTO itemOrder(itemName, quantity, price, name, email) " +
+                    "VALUES (@ItemName, @Quantity, @Price, @Name, @Email)", 
+                    PrepareOrderParameters(prOrder)
+                );
+                return "One Order Inserted.";
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+        #endregion
+
+        #region ### GET ###
         public List<clsOrder> GetOrders()
         {
             DataTable lcResult =
@@ -157,15 +211,17 @@ namespace SelfHost
             else
                 return null;
         }
-        // DELETE
-        public string DeleteItem(string Id)
+        #endregion
+
+        #region ### DELETE ###
+        public string DeleteOrder(string Id)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
             par.Add("Id", Id);
             try
             {
                 int lcRecCount = clsDbConnection.Execute(
-                    "DELETE FROM item WHERE Id = @Id", par);
+                    "DELETE FROM itemOrder WHERE InvoiceNumber = @Id", par);
                 if (lcRecCount == 1)
                     return "One Item Deleted.";
                 else
@@ -176,6 +232,8 @@ namespace SelfHost
                 return ex.GetBaseException().Message;
             }
         }
+        #endregion
+
         #endregion
 
         #region ##### PREPARATION METHODS #####
@@ -193,6 +251,17 @@ namespace SelfHost
             par.Add("WarrantyPeriod", prItem.WarrantyPeriod);
             par.Add("Condition", prItem.Condition);
             par.Add("Type", prItem.Type);
+            return par;
+        }
+
+        private Dictionary<string, object> PrepareOrderParameters(clsOrder prOrder)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(5);
+            par.Add("ItemName", prOrder.ItemName);
+            par.Add("Quantity", prOrder.Quantity);
+            par.Add("Price", prOrder.Price);
+            par.Add("Name", prOrder.Name);
+            par.Add("Email", prOrder.Email);
             return par;
         }
         #endregion

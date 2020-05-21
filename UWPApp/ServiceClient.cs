@@ -84,12 +84,23 @@ namespace UWPApp
         #endregion
 
         #region ##### ORDER REQUESTS ####
+
+        #region ### GET ORDERS
         internal async static Task<List<clsOrder>> GetOrdersAsync()
         {
             using (HttpClient lcHttpClient = new HttpClient())
                 return JsonConvert.DeserializeObject<List<clsOrder>>
                     (await lcHttpClient.GetStringAsync("http://localhost:60064/api/electrify/GetOrders"));
         }
+        #endregion
+
+        #region ### POST ORDER ###
+        internal async static Task<string> InsertOrderAsync(clsOrder prOrder)
+        {
+            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/electrify/PostOrder", "POST");
+        }
+        #endregion
+
         #endregion
 
         #region ##### GENERIC METHODS #####

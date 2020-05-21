@@ -166,6 +166,7 @@
             this.Name = "frmOrderList";
             this.Text = "Current Orders";
             this.Load += new System.EventHandler(this.FrmOrderList_Load);
+            this.Shown += new System.EventHandler(this.FrmOrderList_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
