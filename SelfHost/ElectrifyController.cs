@@ -120,15 +120,38 @@ namespace SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute(
-                    "UPDATE item SET Name = @Name, CategoryName = @Category, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition, Type = @Type WHERE Id = @Id", PrepareItemParameters(prItem));
-                if(lcRecCount == 1)
-                    return "One Item Updated.";
+                    "UPDATE item " +
+                    "SET Name = @Name, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition " +
+                    "WHERE Id = @Id",
+                    PrepareItemParameters(prItem));
+                if (lcRecCount == 1)
+                    return "Item Updated.";
                 else
-                    return "Unexpected Item Update Count.";
+                    return "Error 001: Unexpected Item Update Count.";
             }
             catch (Exception ex)
             {
-                return ex.GetBaseException().Message;
+                return "Error 002: " + ex.GetBaseException().Message;
+            }
+        }
+
+        public string PutItemQuantity(clsItem prItem)
+        {
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute(
+                    "UPDATE item " +
+                    "SET Quantity = Quantity - @Quantity " +
+                    "WHERE Id = @Id", 
+                    PrepareItemParameters(prItem));
+                if(lcRecCount == 1)
+                    return "success";
+                else
+                    return "Error 001: Unexpected Item Update Count.";
+            }
+            catch (Exception ex)
+            {
+                return "Error 002: " + ex.GetBaseException().Message;
             }
         }
         #endregion

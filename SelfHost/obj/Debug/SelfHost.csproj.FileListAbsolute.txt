@@ -1,9 +1,6 @@
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\SelfHost.exe.config
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\SelfHost.exe
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\SelfHost.pdb
-C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.csproj.CoreCompileInputs.cache
-C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.exe
-C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.pdb
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\Newtonsoft.Json.dll
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.Web.Http.dll
@@ -12,5 +9,8 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\Newtonso
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.Web.Http.xml
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.Web.Http.SelfHost.xml
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.csproj.CoreCompileInputs.cache
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.csproj.CopyComplete
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.exe
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.pdb
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.csprojAssemblyReference.cache

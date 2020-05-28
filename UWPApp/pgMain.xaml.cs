@@ -23,7 +23,7 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.GetBaseException().Message;
+                lblMessage.Text = "Error 001: " + ex.GetBaseException().Message;
             }
         }
         #endregion
@@ -37,7 +37,7 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.GetBaseException().Message;
+                lblMessage.Text = "Error 002: " + ex.GetBaseException().Message;
             }                        
         }
         #endregion
@@ -45,7 +45,10 @@ namespace UWPApp
         #region ##### CONTROL INTERACTION #####
         private void LstCategories_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            OpenCategory();
+            if (lstCategories.SelectedItem != null)
+            {
+                OpenCategory();
+            }               
         }
         #endregion
 
@@ -59,7 +62,14 @@ namespace UWPApp
             }
             else
             {
-                lblMessage.Text = "Please select an category from the list.";
+                if(lstCategories.ItemsSource != null)
+                {
+                    lblMessage.Text = "Please select a category from the list.";
+                }
+                else
+                {
+                    lblMessage.Text = "Error 003: A connection with the server could not be established.";
+                }
             }
         }
         #endregion

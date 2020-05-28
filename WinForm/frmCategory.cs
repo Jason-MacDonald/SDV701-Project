@@ -135,44 +135,49 @@ namespace WinForm
         {
             if (lvItemList.FocusedItem != null)
             {
-                try
-                {
-                    clsItem lcItem = await ServiceClient.GetItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString());
-                    OpenSelectedItemForm(lcItem);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.GetBaseException().Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show("No item has been selected.");
-            }
-                      
-        }
-
-        private async void BtnDelete_Click(object sender, EventArgs e)
-        {
-            if (lvItemList.FocusedItem != null)
-            {
-                if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (lvItemList.FocusedItem.Selected)
                 {
                     try
                     {
-                        MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString()));
-                        UpdateDisplay();
+                        clsItem lcItem = await ServiceClient.GetItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString());
+                        OpenSelectedItemForm(lcItem);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.GetBaseException().Message);
                     }
                 }
-            }
-            else
+                else
+                {
+                    MessageBox.Show("No item has been selected.");
+                }
+            }              
+        }
+
+        private async void BtnDelete_Click(object sender, EventArgs e)
+        {
+            if(lvItemList.FocusedItem != null)
             {
-                MessageBox.Show("No item has been selected.");
-            }
+                if (lvItemList.FocusedItem.Selected)
+                {
+                    if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString()));
+                            UpdateDisplay();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.GetBaseException().Message);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No item has been selected.");
+                }
+            }         
         }
 
         private void FrmCategory_FormClosing(object sender, FormClosingEventArgs e)

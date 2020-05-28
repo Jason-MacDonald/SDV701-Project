@@ -10,15 +10,15 @@
     <Grid>
 
         <!-- ##### NAME ##### -->
-        <TextBlock x:Name="lblName" HorizontalAlignment="Left" Margin="71,276,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="lblName" HorizontalAlignment="Left" Margin="70,276,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
         <TextBlock x:Name="lblItemName" HorizontalAlignment="Left" Margin="162,276,0,0" Text="-name-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
 
         <!-- ##### PRICE ##### -->
-        <TextBlock x:Name="lblPrice" HorizontalAlignment="Left" Margin="71,306,0,0" Text="Price:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="lblPrice" HorizontalAlignment="Left" Margin="70,306,0,0" Text="Price:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
         <TextBlock x:Name="lblItemPrice" HorizontalAlignment="Left" Margin="162,306,0,0" Text="-price-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
 
         <!-- ##### MOTOR ##### -->
-        <TextBlock x:Name="lblMotor" HorizontalAlignment="Left" Margin="71,340,0,0" Text="Motor:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="lblMotor" HorizontalAlignment="Left" Margin="70,340,0,0" Text="Motor:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
         <TextBlock x:Name="lblItemMotor" HorizontalAlignment="Left" Margin="162,340,0,0" Text="-motor-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
 
         <!-- ##### QUANTITY ##### -->
@@ -26,22 +26,22 @@
         <TextBlock x:Name="lblItemQty" HorizontalAlignment="Left" Margin="392,276,0,0" Text="XXX:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
 
         <!-- ##### DESCRIPTION ##### -->
-        <TextBlock x:Name="lblDescription" HorizontalAlignment="Left" Margin="72,420,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
-        <TextBlock x:Name="lblItemDescription" HorizontalAlignment="Left" Margin="69,444,0,0" Text="-description-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Height="120" Width="366"/>
+        <TextBlock x:Name="lblDescription" HorizontalAlignment="Left" Margin="70,420,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Width="76"/>
+        <TextBlock x:Name="lblItemDescription" HorizontalAlignment="Left" Margin="70,444,0,0" Text="-description-" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" Height="120" Width="366"/>
 
         <!-- ##### ORDER FORM ##### -->
         <TextBlock x:Name="lblPlaceAnOrder" HorizontalAlignment="Left" Margin="205,588,0,0" Text="Place an Order" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
 
         <!-- ##### USER NAME ##### -->
-        <TextBlock x:Name="lblUserName" HorizontalAlignment="Left" Margin="69,639,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="lblUserName" HorizontalAlignment="Left" Margin="70,639,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
         <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Margin="166,632,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
 
         <!-- ##### USER EMAIL ##### -->
-        <TextBlock x:Name="lblUserEmail" HorizontalAlignment="Left" Margin="69,687,0,0" Text="Email:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="lblUserEmail" HorizontalAlignment="Left" Margin="70,687,0,0" Text="Email:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
         <TextBox x:Name="txtUserEmail" HorizontalAlignment="Left" Margin="166,680,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
 
         <!-- ##### ORDER QUANTITY ##### -->
-        <TextBlock x:Name="lblOrderQuantity" HorizontalAlignment="Left" Margin="68,734,0,0" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="lblOrderQuantity" HorizontalAlignment="Left" Margin="70,734,0,0" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
         <TextBox x:Name="txtOrderQuantity" HorizontalAlignment="Left" Margin="166,727,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
 
         <!-- ##### PLACE ORDER ##### -->
@@ -51,8 +51,10 @@
         <!--<Button x:Name="btnBack" Content="Back" Margin="42,872,0,0" VerticalAlignment="Top" Width="340" Height="47" Click="BtnBack_Click"/>-->
 
         <!-- ##### ERROR MESSAGE ##### -->
-        <TextBlock x:Name="lblMessage" HorizontalAlignment="Left" Margin="69,772,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="85" Width="354" FontFamily="Segoe UI"/>
-        <ContentControl x:Name="ctcItemSpecs" Content="ContentControl" Margin="0,364,0,551"/>
+        <TextBlock x:Name="lblMessage" HorizontalAlignment="Left" Margin="70,772,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="85" Width="354" FontFamily="Segoe UI"/>
+        
+        <!-- ##### USER CONTROL PLACEHOLDER ##### -->
+        <ContentControl x:Name="ctcItemSpecs" Content="ContentControl" Margin="70,374,48,541"/>
 
     </Grid>
 </Page>

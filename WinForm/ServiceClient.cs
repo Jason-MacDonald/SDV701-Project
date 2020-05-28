@@ -67,6 +67,11 @@ namespace WinForm
         {
             return await InsertOrUpdateAsync(prItem, "http://localhost:60064/api/electrify/PutItem", "PUT");
         }
+
+        internal async static Task<string> UpdateItemQuantityAsync(clsItem prItem)
+        {
+            return await InsertOrUpdateAsync(prItem, "http://localhost:60064/api/electrify/PutItemQuantity", "PUT");
+        }
         #endregion
 
         #region ### ITEM DELETE ###

@@ -6,11 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignWidth="400" Height="27.059">
+    d:DesignWidth="400" Height="300">
 
-    <Grid>
-        <TextBlock x:ConnectionId='2' x:Name="lblCondition" Text="Condition:" TextWrapping="Wrap" Margin="75,0,244,4" FontFamily="Segoe UI"/>
-        <TextBlock x:ConnectionId='3' x:Name="lblItemCondition" Text="xxx" TextWrapping="Wrap" Margin="171,0,0,6"/>
+    <Grid Height="300">
+        <TextBlock x:ConnectionId='2' x:Name="lblCondition" Text="Condition:" TextWrapping="Wrap" FontFamily="Segoe UI"/>
+        <TextBlock x:ConnectionId='3' x:Name="lblItemCondition" Text="xxx" TextWrapping="Wrap" Margin="90,0,0,0"/>
 
     </Grid>
 </UserControl>

@@ -91,7 +91,10 @@ namespace UWPApp
         #region ##### CONTROL INTERACTIONS #####
         private void LstItems_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            OpenSelectedItem();
+            if (lstItems.SelectedItem != null)
+            {
+                OpenSelectedItem();
+            }
         }
         #endregion
 
@@ -104,7 +107,14 @@ namespace UWPApp
             }
             else
             {
-                lblMessage.Text = "Please select an item from the list.";
+                if (lstItems.ItemsSource != null)
+                {
+                    lblMessage.Text = "Please select a category from the list.";
+                }
+                else
+                {
+                    lblMessage.Text = "This category does not currently contain any items.";
+                }
             }
         }
         #endregion

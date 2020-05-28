@@ -6,11 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignWidth="400" Height="25.706">
+    d:DesignWidth="400" Height="300">
 
     <Grid>
-        <TextBlock x:Name="lblWarranty" Text="Warranty:" TextWrapping="Wrap" Margin="75,0,244,1"/>
-        <TextBlock x:Name="lblItemWarranty" Text="xxx" TextWrapping="Wrap" Margin="171,0,0,3"/>
+        <TextBlock x:Name="lblWarranty" Text="Warranty:" TextWrapping="Wrap" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="lblItemWarranty" Text="xxx" TextWrapping="Wrap" Margin="90,0,0,0"/>
 
     </Grid>
 </UserControl>

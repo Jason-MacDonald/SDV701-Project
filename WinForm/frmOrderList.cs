@@ -36,28 +36,31 @@ namespace WinForm
         #region ##### BUTTONS #####
         private async void BtnDeleteOrder_Click(object sender, EventArgs e)
         {
-            if(lvOrderList.FocusedItem != null)
+            if (lvOrderList.FocusedItem != null)
             {
-                //string lcSelectedID = OrderList[lstOrderList.SelectedIndex].InvoiceNumber.ToString();
-                string lcSelectedID = OrderList[lvOrderList.FocusedItem.Index].InvoiceNumber.ToString();
-
-                if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (lvOrderList.FocusedItem.Selected)
                 {
-                    try
+                    //string lcSelectedID = OrderList[lstOrderList.SelectedIndex].InvoiceNumber.ToString();
+                    string lcSelectedID = OrderList[lvOrderList.FocusedItem.Index].InvoiceNumber.ToString();
+
+                    if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show(await ServiceClient.DeleteOrderAsync(lcSelectedID));
-                        UpdateForm();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.GetBaseException().Message);
+                        try
+                        {
+                            MessageBox.Show((await ServiceClient.DeleteOrderAsync(lcSelectedID)).Trim('"'));
+                            UpdateForm();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.GetBaseException().Message);
+                        }
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("No order has been selected.");
-            }          
+                else
+                {
+                    MessageBox.Show("No order has been selected.");
+                }
+            }                     
         }
 
         private void BtnClose_Click(object sender, EventArgs e)

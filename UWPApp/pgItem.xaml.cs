@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml;
 using Windows.UI.Popups;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UWPApp
 {
@@ -63,6 +64,7 @@ namespace UWPApp
             try
             {
                 Item = await ServiceClient.GetItemAsync(Item.Id.ToString());
+                UpdateForm();
             }
             catch (Exception ex)
             {
@@ -73,37 +75,59 @@ namespace UWPApp
         private async Task InsertNewOrderInDatabase()
         {
             // TODO: Concurrency - Consider stored procedure.
-            
-            clsItem lcItem = Item;
-            Item.Quantity -= Convert.ToInt16(txtOrderQuantity.Text);
+
+            clsItem lcItem = new clsItem{
+                Id = Item.Id,
+                Name = Item.Name,
+                Category = Item.Category,
+                Description = Item.Description,
+                Price = Item.Price,
+                ModifiedDate = Item.ModifiedDate,
+                Quantity = Convert.ToInt32(txtOrderQuantity.Text),
+                Motor = Item.Name,
+                Battery = Item.Name,
+                WarrantyPeriod = Item.WarrantyPeriod,
+                Condition = Item.Condition,
+                Type = Item.Type
+            };
 
             try
             {
-                await ServiceClient.UpdateItemAsync(lcItem);
-                await ServiceClient.InsertOrderAsync(new clsOrder
+                string lcResult = await ServiceClient.UpdateItemQuantityAsync(lcItem);
+                lcResult = lcResult.Trim('"');
+
+                if(lcResult == "success")
                 {
-                    ItemName = Item.Name,
-                    Quantity = Convert.ToInt16(txtOrderQuantity.Text),
-                    Price = Item.Price,
-                    Name = txtUserName.Text,
-                    Email = txtUserEmail.Text
-                });
-                GetItemFromDB();
-                OrderPlaced();
+                    await ServiceClient.InsertOrderAsync(new clsOrder
+                    {
+                        ItemName = Item.Name,
+                        Quantity = Convert.ToInt16(txtOrderQuantity.Text),
+                        Price = Item.Price,
+                        Name = txtUserName.Text,
+                        Email = txtUserEmail.Text
+                    });
+
+                    OrderPlaced();
+                    GetItemFromDB();
+
+                    await new MessageDialog("Your order has been placed.").ShowAsync();
+                }
+                else
+                {
+                    await new MessageDialog("Unable to complete order. Please check we have the requested stock.").ShowAsync();
+                }
             }
             catch (Exception ex)
             {
                 lblMessage.Text = ex.GetBaseException().Message;
-            }                      
+            }          
         }
 
         private void OrderPlaced()
-        {          
-            UpdateForm();
-            lblMessage.Text = "Your order has been placed successfully.";
+        {                    
             txtUserName.Text = "";
             txtUserEmail.Text = "";
-            txtOrderQuantity.Text = "";           
+            txtOrderQuantity.Text = "";
         }
         #endregion
 
@@ -149,19 +173,12 @@ namespace UWPApp
         #region ##### BUTTONS #####
         private void BtnPlaceOrder_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Proper validation.
-            if(txtOrderQuantity.Text != "")
+            string lcInputQuantity = txtOrderQuantity.Text;
+
+            if (ValidQuantity(lcInputQuantity))
             {
-                if (Item.Quantity - Convert.ToInt16(txtOrderQuantity.Text) >= 0)
-                {
-                    SubmitNewOrder();
-                }
-                else
-                {
-                    lblMessage.Text = "Unfortunately their is not currently enough stock to fill this order. Please reduce the quantity or contact our sales team.";
-                }
-            }
-            lblMessage.Text = "Please enter the order quantity.";
+                SubmitNewOrder();
+            }                 
         }
         #endregion
 
@@ -176,7 +193,31 @@ namespace UWPApp
             lblItemQty.Text = Item.Quantity.ToString();
             (ctcItemSpecs.Content as IItemControl).UpdateControl(Item);
         }
+        #endregion
 
+        #region ##### VALIDATION #####
+        private bool ValidQuantity(string prInputQuantity)
+        {
+            if (string.IsNullOrWhiteSpace(prInputQuantity))
+            {
+                lblMessage.Text = "Please enter the order quantity.";
+                return false;
+            }
+
+            if (!prInputQuantity.All(char.IsDigit))
+            {
+                lblMessage.Text = "The order quantity contains invalid characters.";
+                return false;
+            }
+
+            if(Convert.ToInt16(prInputQuantity) <= 0)
+            {
+                lblMessage.Text = "Please enter a valid order quantity.";
+                return false;
+            }
+
+            return true;
+        }
         #endregion
     }
 }

@@ -43,7 +43,7 @@ namespace WinForm
         {
             try
             {
-                MessageBox.Show(await ServiceClient.UpdateItemAsync(Item));
+                MessageBox.Show((await ServiceClient.UpdateItemAsync(Item)).Trim('"'));
             }
             catch (Exception ex)
             {
