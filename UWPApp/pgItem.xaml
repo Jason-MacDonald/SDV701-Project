@@ -52,6 +52,7 @@
 
         <!-- ##### ERROR MESSAGE ##### -->
         <TextBlock x:Name="lblMessage" HorizontalAlignment="Left" Margin="69,772,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="85" Width="354" FontFamily="Segoe UI"/>
+        <ContentControl x:Name="ctcItemSpecs" Content="ContentControl" Margin="0,364,0,551"/>
 
     </Grid>
 </Page>

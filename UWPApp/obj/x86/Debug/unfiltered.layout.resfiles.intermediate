@@ -10,5 +10,7 @@ App.xbf
 pgItem.xbf
 pgItems.xbf
 pgMain.xbf
+ucNewItem.xbf
+ucUsedItem.xbf
 UWPApp.xr.xml
 Properties\Default.rd.xml

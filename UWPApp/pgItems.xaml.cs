@@ -34,7 +34,7 @@ namespace UWPApp
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.GetBaseException().Message;
+                lblMessage.Text = "(003) " + ex.GetBaseException().Message;
             }           
         }
 

@@ -4,11 +4,22 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml;
 using Windows.UI.Popups;
+using System.Collections.Generic;
 
 namespace UWPApp
 {
     public sealed partial class pgItem : Page
     {
+        #region USER CONTROL SELECTION #####
+        private delegate void LoadItemControlDelegate(clsItem prItem);
+        private Dictionary<string, Delegate> _ItemContent;
+        private void DispatchItemContent(clsItem prItem)
+        {
+            _ItemContent[prItem.Type].DynamicInvoke(prItem);
+            UpdateForm();
+        }
+        #endregion
+
         #region ##### VARIABLES #####
         private clsItem _Item;
         public clsItem Item { get => _Item; set => _Item = value; }
@@ -18,6 +29,12 @@ namespace UWPApp
         public pgItem()
         {
             InitializeComponent();
+
+            _ItemContent = new Dictionary<string, Delegate>
+            {
+                {"new", new LoadItemControlDelegate(RunNewItem)},
+                {"used", new LoadItemControlDelegate(RunUsedItem)}
+            };
         }
         #endregion
 
@@ -88,7 +105,18 @@ namespace UWPApp
             txtUserEmail.Text = "";
             txtOrderQuantity.Text = "";           
         }
+        #endregion
 
+        #region ##### USER CONTROL #####
+        private void RunNewItem(clsItem prItem)
+        {
+            ctcItemSpecs.Content = new ucNewItem();
+        }
+
+        private void RunUsedItem(clsItem prItem)
+        {
+            ctcItemSpecs.Content = new ucUsedItem();
+        }
         #endregion
 
         #region ##### NAVIGATION #####
@@ -101,17 +129,18 @@ namespace UWPApp
                 try
                 {
                     Item = await ServiceClient.GetItemAsync(e.Parameter.ToString());
-                    UpdateForm();
-
+                    DispatchItemContent(Item as clsItem);
+                    //UpdateForm();
                 }
                 catch (Exception ex)
                 {
-                    lblMessage.Text = ex.GetBaseException().Message;
+                    lblMessage.Text = "(001) " + ex.GetBaseException().Message;
                 }
             }
             else
             {
                 // TODO: ?
+                lblMessage.Text = "(002) ";
             }
             
         }
@@ -145,6 +174,7 @@ namespace UWPApp
             lblItemMotor.Text = Item.Motor;
             lblItemDescription.Text = Item.Description;
             lblItemQty.Text = Item.Quantity.ToString();
+            (ctcItemSpecs.Content as IItemControl).UpdateControl(Item);
         }
 
         #endregion

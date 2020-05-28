@@ -13,3 +13,4 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.N
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.Web.Http.xml
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\bin\Debug\System.Web.Http.SelfHost.xml
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.csproj.CopyComplete
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\SelfHost\obj\Debug\SelfHost.csprojAssemblyReference.cache

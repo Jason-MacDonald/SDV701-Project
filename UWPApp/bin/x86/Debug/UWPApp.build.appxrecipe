@@ -82,6 +82,12 @@
     <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\pgMain.xbf">
       <PackagePath>pgMain.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\ucNewItem.xbf">
+      <PackagePath>ucNewItem.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\ucUsedItem.xbf">
+      <PackagePath>ucUsedItem.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
     </AppxPackagedFile>

@@ -54,3 +54,13 @@ C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\Multip
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636884878160000000.json
 C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\UWPApp.csprojAssemblyReference.cache
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\ucNewItem.xbf
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucNewItem.g.i.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucNewItem.g.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucNewItem.xaml
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucNewItem.xbf
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\bin\x86\Debug\ucUsedItem.xbf
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucUsedItem.g.i.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucUsedItem.g.cs
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucUsedItem.xaml
+C:\Users\64221\Documents\SDV701 Repos\SDV701-Project\UWPApp\obj\x86\Debug\ucUsedItem.xbf
