@@ -4,7 +4,6 @@ using System.Data;
 
 namespace SelfHost
 {
-    //note controller must end with controller!
     public class ElectrifyController : System.Web.Http.ApiController
     {
         #region ##### CATEGORY QUERIES #####
@@ -12,13 +11,14 @@ namespace SelfHost
         {
             DataTable lcResult = clsDbConnection.GetDataTable(
                 "SELECT name " +
-                "FROM category", 
+                "FROM category",
                 null);
             List<string> lcNames = new List<string>();
             foreach (DataRow dr in lcResult.Rows)
                 lcNames.Add((string)dr[0]);
             return lcNames;
         }
+
         public clsCategory GetCategory(string Name)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);

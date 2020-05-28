@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SelfHost
 {
     static class clsDbConnection
     {
-        private static ConnectionStringSettings ConnectionStringSettings =
-            ConfigurationManager.ConnectionStrings["ElectrifyDatabase"];
-        private static DbProviderFactory ProviderFactory =
-            DbProviderFactories.GetFactory(ConnectionStringSettings.ProviderName);
+        #region VARIABLES
+        
+        private static ConnectionStringSettings ConnectionStringSettings = ConfigurationManager.ConnectionStrings["ElectrifyDatabase"];
+        private static DbProviderFactory ProviderFactory = DbProviderFactories.GetFactory(ConnectionStringSettings.ProviderName);
         private static string ConnectionStr = ConnectionStringSettings.ConnectionString;
+        #endregion
 
         public static DataTable GetDataTable(string prSQL, Dictionary<string, Object> prPars)
         {
@@ -26,7 +24,7 @@ namespace SelfHost
                 lcDataConnection.ConnectionString = ConnectionStr;
                 lcDataConnection.Open();
                 lcCommand.CommandText = prSQL;
-                setPars(lcCommand, prPars);
+                SetPars(lcCommand, prPars);
                 using (DbDataReader lcDataReader = lcCommand.ExecuteReader(CommandBehavior.CloseConnection))
                     lcDataTable.Load(lcDataReader);
                 return lcDataTable;
@@ -40,14 +38,15 @@ namespace SelfHost
                 lcDataConnection.ConnectionString = ConnectionStr;
                 lcDataConnection.Open();
                 lcCommand.CommandText = prSQL;
-                setPars(lcCommand, prPars);
+                SetPars(lcCommand, prPars);
                 return lcCommand.ExecuteNonQuery();
             }
         }
 
-        private static void setPars(DbCommand prCommand, Dictionary<string, Object> prPars)
-        {   // For most DBMS using @Name1, @Name2, @Name3 etc.
+        private static void SetPars(DbCommand prCommand, Dictionary<string, Object> prPars)
+        { 
             if (prPars != null)
+            {         
                 foreach (KeyValuePair<string, Object> lcItem in prPars)
                 {
                     DbParameter lcPar = ProviderFactory.CreateParameter();
@@ -55,7 +54,7 @@ namespace SelfHost
                     lcPar.ParameterName = '@' + lcItem.Key;
                     prCommand.Parameters.Add(lcPar);
                 }
+            }
         }
-
     }
 }
