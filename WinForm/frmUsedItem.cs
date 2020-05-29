@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -28,18 +29,34 @@ namespace WinForm
         #region ##### UPDATES #####
         protected override bool PushData()
         {
-            // TODO: Implement additional NewItem var condition. 
-            base.PushData();
-            return true;
-            //clsUsedItem lcItem = (clsUsedItem)_Item; // Recast clsItem as clsNewItem
-            //lcItem.Condition = txtCondition.Text;
+            if (ValidCondition())
+            {
+                Item.Condition = txtCondition.Text;
+            }
+            return base.PushData();
         }
 
         protected override void UpdateForm()
         {
             base.UpdateForm();
-            //clsUsedItem lcItem = (clsUsedItem)_Item; // Recast clsItem as clsUsedItem
             txtCondition.Text = Item.Condition;
+        }
+        #endregion
+
+        #region ##### VALIDATION #####
+        public bool ValidCondition()
+        {
+            if (string.IsNullOrWhiteSpace(txtCondition.Text))
+            {
+                MessageBox.Show("Please enter the condition.");
+                return false;
+            }
+            if(!txtCondition.Text.All(condition => char.IsLetter(condition)))
+            {
+                MessageBox.Show("The condition has invalid characters.");
+                return false;
+            }
+            return true;
         }
         #endregion
     }
