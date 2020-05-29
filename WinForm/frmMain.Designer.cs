@@ -40,7 +40,7 @@
             this.lstCategories.FormattingEnabled = true;
             this.lstCategories.ItemHeight = 16;
             this.lstCategories.Location = new System.Drawing.Point(16, 89);
-            this.lstCategories.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstCategories.Margin = new System.Windows.Forms.Padding(4);
             this.lstCategories.Name = "lstCategories";
             this.lstCategories.Size = new System.Drawing.Size(299, 132);
             this.lstCategories.TabIndex = 0;
@@ -60,7 +60,7 @@
             // btnOpenSelectedCategory
             // 
             this.btnOpenSelectedCategory.Location = new System.Drawing.Point(16, 229);
-            this.btnOpenSelectedCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpenSelectedCategory.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpenSelectedCategory.Name = "btnOpenSelectedCategory";
             this.btnOpenSelectedCategory.Size = new System.Drawing.Size(300, 28);
             this.btnOpenSelectedCategory.TabIndex = 2;
@@ -71,7 +71,7 @@
             // btnOpenCurrentOrdersForm
             // 
             this.btnOpenCurrentOrdersForm.Location = new System.Drawing.Point(19, 15);
-            this.btnOpenCurrentOrdersForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpenCurrentOrdersForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpenCurrentOrdersForm.Name = "btnOpenCurrentOrdersForm";
             this.btnOpenCurrentOrdersForm.Size = new System.Drawing.Size(300, 28);
             this.btnOpenCurrentOrdersForm.TabIndex = 3;
@@ -82,7 +82,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(16, 277);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(300, 28);
             this.btnClose.TabIndex = 4;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.btnOpenSelectedCategory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstCategories);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "Electrify NZ";
             this.Load += new System.EventHandler(this.FrmMain_Load);

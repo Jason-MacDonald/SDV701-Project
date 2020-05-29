@@ -33,6 +33,7 @@ namespace WinForm
             {
                 Instance.GetCategoryFromDB(prCategoryName);
             }
+            Instance.cbChoice.SelectedItem = "New";
             Instance.Show();
         }
 
