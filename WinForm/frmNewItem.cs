@@ -26,10 +26,10 @@ namespace WinForm
         #endregion
 
         #region ##### UPDATES #####
-        protected override void PushData()
+        protected override bool PushData()
         {
             // TODO: Implement additional warranty field.
-            base.PushData();
+            return base.PushData();
             //clsNewItem lcItem = (clsNewItem)_Item; // Recast clsItem as clsNewItem
             //lcItem.WarrantyPeriod = Convert.ToInt32(txtWarrantyPeriod.Text);
         }

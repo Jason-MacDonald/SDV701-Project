@@ -26,10 +26,11 @@ namespace WinForm
         #endregion
 
         #region ##### UPDATES #####
-        protected override void PushData()
+        protected override bool PushData()
         {
             // TODO: Implement additional NewItem var condition. 
             base.PushData();
+            return true;
             //clsUsedItem lcItem = (clsUsedItem)_Item; // Recast clsItem as clsNewItem
             //lcItem.Condition = txtCondition.Text;
         }
