@@ -77,6 +77,7 @@ namespace SelfHost
                         ModifiedDate = (dr["ModifiedDate"]).ToString(),
                         Quantity = Convert.ToInt32(dr["Quantity"]),
                         Motor = (string)dr["Motor"],
+                        Battery = (string)dr["Battery"],
                         WarrantyPeriod = dr["WarrantyPeriod"] is DBNull ? 0 : Convert.ToInt32(dr["WarrantyPeriod"]),
                         Condition = dr["Condition"] is DBNull ? "" : (string)dr["Condition"],
                         Type = (string)dr["Type"]
@@ -105,6 +106,7 @@ namespace SelfHost
                     ModifiedDate = (lcResult.Rows[0]["ModifiedDate"]).ToString(),
                     Quantity = Convert.ToInt32(lcResult.Rows[0]["Quantity"]),
                     Motor = (string)lcResult.Rows[0]["Motor"],
+                    Battery = (string)lcResult.Rows[0]["Battery"],
                     WarrantyPeriod = lcResult.Rows[0]["WarrantyPeriod"] is DBNull ? 0 : Convert.ToInt32(lcResult.Rows[0]["WarrantyPeriod"]),
                     Condition = lcResult.Rows[0]["Condition"] is DBNull ? "" : (string)lcResult.Rows[0]["Condition"],
                     Type = (string)lcResult.Rows[0]["Type"]
@@ -121,7 +123,7 @@ namespace SelfHost
             {
                 int lcRecCount = clsDbConnection.Execute(
                     "UPDATE item " +
-                    "SET Name = @Name, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition " +
+                    "SET Name = @Name, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, Battery = @Battery, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition " +
                     "WHERE Id = @Id",
                     PrepareItemParameters(prItem));
                 if (lcRecCount == 1)
@@ -280,6 +282,7 @@ namespace SelfHost
             par.Add("ModifiedDate", prItem.ModifiedDate);
             par.Add("Quantity", prItem.Quantity);
             par.Add("Motor", prItem.Motor);
+            par.Add("Battery", prItem.Battery);
             par.Add("WarrantyPeriod", prItem.WarrantyPeriod);
             par.Add("Condition", prItem.Condition);
             par.Add("Type", prItem.Type);
