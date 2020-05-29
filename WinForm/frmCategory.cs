@@ -6,6 +6,10 @@ namespace WinForm
 {
     public sealed partial class frmCategory : Form
     {
+        private static PriceComparer priceComparer = new PriceComparer();
+        private static NameComparer nameComparer = new NameComparer();
+        private static QuantityComparer quantityComparer = new QuantityComparer();
+
         #region ##### VARIABLES #####
         private clsCategory _Category;
         private List<clsItem> _ItemList;
@@ -196,6 +200,26 @@ namespace WinForm
         }
         #endregion
 
+        #region ##### SORT BUTTONS #####
+        private void BtnSortByName_Click(object sender, EventArgs e)
+        {
+            ItemList.Sort(nameComparer);
+            UpdateForm();
+        }
+
+        private void BtnSortByPrice_Click(object sender, EventArgs e)
+        {
+            ItemList.Sort(priceComparer);
+            UpdateForm();
+        }      
+
+        private void BtnSortByQuantity_Click(object sender, EventArgs e)
+        {
+            ItemList.Sort(quantityComparer);
+            UpdateForm();
+        }
+        #endregion
+
         #region ##### UPDATES #####
         public void UpdateForm()
         {
@@ -208,7 +232,8 @@ namespace WinForm
         {
             try
             {
-                ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+                if(ItemList == null)
+                    ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
 
                 if (ItemList != null)
                 {
@@ -248,6 +273,7 @@ namespace WinForm
                 MessageBox.Show(ex.GetBaseException().Message);
             }        
         }
+
         #endregion
     }
 }

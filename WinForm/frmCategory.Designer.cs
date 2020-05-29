@@ -35,6 +35,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.txtDescription = new System.Windows.Forms.Label();
             this.lvItemList = new System.Windows.Forms.ListView();
+            this.btnSortByPrice = new System.Windows.Forms.Button();
+            this.btnSortByName = new System.Windows.Forms.Button();
+            this.btnSortByQuantity = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDelete
@@ -113,11 +116,44 @@
             this.lvItemList.TabIndex = 10;
             this.lvItemList.UseCompatibleStateImageBehavior = false;
             // 
+            // btnSortByPrice
+            // 
+            this.btnSortByPrice.Location = new System.Drawing.Point(100, 72);
+            this.btnSortByPrice.Name = "btnSortByPrice";
+            this.btnSortByPrice.Size = new System.Drawing.Size(75, 23);
+            this.btnSortByPrice.TabIndex = 11;
+            this.btnSortByPrice.Text = "Price";
+            this.btnSortByPrice.UseVisualStyleBackColor = true;
+            this.btnSortByPrice.Click += new System.EventHandler(this.BtnSortByPrice_Click);
+            // 
+            // btnSortByName
+            // 
+            this.btnSortByName.Location = new System.Drawing.Point(19, 72);
+            this.btnSortByName.Name = "btnSortByName";
+            this.btnSortByName.Size = new System.Drawing.Size(75, 23);
+            this.btnSortByName.TabIndex = 12;
+            this.btnSortByName.Text = "Name";
+            this.btnSortByName.UseVisualStyleBackColor = true;
+            this.btnSortByName.Click += new System.EventHandler(this.BtnSortByName_Click);
+            // 
+            // btnSortByQuantity
+            // 
+            this.btnSortByQuantity.Location = new System.Drawing.Point(181, 72);
+            this.btnSortByQuantity.Name = "btnSortByQuantity";
+            this.btnSortByQuantity.Size = new System.Drawing.Size(75, 23);
+            this.btnSortByQuantity.TabIndex = 13;
+            this.btnSortByQuantity.Text = "Quantity";
+            this.btnSortByQuantity.UseVisualStyleBackColor = true;
+            this.btnSortByQuantity.Click += new System.EventHandler(this.BtnSortByQuantity_Click);
+            // 
             // frmCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 415);
+            this.Controls.Add(this.btnSortByQuantity);
+            this.Controls.Add(this.btnSortByName);
+            this.Controls.Add(this.btnSortByPrice);
             this.Controls.Add(this.lvItemList);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnClose);
@@ -141,5 +177,8 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label txtDescription;
         private System.Windows.Forms.ListView lvItemList;
+        private System.Windows.Forms.Button btnSortByPrice;
+        private System.Windows.Forms.Button btnSortByName;
+        private System.Windows.Forms.Button btnSortByQuantity;
     }
 }

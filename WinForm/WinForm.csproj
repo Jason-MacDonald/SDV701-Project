@@ -86,9 +86,12 @@
     <Compile Include="frmUsedItem.Designer.cs">
       <DependentUpon>frmUsedItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="NameComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuantityComparer.cs" />
     <Compile Include="ServiceClient.cs" />
+    <Compile Include="PriceComparer.cs" />
     <EmbeddedResource Include="frmCategory.resx">
       <DependentUpon>frmCategory.cs</DependentUpon>
     </EmbeddedResource>

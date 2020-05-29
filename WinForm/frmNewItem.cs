@@ -31,7 +31,7 @@ namespace WinForm
         {
             if (ValidWarrantyPeriod())
             {
-                Item.WarrantyPeriod = Convert.ToInt32(txtWarrantyPeriod);
+                Item.WarrantyPeriod = Convert.ToInt32(txtWarrantyPeriod.Text);
             }
             return base.PushData();
         }
