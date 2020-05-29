@@ -6,6 +6,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Popups;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace UWPApp
 {
@@ -173,12 +175,24 @@ namespace UWPApp
         #region ##### BUTTONS #####
         private void BtnPlaceOrder_Click(object sender, RoutedEventArgs e)
         {
+            string lcInputUserName = txtUserName.Text;
+            string lcInputEmail = txtUserEmail.Text;
             string lcInputQuantity = txtOrderQuantity.Text;
 
-            if (ValidQuantity(lcInputQuantity))
+            if (ValidUserName(lcInputUserName))
             {
-                SubmitNewOrder();
-            }                 
+                if (ValidEmail(lcInputEmail))
+                {
+                    if (ValidQuantity(lcInputQuantity))
+                    {
+                        SubmitNewOrder();
+                    }
+                }
+                else
+                {
+                    lblMessage.Text = "Please enter a valid email address.";
+                }               
+            }           
         }
         #endregion
 
@@ -196,6 +210,78 @@ namespace UWPApp
         #endregion
 
         #region ##### VALIDATION #####
+
+        #region ### USERNAME ###
+        private bool ValidUserName(string prInputUserName)
+        {
+            if (string.IsNullOrWhiteSpace(prInputUserName))
+            {
+                lblMessage.Text = "Please enter your name.";
+                return false;
+            }
+
+            if (!prInputUserName.All(name => char.IsLetter(name) || char.IsWhiteSpace(name)))
+            {
+                lblMessage.Text = "Your name contains invalid characters.";
+                return false;
+            }
+
+            if (prInputUserName.Length >= 40)
+            {
+                lblMessage.Text = "Your name can not be longer than 40 characters.";
+                return false;
+            }
+
+            return true;
+        }
+        #endregion
+
+        #region ### EMAIL ###
+        private bool ValidEmail(string prInputEmail) // https://docs.microsoft.com/en-us/dotnet/standard/base-types/how-to-verify-that-strings-are-in-valid-email-format
+        {
+            if (string.IsNullOrWhiteSpace(prInputEmail))
+            {
+                lblMessage.Text = "Please enter your email address.";
+                return false;
+            }
+
+            try
+            {
+                prInputEmail = Regex.Replace(prInputEmail, @"(@)(.+)$", DomainMapper, RegexOptions.None, TimeSpan.FromMilliseconds(200));
+                string DomainMapper(Match match)
+                {
+                    var idn = new IdnMapping();
+                    var domainName = idn.GetAscii(match.Groups[2].Value);
+                    return match.Groups[1].Value + domainName;
+                }
+            }
+            catch (RegexMatchTimeoutException ex)
+            {
+                lblMessage.Text = "Error: 001 " + ex.GetBaseException().Message;
+                return false;
+            }
+            catch (ArgumentException ex)
+            {
+                lblMessage.Text = "Error: 002 " + ex.GetBaseException().Message;
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(prInputEmail,
+                    @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                    @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException ex)
+            {
+                lblMessage.Text = "Error: 003 " + ex.GetBaseException().Message;
+                return false;
+            }
+        }
+        #endregion
+
+        #region ### QUANTITY ###
         private bool ValidQuantity(string prInputQuantity)
         {
             if (string.IsNullOrWhiteSpace(prInputQuantity))
@@ -218,6 +304,8 @@ namespace UWPApp
 
             return true;
         }
+        #endregion
+
         #endregion
     }
 }
