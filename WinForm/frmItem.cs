@@ -13,9 +13,14 @@ namespace WinForm
 {
     public partial class frmItem : Form
     {
-        #region ##### VARIABLES #####
-        private clsItem item;
+        #region ##### VARIABLES #####   
+        /// <summary>
+        /// Using var as comparing image as either Images or Byte[]'s doesn't seem to work. 
+        /// Ensure set to false when form is hidden. - Hide()
+        /// </summary>
+        private bool uploadedImage = false;
 
+        private clsItem item;
         protected clsItem Item { get => item; set => item = value; }
         #endregion
 
@@ -75,6 +80,7 @@ namespace WinForm
                 if(fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     picImage.Image = Image.FromFile(fileDialog.FileName);
+                    uploadedImage = true;
                 }
             }
         }
@@ -99,25 +105,39 @@ namespace WinForm
         private async void BtnSaveAndClose_Click(object sender, EventArgs e)
         {
             // TODO: Should only save if changed as modified date is getting updated even when no changes are made.
-            if (PushData())
+            if (HasChanged())
             {
-                if (txtName.Enabled)
+                if (PushData())
                 {
-                    await InsertIntoDatabase();
+                    if (txtName.Enabled)
+                    {
+                        await InsertIntoDatabase();
+                    }
+                    else
+                    {
+                        await UpdateItemInDatabase();
+                    }
+                    frmCategory.Instance.UpdateForm();
+
+                    uploadedImage = false;
+                    Hide();
                 }
-                else
-                {
-                    await UpdateItemInDatabase();
-                }
-                frmCategory.Instance.UpdateForm();
+            }
+            else
+            {
+                MessageBox.Show("No changes made.");
+                uploadedImage = false;
                 Hide();
             }
+
+            
         }
 
         private void BtnCloseWithoutSaving_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to close without saving? Any changes you have made will not be saved.", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                uploadedImage = false;
                 Hide();
             }
         }
@@ -127,6 +147,7 @@ namespace WinForm
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = true;
+                uploadedImage = false;
                 Hide();
             }
         }
@@ -155,15 +176,35 @@ namespace WinForm
                                     Item.Quantity = Convert.ToInt32(txtQuantity.Text);
                                     Item.Price = float.Parse(txtPrice.Text);
 
-                                    
+
                                     Item.Image = ConvertImageToBinary(picImage.Image);
                                     return true;
-                                }                             
-                            }                           
-                        }                    
-                    }                  
+                                }
+                            }
+                        }
+                    }
                 }               
+            }           
+            return false;
+        }
+
+        private bool HasChanged()
+        {
+            if (
+                txtName.Text != Item.Name ||
+                txtDescription.Text != Item.Description ||
+                txtMotor.Text != Item.Motor ||
+                txtBattery.Text != Item.Battery ||
+                Convert.ToInt32(txtQuantity.Text) != Item.Quantity ||
+                float.Parse(txtPrice.Text) != Item.Price ||
+
+                uploadedImage
+            )
+            {
+                MessageBox.Show("Changed");
+                return true;
             }
+            MessageBox.Show("No change");
             return false;
         }
 
