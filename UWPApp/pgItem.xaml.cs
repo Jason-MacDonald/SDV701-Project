@@ -8,6 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Storage.Streams;
+using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.UI.Xaml.Media;
 
 namespace UWPApp
 {
@@ -45,7 +50,7 @@ namespace UWPApp
         private async void SubmitNewOrder()
         {
             MessageDialog lcMessageBox = new MessageDialog("Please confirm that you would like to place an order.");
-            lcMessageBox.Commands.Add(new UICommand("Yes", async x => 
+            lcMessageBox.Commands.Add(new UICommand("Yes", async x =>
             {
                 try
                 {
@@ -58,7 +63,7 @@ namespace UWPApp
             }));
             lcMessageBox.Commands.Add(new UICommand("Cancel"));
 
-            await lcMessageBox.ShowAsync();                    
+            await lcMessageBox.ShowAsync();
         }
 
         private async void GetItemFromDB()
@@ -78,7 +83,8 @@ namespace UWPApp
         {
             // TODO: Concurrency - Consider stored procedure.
 
-            clsItem lcItem = new clsItem{
+            clsItem lcItem = new clsItem
+            {
                 Id = Item.Id,
                 Name = Item.Name,
                 Category = Item.Category,
@@ -98,7 +104,7 @@ namespace UWPApp
                 string lcResult = await ServiceClient.UpdateItemQuantityAsync(lcItem);
                 lcResult = lcResult.Trim('"');
 
-                if(lcResult == "success")
+                if (lcResult == "success")
                 {
                     await ServiceClient.InsertOrderAsync(new clsOrder
                     {
@@ -122,11 +128,11 @@ namespace UWPApp
             catch (Exception ex)
             {
                 lblMessage.Text = ex.GetBaseException().Message;
-            }          
+            }
         }
 
         private void OrderPlaced()
-        {                    
+        {
             txtUserName.Text = "";
             txtUserEmail.Text = "";
             txtOrderQuantity.Text = "";
@@ -156,11 +162,12 @@ namespace UWPApp
                 {
                     Item = await ServiceClient.GetItemAsync(e.Parameter.ToString());
                     DispatchItemContent(Item as clsItem);
+
                     //UpdateForm();
                 }
                 catch (Exception ex)
                 {
-                    lblMessage.Text = "(001) " + ex.GetBaseException().Message;
+                    lblMessage.Text = "(004) " + ex.GetBaseException().Message;
                 }
             }
             else
@@ -168,7 +175,7 @@ namespace UWPApp
                 // TODO: ?
                 lblMessage.Text = "(002) ";
             }
-            
+
         }
         #endregion
 
@@ -191,8 +198,8 @@ namespace UWPApp
                 else
                 {
                     lblMessage.Text = "Please enter a valid email address.";
-                }               
-            }           
+                }
+            }
         }
         #endregion
 
@@ -206,6 +213,17 @@ namespace UWPApp
             lblItemDescription.Text = Item.Description;
             lblItemQty.Text = Item.Quantity.ToString();
             (ctcItemSpecs.Content as IItemControl).UpdateControl(Item);
+
+            //picItem.Source = ConvertBytesToBitmap(Item.Image);
+            if(Item.Image != null)
+            {
+                picItem.Source = ConvertBytesToBitmapAsync(Item.Image).Result;
+            }
+            else
+            {
+                picItem.Source = null;
+            }
+            
         }
         #endregion
 
@@ -296,7 +314,7 @@ namespace UWPApp
                 return false;
             }
 
-            if(Convert.ToInt16(prInputQuantity) <= 0)
+            if (Convert.ToInt16(prInputQuantity) <= 0)
             {
                 lblMessage.Text = "Please enter a valid order quantity.";
                 return false;
@@ -307,5 +325,38 @@ namespace UWPApp
         #endregion
 
         #endregion
+
+        public ImageSource ConvertBytesToBitmap(byte[] prImageData)
+        {
+            BitmapImage lcImage = new BitmapImage();
+
+            using (InMemoryRandomAccessStream lcStream = new InMemoryRandomAccessStream())
+            {
+                lcStream.AsStreamForWrite().Write(prImageData, 0, prImageData.Length);
+                lcImage.SetSource(lcStream);
+
+                return lcImage;
+            }
+        }
+
+        public async static Task<ImageSource> ConvertBytesToBitmapAsync(byte[] bytes)
+        {
+            BitmapImage image = new BitmapImage();
+            
+
+            using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
+            {
+                await stream.WriteAsync(bytes.AsBuffer());
+                stream.Seek(0);
+
+                //TODO: What the hell???
+                // Using await breaks it here but all examples use await and a warning is shown... but will only work if asynchronous.
+
+                image.SetSourceAsync(stream);
+
+                // await image.SetSourceAsync(stream);
+            }
+            return image;
+        }
     }
 }

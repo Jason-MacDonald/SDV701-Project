@@ -89,7 +89,7 @@ namespace WinForm
         {
             using(MemoryStream lcMemoryStream = new MemoryStream())
             {
-                prImage.Save(lcMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                prImage.Save(lcMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 return lcMemoryStream.ToArray();
             }
         }
@@ -201,10 +201,8 @@ namespace WinForm
                 uploadedImage
             )
             {
-                MessageBox.Show("Changed");
                 return true;
             }
-            MessageBox.Show("No change");
             return false;
         }
 

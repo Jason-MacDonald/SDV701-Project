@@ -52,9 +52,12 @@
 
         <!-- ##### ERROR MESSAGE ##### -->
         <TextBlock x:Name="lblMessage" HorizontalAlignment="Left" Margin="70,772,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="85" Width="354" FontFamily="Segoe UI"/>
-        
+
         <!-- ##### USER CONTROL PLACEHOLDER ##### -->
         <ContentControl x:Name="ctcItemSpecs" Content="ContentControl" Margin="70,374,48,541"/>
 
+
+        <!-- ##### IMAGE #####-->
+        <Image x:Name="picItem" HorizontalAlignment="Center" Height="271" VerticalAlignment="Top" Width="272" Source="/Assets/LockScreenLogo.png" />
     </Grid>
 </Page>
