@@ -70,6 +70,7 @@ namespace SelfHost
                     lcItemList.Add(new clsItem
                     {
                         Id = Convert.ToInt32(dr["Id"]),
+                        Image = lcResult.Rows[0]["Image"] is DBNull ? null : (byte[])lcResult.Rows[0]["Image"], //##### ???
                         Name = (string)dr["Name"],
                         Category = (string)dr["CategoryName"],
                         Description = (string)dr["Description"],
@@ -99,6 +100,7 @@ namespace SelfHost
                 return new clsItem()
                 {
                     Id = Convert.ToInt32(lcResult.Rows[0]["Id"]),
+                    Image = lcResult.Rows[0]["Image"] is DBNull ? null : (byte[])lcResult.Rows[0]["Image"], //##### ???
                     Name = (string)lcResult.Rows[0]["Name"],
                     Category = (string)lcResult.Rows[0]["CategoryName"],
                     Description = (string)lcResult.Rows[0]["Description"],
@@ -123,7 +125,7 @@ namespace SelfHost
             {
                 int lcRecCount = clsDbConnection.Execute(
                     "UPDATE item " +
-                    "SET Name = @Name, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, Battery = @Battery, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition " +
+                    "SET Image = @Image, Name = @Name, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, Battery = @Battery, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition " +
                     "WHERE Id = @Id",
                     PrepareItemParameters(prItem));
                 if (lcRecCount == 1)
@@ -275,6 +277,7 @@ namespace SelfHost
         {
             Dictionary<string, object> par = new Dictionary<string, object>(11);
             par.Add("Id", prItem.Id);
+            par.Add("Image", prItem.Image);
             par.Add("Name", prItem.Name);
             par.Add("Category", prItem.Category);
             par.Add("Description", prItem.Description);

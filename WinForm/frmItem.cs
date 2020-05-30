@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,8 +69,31 @@ namespace WinForm
         #region ##### BUTTONS #####
         private void BtnUploadImage_Click(object sender, EventArgs e)
         {
-            // TODO: Implement image functionality.
-            MessageBox.Show("Not Implemented");
+            // https://www.youtube.com/watch?v=W_cOlBBlFGM
+            using(OpenFileDialog fileDialog = new OpenFileDialog() { Filter = "JPG|*.jpg", ValidateNames = true, Multiselect = false })
+            {
+                if(fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    picImage.Image = Image.FromFile(fileDialog.FileName);
+                }
+            }
+        }
+
+        private byte[] ConvertImageToBinary(Image prImage)
+        {
+            using(MemoryStream lcMemoryStream = new MemoryStream())
+            {
+                prImage.Save(lcMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                return lcMemoryStream.ToArray();
+            }
+        }
+
+        private Image ConvertBinaryToImage(byte[] prImageData)
+        {
+            using(MemoryStream lcMemoryStream = new MemoryStream(prImageData))
+            {
+                return Image.FromStream(lcMemoryStream);
+            }
         }
 
         private async void BtnSaveAndClose_Click(object sender, EventArgs e)
@@ -131,6 +155,8 @@ namespace WinForm
                                     Item.Quantity = Convert.ToInt32(txtQuantity.Text);
                                     Item.Price = float.Parse(txtPrice.Text);
 
+                                    
+                                    Item.Image = ConvertImageToBinary(picImage.Image);
                                     return true;
                                 }                             
                             }                           
@@ -150,6 +176,15 @@ namespace WinForm
             txtQuantity.Text = Item.Quantity.ToString();
             txtPrice.Text = Item.Price.ToString();
             lblModifiedDate.Text = Item.ModifiedDate;
+
+            try
+            {
+                picImage.Image = ConvertBinaryToImage(Item.Image);
+            }
+            catch (Exception)
+            {
+                // pass
+            }           
         }
         #endregion
 
@@ -304,5 +339,7 @@ namespace WinForm
         #endregion
 
         #endregion
+
+
     }
 }

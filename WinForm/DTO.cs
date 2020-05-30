@@ -1,4 +1,6 @@
-﻿namespace WinForm
+﻿using System.Drawing;
+
+namespace WinForm
 {
     public class clsCategory
     {
@@ -9,6 +11,7 @@
     public class clsItem
     {
         public int Id { get; set; }
+        public byte[] Image { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }

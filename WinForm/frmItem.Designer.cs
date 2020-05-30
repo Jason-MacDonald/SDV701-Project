@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItem));
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,9 +44,9 @@
             this.btnCloseWithoutSaving = new System.Windows.Forms.Button();
             this.btnSaveAndClose = new System.Windows.Forms.Button();
             this.lblModifiedDate = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picImage = new System.Windows.Forms.PictureBox();
             this.btnUploadImage = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -210,16 +209,15 @@
             this.lblModifiedDate.Text = "01/01/2020";
             this.lblModifiedDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // pictureBox1
+            // picImage
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(395, 34);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(340, 198);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
+            this.picImage.Location = new System.Drawing.Point(395, 34);
+            this.picImage.Margin = new System.Windows.Forms.Padding(4);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(340, 198);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picImage.TabIndex = 17;
+            this.picImage.TabStop = false;
             // 
             // btnUploadImage
             // 
@@ -238,7 +236,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(751, 470);
             this.Controls.Add(this.btnUploadImage);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picImage);
             this.Controls.Add(this.lblModifiedDate);
             this.Controls.Add(this.btnSaveAndClose);
             this.Controls.Add(this.btnCloseWithoutSaving);
@@ -259,7 +257,7 @@
             this.Name = "frmItem";
             this.Text = "Item Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmItem_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,7 +281,7 @@
         private System.Windows.Forms.Button btnCloseWithoutSaving;
         private System.Windows.Forms.Button btnSaveAndClose;
         private System.Windows.Forms.Label lblModifiedDate;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picImage;
         private System.Windows.Forms.Button btnUploadImage;
     }
 }
