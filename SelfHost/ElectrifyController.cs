@@ -7,6 +7,8 @@ namespace SelfHost
     public class ElectrifyController : System.Web.Http.ApiController
     {
         #region ##### CATEGORY QUERIES #####
+
+        #region ### GET ###
         public List<string> GetCategoryNames()
         {
             DataTable lcResult = clsDbConnection.GetDataTable(
@@ -18,7 +20,6 @@ namespace SelfHost
                 lcNames.Add((string)dr[0]);
             return lcNames;
         }
-
         public clsCategory GetCategory(string Name)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
@@ -40,21 +41,25 @@ namespace SelfHost
         }
         #endregion
 
+        #endregion
+
         #region ##### ITEM QUERIES #####
 
         #region ### GET ###
-        public List<string> GetCategoryItemNames(string Category)
-        {
-            Dictionary<string, object> par = new Dictionary<string, object>(1);
-            par.Add("Category", Category);
-            DataTable lcResult = clsDbConnection.GetDataTable("SELECT name FROM item WHERE CategoryName = @Category", par);
-            List<string> lcNames = new List<string>();
-            foreach (DataRow dr in lcResult.Rows)
-                lcNames.Add((string)dr[0]);
-            return lcNames;
-        }
 
-        public List<clsItem> GetCategoryItems(string Category)
+        // --removed-- GET ITEM NAMES 
+        //public List<string> GetCategoryItemNames(string Category)
+        //{
+        //    Dictionary<string, object> par = new Dictionary<string, object>(1);
+        //    par.Add("Category", Category);
+        //    DataTable lcResult = clsDbConnection.GetDataTable("SELECT name FROM item WHERE CategoryName = @Category", par);
+        //    List<string> lcNames = new List<string>();
+        //    foreach (DataRow dr in lcResult.Rows)
+        //        lcNames.Add((string)dr[0]);
+        //    return lcNames;
+        //}
+
+        public List<clsItem> GetItems(string Category)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
             par.Add("Category", Category);
@@ -125,7 +130,7 @@ namespace SelfHost
             {
                 int lcRecCount = clsDbConnection.Execute(
                     "UPDATE item " +
-                    "SET Image = @Image, Name = @Name, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, Battery = @Battery, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition " +
+                    "SET Name = @Name, Image = @Image, Description = @Description, Price = @Price, ModifiedDate = @ModifiedDate, Quantity = @Quantity, Motor = @Motor, Battery = @Battery, WarrantyPeriod = @WarrantyPeriod, Condition = @Condition " +
                     "WHERE Id = @Id",
                     PrepareItemParameters(prItem));
                 if (lcRecCount == 1)
@@ -166,7 +171,9 @@ namespace SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute(
-                    "INSERT INTO item(name, categoryName, description, price, modifiedDate, quantity, motor, warrantyPeriod, condition, type) VALUES (@Name, @Category, @Description, @Price, @ModifiedDate, @Quantity, @Motor, @WarrantyPeriod, @Condition, @Type)", PrepareItemParameters(prItem)
+                    "INSERT INTO item(categoryName, image, name, description, price, modifiedDate, quantity, motor, battery, warrantyPeriod, condition, type) " +
+                    "VALUES (@Category, @Image, @Name, @Description, @Price, @ModifiedDate, @Quantity, @Motor, @Battery, @WarrantyPeriod, @Condition, @Type)", 
+                    PrepareItemParameters(prItem)
                 );
                 return "One Item Inserted.";
             }
@@ -185,7 +192,8 @@ namespace SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute(
-                    "DELETE FROM item WHERE Id = @Id", par);
+                    "DELETE FROM item " +
+                    "WHERE Id = @Id", par);
                 if (lcRecCount == 1)
                     return "One Item Deleted.";
                 else
@@ -224,8 +232,7 @@ namespace SelfHost
         #region ### GET ###
         public List<clsOrder> GetOrders()
         {
-            DataTable lcResult =
-                clsDbConnection.GetDataTable("SELECT * FROM itemOrder", null);
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM itemOrder", null);
 
             List<clsOrder> lcOrderList = new List<clsOrder>();
 
@@ -234,12 +241,14 @@ namespace SelfHost
                 foreach (DataRow dr in lcResult.Rows)
                 {
                     clsOrder lcOrder = new clsOrder();
+
                     lcOrder.InvoiceNumber = Convert.ToInt32(dr["InvoiceNumber"]);
                     lcOrder.ItemName = (string)dr["ItemName"];
                     lcOrder.Quantity = Convert.ToInt32(dr["Quantity"]);
                     lcOrder.Price = Convert.ToSingle(dr["Price"]);
                     lcOrder.Name = (string)dr["Name"];
                     lcOrder.Email = (string)dr["Email"];
+
                     lcOrderList.Add(lcOrder);
                 }
                 return lcOrderList;
@@ -257,7 +266,9 @@ namespace SelfHost
             try
             {
                 int lcRecCount = clsDbConnection.Execute(
-                    "DELETE FROM itemOrder WHERE InvoiceNumber = @Id", par);
+                    "DELETE FROM itemOrder " +
+                    "WHERE InvoiceNumber = @Id", 
+                    par);
                 if (lcRecCount == 1)
                     return "One Item Deleted.";
                 else
@@ -273,9 +284,14 @@ namespace SelfHost
         #endregion
 
         #region ##### PREPARATION METHODS #####
+        /// <summary>
+        /// Generates non-database-specific parameter dictionary for command.
+        /// </summary>
+
+        #region ### ITEM PARAMETER GENERATOR ###
         private Dictionary<string, object> PrepareItemParameters(clsItem prItem)
         {
-            Dictionary<string, object> par = new Dictionary<string, object>(11);
+            Dictionary<string, object> par = new Dictionary<string, object>(13);
             par.Add("Id", prItem.Id);
             par.Add("Image", prItem.Image);
             par.Add("Name", prItem.Name);
@@ -291,7 +307,9 @@ namespace SelfHost
             par.Add("Type", prItem.Type);
             return par;
         }
+        #endregion
 
+        #region ### ORDER PARAMETER GENERATOR ###
         private Dictionary<string, object> PrepareOrderParameters(clsOrder prOrder)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(5);
@@ -302,6 +320,8 @@ namespace SelfHost
             par.Add("Email", prOrder.Email);
             return par;
         }
+        #endregion
+
         #endregion
     }
 }

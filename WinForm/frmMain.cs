@@ -28,7 +28,7 @@ namespace WinForm
         {
             if (lstCategories.SelectedItem != null)
             {
-                frmCategory.Run(lstCategories.SelectedItem as string);
+                frmItems.Run(lstCategories.SelectedItem as string);
             }
             else
             {
@@ -47,7 +47,6 @@ namespace WinForm
         #region ##### BUTTONS #####
         private void BtnOpenCurrentOrdersForm_Click(object sender, EventArgs e)
         {
-            // TODO: Let frmOrder 'run' itself.
             frmOrderList.Instance.Show();        
             UpdateDisplay();
         }

@@ -4,11 +4,13 @@ using System.Windows.Forms;
 
 namespace WinForm
 {
-    public sealed partial class frmCategory : Form
+    public sealed partial class frmItems : Form
     {
+        #region ##### COMPARERS #####
         private static PriceComparer priceComparer = new PriceComparer();
         private static NameComparer nameComparer = new NameComparer();
         private static QuantityComparer quantityComparer = new QuantityComparer();
+        #endregion
 
         #region ##### VARIABLES #####
         private clsCategory _Category;
@@ -19,11 +21,11 @@ namespace WinForm
         #endregion
 
         #region ##### SINGLETON #####
-        private frmCategory()
+        private frmItems()
         {
             InitializeComponent();
         }
-        public static readonly frmCategory Instance = new frmCategory();
+        public static readonly frmItems Instance = new frmItems();
         #endregion
 
         #region ##### METHODS #####
@@ -59,7 +61,7 @@ namespace WinForm
 
             try
             {
-                ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+                ItemList = await ServiceClient.GetItemsAsync(Category.Name);
                 UpdateForm();
                 Show();
             }
@@ -69,16 +71,6 @@ namespace WinForm
             }          
         }
 
-        private void DeleteItem(int prIndex)
-        {
-            //if (prIndex >= 0 && prIndex < ItemList.Count)
-            //{
-            //    if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //    {
-            //        ItemList.DeleteWork(prIndex);
-            //    }
-            //}
-        }
         private void OpenSelectedItemForm(clsItem prItem)
         {
             if (prItem != null)
@@ -87,9 +79,11 @@ namespace WinForm
                 {
                     case "new":
                         frmNewItem.Run(prItem);
+                        UpdateDisplay();
                         break;
                     case "used":
                         frmUsedItem.Run(prItem);
+                        UpdateDisplay();
                         break;
                 }             
             }
@@ -123,11 +117,13 @@ namespace WinForm
                     lcItem.Type = "new";
                     lcItem.Category = Category.Name;
                     frmNewItem.Run(lcItem);
+                    UpdateDisplay();
                     break;
                 case "Used":
                     lcItem.Type = "used";
                     lcItem.Category = Category.Name;
                     frmUsedItem.Run(lcItem);
+                    UpdateDisplay();
                     break;
                 default:
                     MessageBox.Show("No item type selected!");
@@ -165,11 +161,11 @@ namespace WinForm
             {
                 if (lvItemList.FocusedItem.Selected)
                 {
-                    if (MessageBox.Show("Are you sure?", "Deleting order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Are you sure?", "Deleting Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
                         {
-                            MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString()));
+                            MessageBox.Show(await ServiceClient.DeleteItemAsync(ItemList[lvItemList.FocusedItem.Index].Id.ToString().Trim('"')));
                             UpdateDisplay();
                         }
                         catch (Exception ex)
@@ -203,19 +199,22 @@ namespace WinForm
         #region ##### SORT BUTTONS #####
         private void BtnSortByName_Click(object sender, EventArgs e)
         {
-            ItemList.Sort(nameComparer);
+            if(ItemList != null)
+                ItemList.Sort(nameComparer);
             UpdateForm();
         }
 
         private void BtnSortByPrice_Click(object sender, EventArgs e)
         {
-            ItemList.Sort(priceComparer);
+            if (ItemList != null)
+                ItemList.Sort(priceComparer);
             UpdateForm();
         }      
 
         private void BtnSortByQuantity_Click(object sender, EventArgs e)
         {
-            ItemList.Sort(quantityComparer);
+            if (ItemList != null)
+                ItemList.Sort(quantityComparer);
             UpdateForm();
         }
         #endregion
@@ -228,50 +227,67 @@ namespace WinForm
             UpdateDisplay();
         }
 
-        private async void UpdateDisplay()
+        private async void RefreshItemListFromDatabase()
         {
             try
             {
-                if(ItemList == null)
-                    ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+                ItemList = await ServiceClient.GetItemsAsync(Category.Name);
+                ResetIstView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().Message);
+            }
+        }
 
-                if (ItemList != null)
-                {
-                    // ListView https://stackoverflow.com/questions/11482501/populating-a-listview-multi-column
-                    lvItemList.View = View.Details;
-                    lvItemList.Clear();
-                    lvItemList.Columns.Add("Name");
-                    lvItemList.Columns.Add("Unit Price");
-                    lvItemList.Columns.Add("In Stock");
+        private void UpdateDisplay()
+        {
+            try
+            {
+                RefreshItemListFromDatabase();
 
-                    // Resize columns https://stackoverflow.com/questions/4802744/adjust-listview-columns-to-fit-with-winforms
-                    int x = lvItemList.Width / 3;
-
-                    foreach (ColumnHeader column in lvItemList.Columns)
-                    {
-                        column.Width = x;
-                    }
-
-                    foreach (clsItem item in ItemList)
-                    {
-                        lvItemList.Items.Add(new ListViewItem(new string[]
-                        {
-                            item.Name,
-                            "$" + item.Price.ToString(),
-                            item.Quantity.ToString(),
-                        }));
-                    }
-                }
-                else
-                {
-                    lvItemList.Clear();
-                    MessageBox.Show("There are currently no items in this category.");
-                }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.GetBaseException().Message);
             }        
+        }
+
+        private void ResetIstView()
+        {
+            if (ItemList != null)
+            {
+                // ListView https://stackoverflow.com/questions/11482501/populating-a-listview-multi-column
+                lvItemList.View = View.Details;
+                lvItemList.Clear();
+                lvItemList.Columns.Add("Name");
+                lvItemList.Columns.Add("Unit Price");
+                lvItemList.Columns.Add("In Stock");
+
+                // Resize columns https://stackoverflow.com/questions/4802744/adjust-listview-columns-to-fit-with-winforms
+                int x = lvItemList.Width / 3;
+
+                foreach (ColumnHeader column in lvItemList.Columns)
+                {
+                    column.Width = x;
+                }
+
+                foreach (clsItem item in ItemList)
+                {
+                    lvItemList.Items.Add(new ListViewItem(new string[]
+                    {
+                            item.Name,
+                            "$" + item.Price.ToString(),
+                            item.Quantity.ToString(),
+                    }));
+                }
+            }
+            else
+            {
+                lvItemList.Clear();
+                MessageBox.Show("There are currently no items in this category.");
+            }
         }
 
         #endregion

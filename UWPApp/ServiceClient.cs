@@ -39,20 +39,21 @@ namespace UWPApp
         #endregion
 
         #region ### ITEM RETRIEVE ###
-        internal async static Task<List<string>> GetCategoryItemNamesAsync(string prCategoryName)
-        {
-            using (HttpClient lcHttpClient = new HttpClient())
-                return JsonConvert.DeserializeObject<List<string>>
-                    (await lcHttpClient.GetStringAsync("http://localhost:60064/api/electrify/getcategoryitemnames?Category=" + prCategoryName));
-        }      
 
-        internal async static Task<List<clsItem>> GetCategoryItemsAsync(string prCategoryName)
+        // --removed-- Get Item Names
+        //internal async static Task<List<string>> GetCategoryItemNamesAsync(string prCategoryName)
+        //{
+        //    using (HttpClient lcHttpClient = new HttpClient())
+        //        return JsonConvert.DeserializeObject<List<string>>
+        //            (await lcHttpClient.GetStringAsync("http://localhost:60064/api/electrify/getcategoryitemnames?Category=" + prCategoryName));
+        //}      
+
+        internal async static Task<List<clsItem>> GetItemsAsync(string prCategoryName)
         {
             using (HttpClient lcHttpClient = new HttpClient())
                 return JsonConvert.DeserializeObject<List<clsItem>>
-                    (await lcHttpClient.GetStringAsync("http://localhost:60064/api/electrify/getcategoryitems?Category=" + prCategoryName));
+                    (await lcHttpClient.GetStringAsync("http://localhost:60064/api/electrify/getitems?Category=" + prCategoryName));
         }
-
 
         internal async static Task<clsItem> GetItemAsync(string prId)
         {

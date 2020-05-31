@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO.cs" />
-    <Compile Include="frmCategory.cs">
+    <Compile Include="frmItems.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCategory.Designer.cs">
-      <DependentUpon>frmCategory.cs</DependentUpon>
+    <Compile Include="frmItems.Designer.cs">
+      <DependentUpon>frmItems.cs</DependentUpon>
     </Compile>
     <Compile Include="frmItem.cs">
       <SubType>Form</SubType>
@@ -92,8 +92,8 @@
     <Compile Include="QuantityComparer.cs" />
     <Compile Include="ServiceClient.cs" />
     <Compile Include="PriceComparer.cs" />
-    <EmbeddedResource Include="frmCategory.resx">
-      <DependentUpon>frmCategory.cs</DependentUpon>
+    <EmbeddedResource Include="frmItems.resx">
+      <DependentUpon>frmItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>
@@ -118,6 +118,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -132,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoImage.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unnamed.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

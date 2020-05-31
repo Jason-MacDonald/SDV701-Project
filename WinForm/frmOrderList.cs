@@ -88,7 +88,7 @@ namespace WinForm
                     lvOrderList.Columns.Add("Total Price");
 
                     // Resize columns https://stackoverflow.com/questions/4802744/adjust-listview-columns-to-fit-with-winforms
-                    int x = lvOrderList.Width / 5;
+                    int x = lvOrderList.Width / 6;
 
                     foreach (ColumnHeader column in lvOrderList.Columns)
                     {

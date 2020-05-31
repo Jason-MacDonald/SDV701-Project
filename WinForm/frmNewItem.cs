@@ -32,6 +32,7 @@ namespace WinForm
             if (ValidWarrantyPeriod())
             {
                 Item.WarrantyPeriod = Convert.ToInt32(txtWarrantyPeriod.Text);
+                Item.Condition = null;
             }
             return base.PushData();
         }
@@ -40,6 +41,19 @@ namespace WinForm
         {
             base.UpdateForm();
             txtWarrantyPeriod.Text = Item.WarrantyPeriod.ToString() ;
+        }
+
+        protected override bool HasChanged()
+        {
+            if (base.HasChanged() || Convert.ToInt32(txtWarrantyPeriod.Text) != Item.WarrantyPeriod)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         #endregion
 

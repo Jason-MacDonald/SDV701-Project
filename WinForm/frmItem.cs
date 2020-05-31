@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinForm.Properties;
 
 namespace WinForm
 {
     public partial class frmItem : Form
     {
         #region ##### VARIABLES #####   
-        /// <summary>
-        /// Using var as comparing image as either Images or Byte[]'s doesn't seem to work. 
-        /// Ensure set to false when form is hidden. - Hide()
-        /// </summary>
-        private bool uploadedImage = false;
+        private bool imageChanged;
 
         private clsItem item;
         protected clsItem Item { get => item; set => item = value; }
@@ -35,11 +28,7 @@ namespace WinForm
         public void SetDetails(clsItem prItem)
         {
             Item = prItem;
-
-            if (Item.Name != null)
-                txtName.Enabled = false;
-            else
-                txtName.Enabled = true;
+            txtName.Enabled = Item.Name != null ? false : true;
 
             UpdateForm();
             ShowDialog();
@@ -53,7 +42,7 @@ namespace WinForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetBaseException().Message);
+                MessageBox.Show("Error 001: " + ex.GetBaseException().Message);
             }
         }
 
@@ -66,7 +55,7 @@ namespace WinForm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetBaseException().Message);
+                MessageBox.Show("Error 002: " + ex.GetBaseException().Message);
             }
         }
         #endregion
@@ -80,31 +69,26 @@ namespace WinForm
                 if(fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     picImage.Image = Image.FromFile(fileDialog.FileName);
-                    uploadedImage = true;
+                    imageChanged = true;
                 }
             }
         }
 
         private byte[] ConvertImageToBinary(Image prImage)
         {
-            using(MemoryStream lcMemoryStream = new MemoryStream())
-            {
-                prImage.Save(lcMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return lcMemoryStream.ToArray();
-            }
+            MemoryStream lcMemoryStream = new MemoryStream();
+            prImage.Save(lcMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return lcMemoryStream.ToArray();
         }
 
         private Image ConvertBinaryToImage(byte[] prImageData)
         {
-            using(MemoryStream lcMemoryStream = new MemoryStream(prImageData))
-            {
-                return Image.FromStream(lcMemoryStream);
-            }
+            MemoryStream lcMemoryStream = new MemoryStream(prImageData);
+            return Image.FromStream(lcMemoryStream);
         }
 
         private async void BtnSaveAndClose_Click(object sender, EventArgs e)
         {
-            // TODO: Should only save if changed as modified date is getting updated even when no changes are made.
             if (HasChanged())
             {
                 if (PushData())
@@ -117,16 +101,15 @@ namespace WinForm
                     {
                         await UpdateItemInDatabase();
                     }
-                    frmCategory.Instance.UpdateForm();
+                    //frmItems.Instance.UpdateForm();
 
-                    uploadedImage = false;
                     Hide();
                 }
             }
             else
             {
                 MessageBox.Show("No changes made.");
-                uploadedImage = false;
+
                 Hide();
             }
 
@@ -137,7 +120,6 @@ namespace WinForm
         {
             if (MessageBox.Show("Are you sure you want to close without saving? Any changes you have made will not be saved.", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                uploadedImage = false;
                 Hide();
             }
         }
@@ -147,7 +129,7 @@ namespace WinForm
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = true;
-                uploadedImage = false;
+
                 Hide();
             }
         }
@@ -175,9 +157,9 @@ namespace WinForm
                                     Item.Battery = txtBattery.Text;
                                     Item.Quantity = Convert.ToInt32(txtQuantity.Text);
                                     Item.Price = float.Parse(txtPrice.Text);
-
-
                                     Item.Image = ConvertImageToBinary(picImage.Image);
+
+                                    imageChanged = false;
                                     return true;
                                 }
                             }
@@ -188,7 +170,7 @@ namespace WinForm
             return false;
         }
 
-        private bool HasChanged()
+        protected virtual bool HasChanged()
         {
             if (
                 txtName.Text != Item.Name ||
@@ -197,8 +179,7 @@ namespace WinForm
                 txtBattery.Text != Item.Battery ||
                 Convert.ToInt32(txtQuantity.Text) != Item.Quantity ||
                 float.Parse(txtPrice.Text) != Item.Price ||
-
-                uploadedImage
+                imageChanged
             )
             {
                 return true;
@@ -216,14 +197,14 @@ namespace WinForm
             txtPrice.Text = Item.Price.ToString();
             lblModifiedDate.Text = Item.ModifiedDate;
 
-            try
+            if(Item.Image == null)
+            {
+                picImage.Image = Resources.noimage;
+            }
+            else
             {
                 picImage.Image = ConvertBinaryToImage(Item.Image);
             }
-            catch (Exception)
-            {
-                // pass
-            }           
         }
         #endregion
 
@@ -379,6 +360,9 @@ namespace WinForm
 
         #endregion
 
-
+        private void BtnDeleteImage_Click(object sender, EventArgs e)
+        {
+          
+        }
     }
 }

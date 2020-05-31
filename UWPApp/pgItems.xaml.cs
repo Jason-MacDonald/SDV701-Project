@@ -44,7 +44,7 @@ namespace UWPApp
 
             try
             {
-                ItemList = await ServiceClient.GetCategoryItemsAsync(Category.Name);
+                ItemList = await ServiceClient.GetItemsAsync(Category.Name);
 
                 if (ItemList != null)
                 {

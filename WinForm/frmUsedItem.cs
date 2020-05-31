@@ -32,6 +32,7 @@ namespace WinForm
             if (ValidCondition())
             {
                 Item.Condition = txtCondition.Text;
+                Item.WarrantyPeriod = 0;
             }
             return base.PushData();
         }
@@ -40,6 +41,19 @@ namespace WinForm
         {
             base.UpdateForm();
             txtCondition.Text = Item.Condition;
+        }
+
+        protected override bool HasChanged()
+        {
+            if (base.HasChanged() || txtCondition.Text != Item.Condition)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         #endregion
 

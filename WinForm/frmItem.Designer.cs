@@ -46,6 +46,7 @@
             this.lblModifiedDate = new System.Windows.Forms.Label();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.btnUploadImage = new System.Windows.Forms.Button();
+            this.btnDeleteImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +57,7 @@
             this.label1.Location = new System.Drawing.Point(12, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 16);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
@@ -75,7 +76,7 @@
             this.label3.Location = new System.Drawing.Point(12, 69);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 16);
+            this.label3.Size = new System.Drawing.Size(106, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Description";
             // 
@@ -97,7 +98,7 @@
             this.label2.Location = new System.Drawing.Point(12, 364);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Price";
             // 
@@ -116,7 +117,7 @@
             this.label4.Location = new System.Drawing.Point(215, 364);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 16);
+            this.label4.Size = new System.Drawing.Size(38, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Qty";
             // 
@@ -135,7 +136,7 @@
             this.label5.Location = new System.Drawing.Point(12, 242);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 16);
+            this.label5.Size = new System.Drawing.Size(57, 20);
             this.label5.TabIndex = 9;
             this.label5.Text = "Motor";
             // 
@@ -162,7 +163,7 @@
             this.label6.Location = new System.Drawing.Point(12, 300);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 16);
+            this.label6.Size = new System.Drawing.Size(70, 20);
             this.label6.TabIndex = 12;
             this.label6.Text = "Battery";
             // 
@@ -170,10 +171,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(392, 441);
+            this.label7.Location = new System.Drawing.Point(392, 444);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.Size = new System.Drawing.Size(110, 17);
             this.label7.TabIndex = 13;
             this.label7.Text = "Last Modified:";
             // 
@@ -201,12 +202,11 @@
             // 
             // lblModifiedDate
             // 
-            this.lblModifiedDate.Location = new System.Drawing.Point(487, 439);
+            this.lblModifiedDate.Location = new System.Drawing.Point(510, 444);
             this.lblModifiedDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblModifiedDate.Name = "lblModifiedDate";
-            this.lblModifiedDate.Size = new System.Drawing.Size(248, 15);
+            this.lblModifiedDate.Size = new System.Drawing.Size(225, 15);
             this.lblModifiedDate.TabIndex = 16;
-            this.lblModifiedDate.Text = "01/01/2020";
             this.lblModifiedDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // picImage
@@ -221,20 +221,31 @@
             // 
             // btnUploadImage
             // 
-            this.btnUploadImage.Location = new System.Drawing.Point(395, 263);
+            this.btnUploadImage.Location = new System.Drawing.Point(490, 263);
             this.btnUploadImage.Margin = new System.Windows.Forms.Padding(4);
             this.btnUploadImage.Name = "btnUploadImage";
-            this.btnUploadImage.Size = new System.Drawing.Size(340, 28);
+            this.btnUploadImage.Size = new System.Drawing.Size(245, 28);
             this.btnUploadImage.TabIndex = 18;
             this.btnUploadImage.Text = "Upload / Replace Image";
             this.btnUploadImage.UseVisualStyleBackColor = true;
             this.btnUploadImage.Click += new System.EventHandler(this.BtnUploadImage_Click);
+            // 
+            // btnDeleteImage
+            // 
+            this.btnDeleteImage.Location = new System.Drawing.Point(395, 263);
+            this.btnDeleteImage.Name = "btnDeleteImage";
+            this.btnDeleteImage.Size = new System.Drawing.Size(88, 28);
+            this.btnDeleteImage.TabIndex = 19;
+            this.btnDeleteImage.Text = "Remove";
+            this.btnDeleteImage.UseVisualStyleBackColor = true;
+            this.btnDeleteImage.Click += new System.EventHandler(this.BtnDeleteImage_Click);
             // 
             // frmItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(751, 470);
+            this.Controls.Add(this.btnDeleteImage);
             this.Controls.Add(this.btnUploadImage);
             this.Controls.Add(this.picImage);
             this.Controls.Add(this.lblModifiedDate);
@@ -283,5 +294,6 @@
         private System.Windows.Forms.Label lblModifiedDate;
         private System.Windows.Forms.PictureBox picImage;
         private System.Windows.Forms.Button btnUploadImage;
+        private System.Windows.Forms.Button btnDeleteImage;
     }
 }

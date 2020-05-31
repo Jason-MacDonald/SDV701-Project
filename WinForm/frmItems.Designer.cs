@@ -1,6 +1,6 @@
 ﻿namespace WinForm
 {
-    partial class frmCategory
+    partial class frmItems
     {
         /// <summary>
         /// Required designer variable.
@@ -146,7 +146,7 @@
             this.btnSortByQuantity.UseVisualStyleBackColor = true;
             this.btnSortByQuantity.Click += new System.EventHandler(this.BtnSortByQuantity_Click);
             // 
-            // frmCategory
+            // frmItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -162,7 +162,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmCategory";
+            this.Name = "frmItems";
             this.Text = "Mountain E-Bikes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCategory_FormClosing);
             this.ResumeLayout(false);
