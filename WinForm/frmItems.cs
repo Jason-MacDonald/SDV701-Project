@@ -201,21 +201,21 @@ namespace WinForm
         {
             if(ItemList != null)
                 ItemList.Sort(nameComparer);
-            UpdateForm();
+            ResetListView();
         }
 
         private void BtnSortByPrice_Click(object sender, EventArgs e)
         {
             if (ItemList != null)
                 ItemList.Sort(priceComparer);
-            UpdateForm();
+            ResetListView();
         }      
 
         private void BtnSortByQuantity_Click(object sender, EventArgs e)
         {
             if (ItemList != null)
                 ItemList.Sort(quantityComparer);
-            UpdateForm();
+            ResetListView();
         }
         #endregion
 
@@ -232,7 +232,7 @@ namespace WinForm
             try
             {
                 ItemList = await ServiceClient.GetItemsAsync(Category.Name);
-                ResetIstView();
+                ResetListView();
             }
             catch (Exception ex)
             {
@@ -244,9 +244,7 @@ namespace WinForm
         {
             try
             {
-                RefreshItemListFromDatabase();
-
-                
+                RefreshItemListFromDatabase();               
             }
             catch (Exception ex)
             {
@@ -254,7 +252,7 @@ namespace WinForm
             }        
         }
 
-        private void ResetIstView()
+        private void ResetListView()
         {
             if (ItemList != null)
             {

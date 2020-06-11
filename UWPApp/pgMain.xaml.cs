@@ -53,7 +53,6 @@ namespace UWPApp
         #endregion
 
         #region ##### BUTTONS #####
-        // NOTE: Documentation suggests not to progromatically close a UWP app.
         private void BtnOpenSelectedCategory_Click(object sender, RoutedEventArgs e)
         {
             if (lstCategories.SelectedItem != null)

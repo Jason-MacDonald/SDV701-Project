@@ -102,7 +102,6 @@ namespace WinForm
                         await UpdateItemInDatabase();
                     }
                     //frmItems.Instance.UpdateForm();
-
                     Hide();
                 }
             }
@@ -111,9 +110,7 @@ namespace WinForm
                 MessageBox.Show("No changes made.");
 
                 Hide();
-            }
-
-            
+            }         
         }
 
         private void BtnCloseWithoutSaving_Click(object sender, EventArgs e)
@@ -362,7 +359,8 @@ namespace WinForm
 
         private void BtnDeleteImage_Click(object sender, EventArgs e)
         {
-          
+            //TODO: Delete image.
+            MessageBox.Show("Not implemented!");
         }
     }
 }

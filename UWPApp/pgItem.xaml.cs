@@ -10,7 +10,6 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.Storage.Streams;
-using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.UI.Xaml.Media;
 
@@ -18,7 +17,7 @@ namespace UWPApp
 {
     public sealed partial class pgItem : Page
     {
-        #region USER CONTROL SELECTION #####
+        #region ##### USER CONTROL SELECTION #####
         private delegate void LoadItemControlDelegate(clsItem prItem);
         private Dictionary<string, Delegate> _ItemContent;
         private void DispatchItemContent(clsItem prItem)
@@ -81,8 +80,6 @@ namespace UWPApp
 
         private async Task InsertNewOrderInDatabase()
         {
-            // TODO: Concurrency - Consider stored procedure.
-
             clsItem lcItem = new clsItem
             {
                 Id = Item.Id,
@@ -204,7 +201,7 @@ namespace UWPApp
         #endregion
 
         #region ##### UPDATES #####
-        public void UpdateForm()
+        private void UpdateForm()
         {
             lblMessage.Text = "";
             lblItemName.Text = Item.Name;
@@ -214,7 +211,6 @@ namespace UWPApp
             lblItemQty.Text = Item.Quantity.ToString();
             (ctcItemSpecs.Content as IItemControl).UpdateControl(Item);
 
-            //picItem.Source = ConvertBytesToBitmap(Item.Image);
             if(Item.Image != null)
             {
                 picItem.Source = ConvertBytesToBitmapAsync(Item.Image).Result;
@@ -222,8 +218,7 @@ namespace UWPApp
             else
             {
                 picItem.Source = null;
-            }
-            
+            }          
         }
         #endregion
 
@@ -326,37 +321,20 @@ namespace UWPApp
 
         #endregion
 
-        public ImageSource ConvertBytesToBitmap(byte[] prImageData)
-        {
-            BitmapImage lcImage = new BitmapImage();
-
-            using (InMemoryRandomAccessStream lcStream = new InMemoryRandomAccessStream())
-            {
-                lcStream.AsStreamForWrite().Write(prImageData, 0, prImageData.Length);
-                lcImage.SetSource(lcStream);
-
-                return lcImage;
-            }
-        }
-
-        public async static Task<ImageSource> ConvertBytesToBitmapAsync(byte[] bytes)
+        #region ##### IMAGE STREAM #####
+        private async static Task<ImageSource> ConvertBytesToBitmapAsync(byte[] bytes)
         {
             BitmapImage image = new BitmapImage();
             
-
             using (InMemoryRandomAccessStream stream = new InMemoryRandomAccessStream())
             {
                 await stream.WriteAsync(bytes.AsBuffer());
                 stream.Seek(0);
 
-                //TODO: What the hell???
-                // Using await breaks it here but all examples use await and a warning is shown... but will only work if asynchronous.
-
                 image.SetSourceAsync(stream);
-
-                // await image.SetSourceAsync(stream);
             }
             return image;
         }
+        #endregion
     }
 }

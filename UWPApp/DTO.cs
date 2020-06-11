@@ -1,11 +1,14 @@
 ﻿namespace UWPApp
 {
+    #region ##### CATEGORY DTO #####
     public class clsCategory
     {
         public string Name { get; set; }
         public string Description { get; set; }
     }
+    #endregion
 
+    #region ##### ITEM DTO #####
     public class clsItem
     {
         public int Id { get; set; }
@@ -22,7 +25,9 @@
         public string Condition { get; set; }
         public string Type { get; set; }       
     }
+    #endregion
 
+    #region ##### ORDER DTO #####
     public class clsOrder
     {
         public int InvoiceNumber { get; set; }
@@ -32,5 +37,6 @@
         public string Name { get; set; }
         public string Email { get; set; }
     }
+    #endregion
 }
 

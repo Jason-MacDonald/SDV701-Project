@@ -25,7 +25,7 @@ namespace UWPApp
         #endregion
 
         #region ##### METHODS #####
-        public void OpenSelectedItem()
+        private void OpenSelectedItem()
         {
             try
             {
