@@ -53,7 +53,18 @@ namespace UWPApp
             {
                 try
                 {
-                    await InsertNewOrderInDatabase();
+                    clsItem tempItem = await ServiceClient.GetItemAsync(Item.Id.ToString());
+                    // Checking to see if anyone else has changed the Items details since it was retrieved from the database.
+                    if (tempItem.ModifiedDate != Item.ModifiedDate)
+                    {
+                        await new MessageDialog("The item has been modified. Please check the item details.").ShowAsync();
+                        Item = tempItem;
+                        UpdateForm();
+                    }
+                    else
+                    {
+                        await InsertNewOrderInDatabase();
+                    }                 
                 }
                 catch (Exception ex)
                 {

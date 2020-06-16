@@ -169,13 +169,14 @@ namespace WinForm
 
         protected virtual bool HasChanged()
         {
-            if (
+            if 
+            (
                 txtName.Text != Item.Name ||
                 txtDescription.Text != Item.Description ||
                 txtMotor.Text != Item.Motor ||
                 txtBattery.Text != Item.Battery ||
-                Convert.ToInt32(txtQuantity.Text) != Item.Quantity ||
-                float.Parse(txtPrice.Text) != Item.Price ||
+                txtQuantity.Text != Item.Quantity.ToString() ||
+                txtPrice.Text != Item.Price.ToString() ||
                 imageChanged
             )
             {

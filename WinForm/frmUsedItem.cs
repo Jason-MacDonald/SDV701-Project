@@ -33,8 +33,12 @@ namespace WinForm
             {
                 Item.Condition = txtCondition.Text;
                 Item.WarrantyPeriod = 0;
+                base.PushData();
+                return true;
             }
-            return base.PushData();
+            else 
+                return false;
+            
         }
 
         protected override void UpdateForm()

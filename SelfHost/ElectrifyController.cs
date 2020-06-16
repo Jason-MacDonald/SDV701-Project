@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Web.Http;
 
 namespace SelfHost
 {
-    public class ElectrifyController : System.Web.Http.ApiController
+    public class ElectrifyController : ApiController
     {
         #region ##### CATEGORY QUERIES #####
 
@@ -20,6 +21,7 @@ namespace SelfHost
                 lcNames.Add((string)dr[0]);
             return lcNames;
         }
+
         public clsCategory GetCategory(string Name)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
@@ -46,19 +48,6 @@ namespace SelfHost
         #region ##### ITEM QUERIES #####
 
         #region ### GET ###
-
-        // --removed-- GET ITEM NAMES 
-        //public List<string> GetCategoryItemNames(string Category)
-        //{
-        //    Dictionary<string, object> par = new Dictionary<string, object>(1);
-        //    par.Add("Category", Category);
-        //    DataTable lcResult = clsDbConnection.GetDataTable("SELECT name FROM item WHERE CategoryName = @Category", par);
-        //    List<string> lcNames = new List<string>();
-        //    foreach (DataRow dr in lcResult.Rows)
-        //        lcNames.Add((string)dr[0]);
-        //    return lcNames;
-        //}
-
         public List<clsItem> GetItems(string Category)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
@@ -284,9 +273,6 @@ namespace SelfHost
         #endregion
 
         #region ##### PREPARATION METHODS #####
-        /// <summary>
-        /// Generates non-database-specific parameter dictionary for command.
-        /// </summary>
 
         #region ### ITEM PARAMETER GENERATOR ###
         private Dictionary<string, object> PrepareItemParameters(clsItem prItem)
