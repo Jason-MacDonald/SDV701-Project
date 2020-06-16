@@ -77,7 +77,7 @@
             this.label1.Location = new System.Drawing.Point(572, 294);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 13);
+            this.label1.Size = new System.Drawing.Size(224, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Total Value of Current Orders";
             // 
@@ -87,7 +87,7 @@
             this.lblTotal.Location = new System.Drawing.Point(837, 294);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(22, 16);
+            this.lblTotal.Size = new System.Drawing.Size(24, 17);
             this.lblTotal.TabIndex = 4;
             this.lblTotal.Text = "$0";
             // 
@@ -105,7 +105,7 @@
             this.Name = "frmOrderList";
             this.Text = "Current Orders";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmOrderList_FormClosing);
-            this.Shown += new System.EventHandler(this.FrmOrderList_Shown);
+            this.VisibleChanged += new System.EventHandler(this.frmOrderList_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
