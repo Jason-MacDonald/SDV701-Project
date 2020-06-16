@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WinForm
@@ -33,8 +28,11 @@ namespace WinForm
             {
                 Item.WarrantyPeriod = Convert.ToInt32(txtWarrantyPeriod.Text);
                 Item.Condition = null;
-                base.PushData();
-                return true;
+                if (base.PushData())
+                {
+                    return true;
+                }
+                else return false;
             }
             else
                 return false;

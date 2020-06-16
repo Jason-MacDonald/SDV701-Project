@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows.Forms;
 
 namespace WinForm
@@ -33,8 +27,14 @@ namespace WinForm
             {
                 Item.Condition = txtCondition.Text;
                 Item.WarrantyPeriod = 0;
-                base.PushData();
-                return true;
+                if (base.PushData())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else 
                 return false;
